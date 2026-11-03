@@ -90,7 +90,7 @@ const HeroMockup: React.FC<{f: number}> = ({f}) => {
   const rotX = 6 * (1 - prog(f, 0, 90, easeOut));
   const scale = 0.96 + 0.04 * prog(f, 0, F(CONFIG.heroSeconds));
   const floatY = Math.sin((f / (FPS * 8)) * Math.PI * 2) * 6;
-  const ex = prog(f, F(CONFIG.heroExitStart), F(CONFIG.heroExitStart) + 18, Easing.in(Easing.cubic));
+  const ex = prog(f, F(CONFIG.heroExitStart), F(CONFIG.heroExitStart) + 12, Easing.in(Easing.cubic));
   return (
     <Mockup cy={940} scale={scale} rotX={rotX} y={floatY + ex * 2300}>
       <Img src={heroSrc(idx)} style={{position: 'absolute', left: 0, top: 0, width: VW, height: VH}} />
@@ -116,7 +116,7 @@ const ShotA: React.FC<{strip: string; from: number; to: number; frames: number; 
   const e = prog(f, 0, frames, easeInOut);
   const scroll = from + (to - from) * e;
   void sc;
-  const enterP = enter ? spring({frame: f, fps: FPS, config: {damping: 20, stiffness: 110}}) : 1;
+  const enterP = enter ? spring({frame: f, fps: FPS, config: {damping: 18, stiffness: 220}}) : 1;
   return (
     <Mockup cy={940} scale={0.985 + 0.015 * prog(f, 0, frames)} y={(1 - enterP) * -2000}>
       <StripView name={strip} scroll={scroll} />
@@ -210,7 +210,7 @@ const Shot: React.FC<{id: string; frames: number}> = ({id, frames}) => {
     case 's8': return <FullBleed strip="mat_granito" frames={frames} a={{cx: 430, cy: 640, W: 470}} b={{cx: 440, cy: 630, W: 380}} />;
     case 's9': return <FullBleed strip="mat_granito" frames={frames} a={{cx: 1115, cy: 531, W: 590}} b={{cx: 1115, cy: 531, W: 540}} />;
     case 's10': return <ShotA strip="met" from={0} to={330} frames={frames} />;
-    case 's11': return <FullBleed strip="met" frames={frames} a={{cx: 1000, cy: 470, W: 520}} b={{cx: 1000, cy: 450, W: 430}} />;
+    case 's11': return <FullBleed strip="met" frames={frames} a={{cx: 1045, cy: 470, W: 640}} b={{cx: 1055, cy: 450, W: 580}} />;
     case 's12': return <FullBleed strip="met" frames={frames} a={{cx: 1014, cy: 622, W: 700}} b={{cx: 1014, cy: 622, W: 660}} />;
     case 's13': return <ShotA strip="con" from={0} to={270} frames={frames} />;
     case 's14': return <FullBleed strip="con" frames={frames} a={{cx: 770, cy: 700, W: 420}} b={{cx: 760, cy: 700, W: 340}} />;
@@ -348,8 +348,8 @@ const TransitionStage: React.FC = () => {
     <>
       <HeroMockup f={f + F(CONFIG.heroExitStart)} />
       {/* la sezione entra dall'alto a 15,0 s: offset negativo = parte 0,25 s dopo l'inizio della transizione */}
-      <ShotA strip="lav" from={0} to={260} frames={F(1.0)} fOffset={-(F(15.0) - F(CONFIG.heroExitStart))} enter />
+      <ShotA strip="lav" from={0} to={260} frames={F(1.15)} fOffset={-(F(14.85) - F(CONFIG.heroExitStart))} enter />
     </>
   );
 };
-const ShotsFromS1: React.FC = () => <ShotA strip="lav" from={0} to={260} frames={F(1.0)} fOffset={F(15.45) - F(15.0)} />;
+const ShotsFromS1: React.FC = () => <ShotA strip="lav" from={0} to={260} frames={F(1.15)} fOffset={F(15.45) - F(14.85)} />;
