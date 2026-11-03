@@ -21,7 +21,7 @@ const prog = (f: number, a: number, b: number, e?: (t: number) => number) =>
 const VW = 1000, VH = 625, BAR = 46, S = VW / 1440;
 const STRIP_H: Record<string, number> = {lav: 2087, mat: 1062, met: 1245, con: 1177, mat_granito: 1062};
 const HERO_LAST = 899;
-const heroSrc = (i: number) => staticFile(`hero/h_${String(Math.max(0, Math.min(HERO_LAST, i))).padStart(4, '0')}.jpg`);
+const heroSrc = (i: number) => staticFile(`hero/h_${String(Math.max(0, Math.min(HERO_LAST, Math.round(i)))).padStart(4, '0')}.jpg`);
 
 // ---------- sfondo ----------
 const BG: React.FC<{heroIdx: number}> = ({heroIdx}) => (
