@@ -10,3 +10,7 @@ FILE
    Il half-drop e' gia' dentro il tile: non attivare un altro half-drop.
 2) pois_foglio_ripetuto_300dpi.png/.jpg - 9600x9440 px circa 81 x 80 cm, foglio gia' ripetuto, per siti che vogliono un file piatto
 3) Se il sito chiede 150 dpi: stesso file, ma imposta la dimensione a 27 x 16 cm per mantenere i pois da 9,5 cm.
+
+PRINTKK (set pigiama uomo 7W00YM, sublimazione)
+- printkk_pois_foglio_150dpi.jpg/.png: 4800x4720 px a 150 dpi (81x80 cm), RGB. Richiesto: JPG/PNG, RGB, min 150 dpi.
+- Nessun template: caricare nell'editor e verificare in anteprima la scala dei pois (volti da 9,5 cm a dimensioni reali).
