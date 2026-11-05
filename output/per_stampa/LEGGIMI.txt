@@ -1,0 +1,12 @@
+PATTERN A POIS - SPECIFICHE
+- Colore fondo: #BFD7EA (azzurro polvere)
+- Volto: ritaglio ovale, diametro verticale 9,5 cm (a 300 dpi), tutti dritti
+- Griglia sfalsata (half-drop), passo 13,5 cm in orizzontale, 16 cm in verticale
+- Modo colore: RGB (sRGB), 300 dpi
+
+FILE
+1) pois_tile_seamless_300dpi.png  - 3200x1888 px = 27,0 x 16,0 cm. Tile ripetibile senza cuciture.
+   Da usare dove il sito chiede un "pattern" / "tile" / "repeat" (es. Spoonflower: repeat "Basic").
+   Il half-drop e' gia' dentro il tile: non attivare un altro half-drop.
+2) pois_foglio_ripetuto_300dpi.png/.jpg - 9600x9440 px circa 81 x 80 cm, foglio gia' ripetuto, per siti che vogliono un file piatto
+3) Se il sito chiede 150 dpi: stesso file, ma imposta la dimensione a 27 x 16 cm per mantenere i pois da 9,5 cm.
