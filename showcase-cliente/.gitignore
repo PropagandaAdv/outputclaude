@@ -1,0 +1,7 @@
+node_modules/
+work/
+frames/
+source/
+remotion/public/*.mp4
+remotion/out.mp4
+out/*.mp4
