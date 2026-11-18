@@ -1,0 +1,4 @@
+.venv/
+apollo_chrome_profile/
+__pycache__/
+apollo_error.png
