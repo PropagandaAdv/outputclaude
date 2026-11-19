@@ -60,111 +60,113 @@ const ddtRows = [['N. documento', 'DDT 2481'], ['Data', '12/03'], ['Fornitore', 
 const files = {}; // nome -> {w,h,html}
 const add = (name, w, h, body, extra) => files[name] = { w, h, html: page(w, h, body, extra) };
 
-// ---------- A01 video (4:5 + 1:1)
+// ---------- A01 video (4:5 + 1:1) — DDT
 const subtitle = (t, bottom) => `<div class="sub" style="bottom:${bottom}px">${t}</div>`;
-add('A01_frame1_hook_4x5', 1080, 1350, `${logo}
- <div class="h" style="position:absolute;left:64px;top:170px;width:960px;font-size:84px">Quante ore al mese ricopi <span class="co">ordini a mano</span>?</div>
- <div style="position:absolute;left:260px;top:560px">${pile()}</div>${subtitle('Quante ore passa il tuo team a ricopiare ordini?', 120)}`);
+const ddtRows2 = [['N. documento', 'DDT 2481'], ['Codice', 'VT-M8-40'], ['Quantità', '10'], ['Unità', 'colli (CT)'], ['Confezione', '12 pz']];
+const hookHTML = `<div class="h" style="position:absolute;left:64px;top:170px;width:960px;font-size:84px">Quante <span class="co">righe di DDT</span> ricopi ogni giorno?</div>
+ <div style="position:absolute;left:260px;top:560px">${pile()}</div>`;
+add('A01_frame1_hook_4x5', 1080, 1350, `${logo}${hookHTML}${subtitle('Quante righe di DDT ricopia il tuo team ogni giorno?', 120)}`);
 add('A01_frame2_flusso_4x5', 1080, 1350, `${logo}
- <div class="h" style="position:absolute;left:64px;top:170px;width:960px;font-size:70px">Retica legge il documento, <span class="co">qualunque layout</span></div>
- <div style="position:absolute;left:50px;top:520px;display:flex;align-items:center;gap:6px">${ddt(360, 6, 0, true)}${flowArrow(120)}${datacard(ddtRows, 440)}</div>${subtitle('Legge testi e tabelle, anche se il layout cambia', 120)}`);
+ <div class="h" style="position:absolute;left:64px;top:170px;width:960px;font-size:70px">Retica legge il DDT, <span class="co">qualunque layout</span></div>
+ <div style="position:absolute;left:50px;top:520px;display:flex;align-items:center;gap:6px">${ddt(360, 6, 0, true)}${flowArrow(120)}${datacard(ddtRows2, 440)}</div>${subtitle('Righe, codici, quantità e unità di misura', 120)}`);
 add('A01_frame3_cta_4x5', 1080, 1350, `${logo}
- <div class="h" style="position:absolute;left:64px;top:210px;width:960px;font-size:84px">Restituisci tempo <span class="co">al tuo team</span></div>
- <div style="position:absolute;left:64px;top:620px"><span class="pill">RICHIEDI DEMO</span></div>
- <div style="position:absolute;left:64px;top:780px;font-size:34px;color:#c9ccea;width:900px">Calcola il tuo risparmio annuo su retica.ai</div>${subtitle('Calcola quanto puoi risparmiare con Retica', 120)}`);
-add('A01_cover_4x5', 1080, 1350, `${logo}
- <div class="h" style="position:absolute;left:64px;top:170px;width:960px;font-size:84px">Quante ore al mese ricopi <span class="co">ordini a mano</span>?</div>
- <div style="position:absolute;left:260px;top:560px">${pile()}</div>
+ <div class="h" style="position:absolute;left:64px;top:210px;width:960px;font-size:84px">Il magazzino non aspetta <span class="co">che qualcuno digiti</span></div>
+ <div style="position:absolute;left:64px;top:700px"><span class="pill">RICHIEDI DEMO</span></div>
+ <div style="position:absolute;left:64px;top:860px;font-size:34px;color:#c9ccea;width:900px">Calcola il tuo risparmio annuo su retica.ai</div>${subtitle('Calcola quanto puoi risparmiare con Retica', 120)}`);
+add('A01_cover_4x5', 1080, 1350, `${logo}${hookHTML}
  <div style="position:absolute;right:70px;bottom:220px;width:150px;height:150px;border-radius:50%;background:var(--coral);display:flex;align-items:center;justify-content:center"><div style="border-left:50px solid #fff;border-top:30px solid transparent;border-bottom:30px solid transparent;margin-left:14px"></div></div>
  <div style="position:absolute;left:64px;bottom:80px;font-size:30px;color:#c9ccea">0:30 · sottotitoli in italiano</div>`);
 add('A01_cover_1x1', 1080, 1080, `${logo}
- <div class="h" style="position:absolute;left:64px;top:160px;width:950px;font-size:78px">Quante ore al mese ricopi <span class="co">ordini a mano</span>?</div>
+ <div class="h" style="position:absolute;left:64px;top:160px;width:950px;font-size:78px">Quante <span class="co">righe di DDT</span> ricopi ogni giorno?</div>
  <div style="position:absolute;left:300px;top:470px;transform:scale(.8);transform-origin:top left">${pile()}</div>
  <div style="position:absolute;right:60px;bottom:60px;width:130px;height:130px;border-radius:50%;background:var(--coral);display:flex;align-items:center;justify-content:center"><div style="border-left:42px solid #fff;border-top:26px solid transparent;border-bottom:26px solid transparent;margin-left:12px"></div></div>`);
 
-// ---------- A02 quote card (TLA)
+// ---------- A02 quote card (TLA) — unità di misura
 add('A02_quote_1x1', 1080, 1080, `${logo}
- <div class="h" style="position:absolute;left:64px;top:170px;width:950px;font-size:92px">Basta uno zero in più.</div>
- <div style="position:absolute;left:64px;top:480px;display:flex;gap:30px;align-items:stretch">
-  <div class="paper" style="width:440px;padding:34px"><div style="font-size:22px;color:#888;font-weight:600;letter-spacing:1px">ORDINE (PDF)</div><div class="bar" style="width:70%"></div><div style="font-size:30px;margin-top:20px;font-weight:600;color:#23253C">Quantità: <span style="outline:3px solid var(--blue);padding:2px 10px;border-radius:6px">100 pz</span></div></div>
+ <div class="h" style="position:absolute;left:64px;top:170px;width:950px;font-size:96px">10 colli o <span class="co">120 pezzi</span>?</div>
+ <div style="position:absolute;left:64px;top:420px;display:flex;gap:30px;align-items:stretch">
+  <div class="paper" style="width:440px;padding:34px"><div style="font-size:22px;color:#888;font-weight:600;letter-spacing:1px">DDT DEL FORNITORE</div><div class="bar" style="width:70%"></div><div style="font-size:30px;margin-top:20px;font-weight:600;color:#23253C;line-height:1.5">Quantità: <span style="outline:3px solid var(--blue);padding:2px 10px;border-radius:6px">10 colli</span><br>Confezione: <span style="outline:3px solid var(--coral);padding:2px 10px;border-radius:6px">12 pz</span></div></div>
   <div style="display:flex;align-items:center"><svg width="60" height="40"><polygon points="0,6 40,20 0,34" fill="#FF8A73"/></svg></div>
-  <div class="paper" style="width:440px;padding:34px;background:#fff"><div style="font-size:22px;color:#888;font-weight:600;letter-spacing:1px">GESTIONALE (DIGITATO)</div><div class="bar" style="width:70%"></div><div style="font-size:30px;margin-top:20px;font-weight:600;color:#23253C">Quantità: <span style="outline:3px solid #F4524D;background:rgba(244,82,77,.14);padding:2px 10px;border-radius:6px;color:#F4524D">1000 pz</span></div></div>
+  <div class="paper" style="width:440px;padding:34px"><div style="font-size:22px;color:#888;font-weight:600;letter-spacing:1px">GESTIONALE (A MANO)</div><div class="bar" style="width:70%"></div><div style="font-size:30px;margin-top:20px;font-weight:600;color:#23253C;line-height:1.5">Quantità: <span style="outline:3px solid #F4524D;background:rgba(244,82,77,.14);padding:2px 10px;border-radius:6px;color:#F4524D">? pz</span><br>Unità: <span style="color:#716C80">pezzi</span></div></div>
  </div>
- <div style="position:absolute;left:64px;top:790px;width:950px;font-size:40px;line-height:1.35;color:#d9dcf5;font-weight:400">Il lavoro di un copia-incolla non dovrebbe costare un errore.</div>
+ <div style="position:absolute;left:64px;top:780px;width:950px;font-size:40px;line-height:1.35;color:#d9dcf5;font-weight:400">Ogni fornitore scrive l’unità di misura a modo suo.</div>
  <div style="position:absolute;left:64px;bottom:64px;font-size:30px;color:#9fa4cf">retica.ai</div>`);
 
-// ---------- A03 document ad (3 pagine)
+// ---------- A03 document ad (3 pagine) — guida DDT, unità, listini
 const steps = [['1', 'Identifica', 'il blocco di testo da scansionare'], ['2', 'Etichetta', 'l\'AI legge e associa un\'etichetta ad ogni testo'], ['3', 'Salva', 'la posizione e il contenuto del blocco'], ['4', 'Crea il modello', 'del documento dai blocchi salvati']];
 add('A03_pagina1_copertina_4x5', 1080, 1350, `${logo}
  <div style="position:absolute;left:64px;top:190px;font-size:28px;letter-spacing:4px;color:var(--coral);font-weight:600">GUIDA GRATUITA</div>
- <div class="h" style="position:absolute;left:64px;top:250px;width:950px;font-size:92px">Automatizza <span class="co">DDT e ordini</span> in 4 passi</div>
- <div style="position:absolute;left:64px;top:760px;display:flex;gap:30px;align-items:center">${ddt(300, 5, -4, true)}${flowArrow(90)}${datacard([['DDT', '2481'], ['Qtà', '500']], 330)}</div>
+ <div class="h" style="position:absolute;left:64px;top:250px;width:950px;font-size:82px">DDT, unità di misura e <span class="co">listini</span> nel gestionale</div>
+ <div style="position:absolute;left:64px;top:800px;display:flex;gap:30px;align-items:center">${ddt(300, 5, -4, true)}${flowArrow(90)}${datacard([['DDT', '2481'], ['Unità', 'CT'], ['Qtà', '10']], 330)}</div>
  <div style="position:absolute;left:64px;bottom:70px;font-size:30px;color:#c9ccea">Retica · lettore documenti con intelligenza artificiale</div>`);
 add('A03_pagina2_4passi_4x5', 1080, 1350, `${logo}
- <div class="h" style="position:absolute;left:64px;top:170px;width:950px;font-size:68px">Come Retica impara <span class="co">il tuo documento</span></div>
+ <div class="h" style="position:absolute;left:64px;top:170px;width:950px;font-size:68px">Come Retica impara <span class="co">il tuo DDT</span></div>
  <div style="position:absolute;left:64px;top:400px;width:952px">${steps.map(s => `<div class="card" style="display:flex;gap:28px;align-items:center;margin-bottom:22px;padding:26px 30px"><div style="width:76px;height:76px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:38px;flex:none">${s[0]}</div><div style="font-size:34px;line-height:1.25"><b>${s[1]}</b> ${s[2]}</div></div>`).join('')}</div>`);
 add('A03_pagina3_cta_4x5', 1080, 1350, `${logo}
  <div class="h" style="position:absolute;left:64px;top:170px;width:950px;font-size:74px">Nella guida trovi</div>
- <div style="position:absolute;left:64px;top:340px;width:950px;font-size:38px;line-height:1.5;color:#e4e6fa">
-  <div style="margin-bottom:20px"><span class="co">✓</span> Quali documenti puoi automatizzare</div>
-  <div style="margin-bottom:20px"><span class="co">✓</span> Come i dati arrivano nel tuo gestionale</div>
-  <div style="margin-bottom:20px"><span class="co">✓</span> Cosa cambia per il tuo team</div>
-  <div style="margin-bottom:20px"><span class="co">✓</span> Come partire senza fermare le attività</div></div>
+ <div style="position:absolute;left:64px;top:340px;width:950px;font-size:36px;line-height:1.45;color:#e4e6fa">
+  <div style="margin-bottom:20px"><span class="co">✓</span> Cosa si legge da un DDT: righe, codici, quantità</div>
+  <div style="margin-bottom:20px"><span class="co">✓</span> Unità di misura: colli, pezzi, pallet</div>
+  <div style="margin-bottom:20px"><span class="co">✓</span> Prezzi e listini: cosa resta al gestionale</div>
+  <div style="margin-bottom:20px"><span class="co">✓</span> Come partire da un solo fornitore</div></div>
  <div style="position:absolute;left:64px;top:900px"><span class="pill">SCARICA LA GUIDA</span></div>
  <div style="position:absolute;left:64px;top:1030px;font-size:28px;color:#9fa4cf">Indice indicativo — contenuti da definire con il cliente</div>`);
 
-// ---------- A04 calcolatore
-add('A04_calcolatore_1x1', 1080, 1080, `${logo}
- <div class="h" style="position:absolute;left:64px;top:160px;width:950px;font-size:76px">Quanto ti costa inserire <span class="co">documenti a mano</span>?</div>
- <div class="paper" style="position:absolute;left:64px;top:470px;width:952px;padding:40px;color:#23253C">
-  <div style="font-size:26px;color:#716C80;font-weight:500">Documenti inseriti manualmente ogni mese</div><div style="height:64px;border:2px solid #D3D6E6;border-radius:12px;margin:10px 0 26px"></div>
-  <div style="font-size:26px;color:#716C80;font-weight:500">Tempo medio di inserimento per documento</div><div style="height:64px;border:2px solid #D3D6E6;border-radius:12px;margin:10px 0 30px"></div>
-  <div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:24px;color:#716C80">Risparmio annuo con Retica</div><div style="font-size:60px;font-weight:700;color:#FF8A73">€ … / anno</div></div><span class="pill b" style="font-size:26px;padding:20px 36px">CALCOLA</span></div></div>`);
+// ---------- A04 listino fornitori
+const listino = (w, rows, rot) => ddt(w, rows, rot, true).replace('DOCUMENTO DI TRASPORTO', 'LISTINO FORNITORE');
+add('A04_listino_1x1', 1080, 1080, `${logo}
+ <div class="h" style="position:absolute;left:64px;top:160px;width:950px;font-size:70px">Il listino arriva in PDF. Il gestionale vuole <span class="co">dati</span>.</div>
+ <div style="position:absolute;left:64px;top:500px;display:flex;align-items:center;gap:6px">${listino(380, 7, 0)}${flowArrow(110)}${datacard([['Codice', 'VT-M8-40'], ['Descrizione', 'Vite M8 × 40'], ['Prezzo', '0,12 €'], ['Unità', 'CT · 12 pz']], 440)}</div>
+ <div style="position:absolute;left:64px;bottom:70px;font-size:30px;color:#c9ccea">Codice articolo, descrizione, prezzo, unità di misura o confezione</div>`);
 
 // ---------- A05 carosello 5 card
 const cardsHTML = byId.A05.cards;
+const card = (kick, title, rows, label) => `<div style="position:absolute;left:64px;top:170px;font-size:28px;letter-spacing:4px;color:var(--coral);font-weight:600">${kick}</div><div class="h" style="position:absolute;left:64px;top:225px;width:950px;font-size:76px">${title}</div><div style="position:absolute;left:100px;top:490px;display:flex;align-items:center;gap:6px">${label ? ddt(380, 6, 0, true).replace('DOCUMENTO DI TRASPORTO', label) : ddt(380, 6, 0, true)}${flowArrow(110)}${datacard(rows, 400)}</div>`;
 const cardBody = [
-  `<div class="h" style="position:absolute;left:64px;top:300px;width:950px;font-size:100px">${cardsHTML[0].replace('Il risultato no.', '<span class="co">Il risultato no.</span>')}</div><div style="position:absolute;left:64px;bottom:90px;font-size:34px;color:#c9ccea">Scorri →</div>`,
-  `<div style="position:absolute;left:64px;top:170px;font-size:28px;letter-spacing:4px;color:var(--coral);font-weight:600">01 · ORDINI</div><div class="h" style="position:absolute;left:64px;top:225px;width:950px;font-size:76px">${cardsHTML[1]}</div><div style="position:absolute;left:100px;top:470px;display:flex;align-items:center;gap:6px">${ddt(380, 6, 0, true)}${flowArrow(110)}${datacard([['Cliente', 'Esempio Spa'], ['Ordine', 'OA 7742'], ['Righe', '14']], 400)}</div>`,
-  `<div style="position:absolute;left:64px;top:170px;font-size:28px;letter-spacing:4px;color:var(--coral);font-weight:600">02 · TRASPORTO</div><div class="h" style="position:absolute;left:64px;top:225px;width:950px;font-size:76px">${cardsHTML[2]}</div><div style="position:absolute;left:100px;top:470px;display:flex;align-items:center;gap:6px">${ddt(380, 7, 0, true)}${flowArrow(110)}${datacard([['DDT', '2481'], ['Fornitore', 'Esempio Srl'], ['Righe', '23']], 400)}</div>`,
-  `<div style="position:absolute;left:64px;top:170px;font-size:28px;letter-spacing:4px;color:var(--coral);font-weight:600">03 · FATTURE</div><div class="h" style="position:absolute;left:64px;top:225px;width:950px;font-size:76px">${cardsHTML[3]}</div><div style="position:absolute;left:100px;top:470px;display:flex;align-items:center;gap:6px">${ddt(380, 5, 0, true).replace('DOCUMENTO DI TRASPORTO', 'FATTURA')}${flowArrow(110)}${datacard([['Documento', 'Fattura'], ['Importo', '… €'], ['Scadenza', '…']], 400)}</div>`,
-  `<div class="h" style="position:absolute;left:64px;top:280px;width:950px;font-size:92px">${cardsHTML[4].replace('tuoi documenti', '<span class="co">tuoi documenti</span>')}</div><div style="position:absolute;left:64px;top:700px"><span class="pill">RICHIEDI DEMO</span></div>`,
+  `<div class="h" style="position:absolute;left:64px;top:300px;width:950px;font-size:100px">Il DDT, <span class="co">riga per riga</span></div><div style="position:absolute;left:64px;bottom:90px;font-size:34px;color:#c9ccea">Scorri →</div>`,
+  card('01 · RIGHE', cardsHTML[1], [['Codice', 'VT-M8-40'], ['Descrizione', 'Vite M8 × 40'], ['Quantità', '10']]),
+  card('02 · UNITÀ', cardsHTML[2], [['Quantità', '10'], ['Unità', 'colli (CT)'], ['Confezione', '12 pz']]),
+  card('03 · PREZZI', cardsHTML[3], [['Codice', 'VT-M8-40'], ['Prezzo', '0,12 €'], ['Unità', 'CT · 12 pz']], 'LISTINO FORNITORE'),
+  `<div class="h" style="position:absolute;left:64px;top:280px;width:950px;font-size:92px">Prova Retica sui <span class="co">tuoi DDT</span></div><div style="position:absolute;left:64px;top:700px"><span class="pill">RICHIEDI DEMO</span></div>`,
 ];
 cardBody.forEach((b, i) => add(`A05_card${i + 1}_1x1`, 1080, 1080, logo + b));
 
 // ---------- A06 integrazione
+const vArrow = `<svg width="40" height="70" viewBox="0 0 40 70"><line x1="20" y1="4" x2="20" y2="48" stroke="#FF8A73" stroke-width="5" stroke-dasharray="2 12" stroke-linecap="round"/><polygon points="8,46 20,66 32,46" fill="#FF8A73"/></svg>`;
 add('A06_integrazione_4x5', 1080, 1350, `${logo}
- <div class="h" style="position:absolute;left:64px;top:170px;width:950px;font-size:78px">Dal documento al tuo <span class="co">ERP</span>, senza trascrizioni</div>
+ <div class="h" style="position:absolute;left:64px;top:170px;width:950px;font-size:78px">Dal DDT al tuo <span class="co">ERP</span>, senza trascrizioni</div>
  <div style="position:absolute;left:64px;top:420px;width:952px;display:flex;flex-direction:column;align-items:center;gap:0">
   <div style="display:flex;align-items:center;gap:26px">${ddt(300, 4, 0, true)}<div style="font-size:30px;color:#c9ccea;width:330px;line-height:1.3">PDF, immagini, scansioni<br><span style="color:var(--coral);font-weight:600">importati via API o FTP</span></div></div>
-  <svg width="40" height="70" viewBox="0 0 40 70"><line x1="20" y1="4" x2="20" y2="48" stroke="#FF8A73" stroke-width="5" stroke-dasharray="2 12" stroke-linecap="round"/><polygon points="8,46 20,66 32,46" fill="#FF8A73"/></svg>
+  ${vArrow}
   <div class="card" style="width:640px;text-align:center;padding:26px;border-color:var(--blue)"><img src="${LOGO_L}" style="height:64px"><div style="font-size:28px;color:#c9ccea;margin-top:10px">legge, etichetta, valida</div></div>
-  <svg width="40" height="70" viewBox="0 0 40 70"><line x1="20" y1="4" x2="20" y2="48" stroke="#FF8A73" stroke-width="5" stroke-dasharray="2 12" stroke-linecap="round"/><polygon points="8,46 20,66 32,46" fill="#FF8A73"/></svg>
+  ${vArrow}
   <div style="font-size:28px;color:var(--coral);font-weight:600;margin:-6px 0 12px">CSV · XML · JSON</div>
-  <div style="display:flex;gap:18px;width:100%">${['ERP', 'CRM', 'Gestionale'].map(x => `<div class="card" style="flex:1;padding:22px 10px;text-align:center;font-weight:600;font-size:32px;border-color:var(--green)">${x}</div>`).join('')}</div></div>
+  <div style="display:flex;gap:18px;width:100%">${['ERP', 'Gestionale', 'Magazzino'].map(x => `<div class="card" style="flex:1;padding:22px 10px;text-align:center;font-weight:600;font-size:32px;border-color:var(--green)">${x}</div>`).join('')}</div></div>
  `);
 
-// ---------- A07 DDT before/after
+// ---------- A07 DDT prima/dopo con unità
 add('A07_ddt_prima_dopo_1x1', 1080, 1080, `${logo}
- <div class="h" style="position:absolute;left:64px;top:160px;width:950px;font-size:72px">DDT nel gestionale, <span class="co">senza riscrivere nulla</span></div>
- <div style="position:absolute;left:64px;top:440px;width:460px"><div style="font-size:26px;letter-spacing:3px;color:#aab0d6;font-weight:600;margin-bottom:18px">OGGI</div>${ddt(400, 6, -3, false)}<div style="font-size:30px;margin-top:24px;color:#d9dcf5">Riga per riga, a mano</div></div>
- <div style="position:absolute;left:560px;top:440px;width:460px"><div style="font-size:26px;letter-spacing:3px;color:var(--green);font-weight:600;margin-bottom:18px">CON RETICA</div>${datacard([['Riga 1', 'Vite M8 × 40'], ['Riga 2', 'Dado M8'], ['Riga 3', 'Rondella'], ['Riga 4', '…']], 440, 'Importato')}<div style="font-size:30px;margin-top:24px;color:#d9dcf5">Nel gestionale in automatico</div></div>`);
+ <div class="h" style="position:absolute;left:64px;top:160px;width:950px;font-size:68px">Righe e unità di misura del DDT, <span class="co">nel gestionale</span></div>
+ <div style="position:absolute;left:64px;top:470px;width:460px"><div style="font-size:26px;letter-spacing:3px;color:#aab0d6;font-weight:600;margin-bottom:18px">OGGI</div>${ddt(400, 6, -3, false)}<div style="font-size:30px;margin-top:24px;color:#d9dcf5">Riga per riga, a mano</div></div>
+ <div style="position:absolute;left:560px;top:470px;width:460px"><div style="font-size:26px;letter-spacing:3px;color:var(--green);font-weight:600;margin-bottom:18px">CON RETICA</div>${datacard([['Riga 1', 'Vite M8 · 10 CT'], ['Riga 2', 'Dado M8 · 5 CT'], ['Riga 3', 'Rondella · 2 PLT'], ['Riga 4', '…']], 440, 'Importato')}<div style="font-size:30px;margin-top:24px;color:#d9dcf5">Righe e unità nel gestionale</div></div>`);
 
-// ---------- A08 testimonial
+// ---------- A08 testimonianza Carraro (DDT in SAP)
 add('A08_testimonianza_4x5', 1080, 1350, `${logo}
- <div style="position:absolute;left:64px;top:170px;font-size:150px;font-weight:800;color:var(--coral);line-height:1">2.500</div>
- <div style="position:absolute;left:64px;top:330px;font-size:40px;font-weight:600">ordini in PDF ogni mese</div>
+ <div style="position:absolute;left:64px;top:180px;font-size:120px;font-weight:800;color:var(--coral);line-height:1">DDT → ERP</div>
+ <div style="position:absolute;left:64px;top:320px;font-size:38px;font-weight:600">Divisione ricambi · Carraro S.p.a.</div>
  <div class="card" style="position:absolute;left:64px;top:450px;width:952px;padding:44px"><div style="font-size:72px;color:var(--coral);line-height:.6">“</div>
-  <div style="font-size:36px;line-height:1.4;font-weight:500">Ogni mese riceviamo circa 2.500 ordini in PDF dai clienti, che venivano letti, verificati e inseriti manualmente nei nostri sistemi.</div>
-  <div style="font-size:36px;line-height:1.4;font-weight:500;margin-top:26px">…un risparmio equivalente a una persona in ufficio.</div></div>
- <div style="position:absolute;left:64px;top:1070px;display:flex;gap:24px;align-items:center"><div style="width:90px;height:90px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:700">A</div><div><div style="font-size:32px;font-weight:600">Andrea Michelin</div><div style="font-size:26px;color:#aab0d6">EDP Manager · Gruppo Borghi Spa</div><div class="star" style="font-size:28px">★★★★★</div></div></div>`);
+  <div style="font-size:35px;line-height:1.4;font-weight:500">…l’inserimento dei DDT nel nostro ERP (SAP) richiedeva molto tempo ed era soggetto a frequenti errori.</div>
+  <div style="font-size:35px;line-height:1.4;font-weight:500;margin-top:26px">…drastico abbattimento dei tempi di inserimento e degli errori umani.</div></div>
+ <div style="position:absolute;left:64px;top:1070px;display:flex;gap:24px;align-items:center"><div style="width:90px;height:90px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:700">D</div><div><div style="font-size:32px;font-weight:600">Dario Mazzocca</div><div style="font-size:26px;color:#aab0d6">IT Manager · Carraro S.p.a.</div><div class="star" style="font-size:28px">★★★★★</div></div></div>`);
 
-// ---------- A09 numeri
+// ---------- A09 logistica: Le Messaggerie Nazionali + numeri
 add('A09_numeri_1x1', 1080, 1080, `${logo}
- <div class="h" style="position:absolute;left:64px;top:160px;width:950px;font-size:64px">Un punto di riferimento per l'estrazione di dati dai documenti</div>
- <div style="position:absolute;left:64px;top:405px;width:952px;display:flex;flex-direction:column;gap:16px">
- ${[['6000+', 'scansioni giornaliere'], ['124', 'clienti attivi'], ['23', 'rivenditori e partner']].map(n => `<div class="card" style="display:flex;align-items:baseline;gap:30px;padding:22px 34px"><div style="font-size:104px;font-weight:800;color:var(--coral);min-width:360px;line-height:1.05">${n[0]}</div><div style="font-size:38px;font-weight:500">${n[1]}</div></div>`).join('')}</div>
- <div style="position:absolute;left:64px;bottom:56px;width:952px"><span class="star">★★★★★</span><div style="font-size:26px;color:#c9ccea;margin-top:4px">Recensioni di IT manager, responsabili EDP e CEO</div></div>`);
+ <div class="h" style="position:absolute;left:64px;top:160px;width:950px;font-size:66px">Logistica: meno data entry, <span class="co">magazzino più efficiente</span></div>
+ <div class="card" style="position:absolute;left:64px;top:430px;width:952px;padding:36px"><div style="font-size:60px;color:var(--coral);line-height:.5">“</div>
+  <div style="font-size:33px;line-height:1.4;font-weight:500">Nel nostro settore la velocità e la precisione sono fondamentali.</div>
+  <div style="font-size:33px;line-height:1.4;font-weight:500;margin-top:16px">…migliorare l’efficienza del magazzino e offrire un servizio ancora più rapido ai nostri clienti.</div>
+  <div style="font-size:26px;color:#aab0d6;margin-top:20px">Federico Gatti, IT Manager · Le Messaggerie Nazionali</div></div>
+ <div style="position:absolute;left:64px;top:860px;display:flex;gap:24px;width:952px">${[['6000+', 'scansioni al giorno'], ['124', 'clienti attivi'], ['23', 'rivenditori e partner']].map(n => `<div class="card" style="flex:1;padding:20px 22px"><div style="font-size:60px;font-weight:800;color:var(--coral);line-height:1.05">${n[0]}</div><div style="font-size:24px;font-weight:500;color:#d9dcf5">${n[1]}</div></div>`).join('')}</div>`);
 
 // ---------- A10 conversation
 add('A10_conversation_4x5', 1080, 1350, `<div style="position:absolute;inset:0;background:#F3F2EF"></div>
@@ -198,7 +200,7 @@ function feed(name, adId, imgFile, imgW, imgH, opts = {}) {
 feed('A01_feed', 'A01', 'A01_cover_4x5.png', 1080, 1350);
 feed('A02_feed', 'A02', 'A02_quote_1x1.png', 1080, 1080, { author: '[Nome Cognome] · Founder, Retica', sub: 'Sponsorizzato · [DA CONFERMARE: referente]', avatarHTML: '<div style="width:112px;height:112px;border-radius:50%;background:#C9CED6;display:flex;align-items:center;justify-content:center;font-size:60px;color:#fff">👤</div>' });
 feed('A03_feed', 'A03', 'A03_pagina1_copertina_4x5.png', 1080, 1350, { cta: 'Scarica' });
-feed('A04_feed', 'A04', 'A04_calcolatore_1x1.png', 1080, 1080);
+feed('A04_feed', 'A04', 'A04_listino_1x1.png', 1080, 1080);
 // carosello: 1 card + peek
 {
   const a = byId.A05; const W = 1120;

@@ -41,3 +41,12 @@ Elenco delle domande aperte. Ogni voce è marcata **[DA CONFERMARE]** anche nell
 24. "**Made in Italy**" non compare come claim sul sito: l'annuncio A10 usa invece "a Reggiolo (RE)". Se il cliente vuole usare il claim, va confermato.
 25. Il claim "riduci dell'80% il tempo di inserimento dei listini fornitori" è il titolo di un articolo del blog: non è usato negli annunci finché non viene confermato come dato difendibile.
 26. Revisione legale/privacy: informativa del Lead Gen Form, base giuridica del follow-up commerciale.
+
+## H. Riposizionamento sulla logistica: leve DDT, unità di misura, listini/prezzi
+27. **Conversione delle unità di misura** (es. 10 colli da 12 pz → 120 pz): Retica la fa? Il sito dice solo che estrae "unità di misura o confezione" (articolo sui listini) e che il modulo "Condizioni" trasforma i dati nel formato del gestionale. Se sì: quali regole, con quale configurazione. Se no: gli annunci restano sulla sola lettura/estrazione.
+28. **Verifica dei prezzi dei listini** (confronto col prezzo in uso, soglie di variazione): Retica la fa o resta nel gestionale? L'articolo di Retica dice che "il controllo dei cambiamenti, dei prezzi precedenti e delle regole interne rimane nel vostro ERP". Va chiarito prima di promettere una verifica prezzi in un annuncio. Finché non c'è conferma scritta, le versioni "Solo se Retica conferma" in `copy_annunci.md` non vanno caricate.
+29. **Esempi reali:** 2–3 DDT e un listino fornitore (anonimizzati) per i mockup, la guida e la demo; unità di misura più frequenti dei clienti logistici (colli, pallet, kg, m³…).
+30. **Testimonianze logistiche:** consenso a usare nome e azienda di Carraro (Dario Mazzocca, DDT in SAP), Le Messaggerie Nazionali (Federico Gatti) ed eventualmente Edildelta (DDT fornitori con molte righe).
+31. **Clienti Retica nella logistica:** quanti dei 124 clienti attivi sono logistica/trasporti/magazzino, e quali WMS/ERP usano: serve per validare il target e scegliere gli annunci.
+32. **Lead magnet logistici:** guida "DDT, unità di misura e listini nel gestionale" e checklist "I controlli su DDT e listini prima dell'import": chi li scrive e quando.
+33. **Documenti di logistica oltre al DDT** (la pagina retica.ai/logistica cita anche certificati di origine e fatture commerciali; CMR e packing list non sono citati): quali sono supportati e vale la pena mostrare.

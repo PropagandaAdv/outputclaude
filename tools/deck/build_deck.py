@@ -118,7 +118,7 @@ box(s, 8.6, -1.5, 7.5, 7.5, '233DFF', shape=MSO_SHAPE.OVAL).fill.fore_color.rgb 
 pic(s, f'{ROOT}/assets/propaganda/logo_propaganda_ritagliato.png', 0.7, 0.5, h=0.55)
 box(s, 0.7, 2.2, 0.45, 0.035, BLUE)
 text(s, 1.25, 2.08, 9, 0.3, 'PROPOSTA · FASE PRELIMINARE', size=11, bold=True)
-text(s, 0.7, 2.6, 10.5, 2.4, ['Propaganda Adv × Retica', ('LinkedIn Ads per portare demo qualificate', {'size': 30, 'bold': False, 'color': GREY})], size=54, bold=True, space=10, line=1.0)
+text(s, 0.7, 2.6, 10.5, 2.4, ['Propaganda Adv × Retica', ('LinkedIn Ads per portare demo qualificate dalla logistica', {'size': 30, 'bold': False, 'color': GREY})], size=54, bold=True, space=10, line=1.0)
 text(s, 0.7, 5.6, 8, 0.8, ['19 novembre 2026', 'Documento di lavoro: nessuna campagna creata, nessuna spesa attiva.'], size=13, color=GREY, space=2)
 pic(s, f'{ROOT}/assets/retica/logo_retica-3.png', 10.7, 6.3, h=0.55)
 
@@ -133,25 +133,24 @@ big(s, 0.7, 3.0, 2.8, '10', 'annunci pronti, con 2 varianti di copy ciascuno')
 big(s, 3.7, 3.0, 2.8, '3', 'livelli di funnel: TOFU, MOFU, BOFU')
 big(s, 6.7, 3.0, 2.8, '3', 'scenari di budget: 1.500 / 3.000 / 5.000 € al mese')
 big(s, 9.7, 3.0, 2.8, '12', 'settimane di test minimo prima di giudicare')
-bullets(s, 0.7, 4.75, 7.3, ['Target: operations, supply chain, amministrazione, IT/EDP e CEO di PMI italiane da 20 a 1.000 dipendenti.',
-                           'Angolo: prima il beneficio (tempo e meno errori), poi la prova (124 clienti, 6.000+ scansioni al giorno).',
+bullets(s, 0.7, 4.75, 7.3, ['Target principale: logistica, trasporti e magazzino; ruoli di magazzino, operations, acquisti, amministrazione, IT/EDP.',
+                           'Tre leve: DDT, unità di misura, listini e prezzi. Prima il beneficio, poi la prova (Carraro, Le Messaggerie Nazionali).',
                            'Misuriamo lead, costo per lead e costo per demo, non solo clic.'], size=13, gap=6)
 rrect(s, 8.4, 4.7, 4.25, 1.95, PANEL)
 text(s, 8.6, 4.8, 3.9, 0.35, 'Attenzione', size=13, bold=True, color='FF6B8B')
-text(s, 8.6, 5.2, 3.9, 1.4, "L'Ad Library di LinkedIn è bloccata dall'ambiente di lavoro: l'analisi di myBiros è incompleta. [DA CONFERMARE]", size=12, color=GREY)
+text(s, 8.6, 5.2, 3.9, 1.4, "Ad Library bloccata: analisi di myBiros incompleta. Conversione unità e verifica prezzi da confermare con Retica. [DA CONFERMARE]", size=12, color=GREY)
 
-# ============================================================ SLIDE 3 — mercato e problema
-s = new('Il mercato e il problema', 'Ogni giorno qualcuno ricopia a mano ordini, DDT e fatture',
-        'retica.ai: testimonianza Andrea Michelin, Gruppo Borghi Spa (27/08/2026) e sezione "I nostri numeri" [VERIFICATO].')
+# ============================================================ SLIDE 3 — le tre leve (logistica)
+s = new('Il mercato e il problema', 'Tre punti dove la logistica perde tempo',
+        'retica.ai/logistica, articolo sui listini fornitori, testimonianze Carraro e Le Messaggerie Nazionali [VERIFICATO].')
 rrect(s, 0.7, 2.0, 5.3, 4.5, PANEL)
-big(s, 1.0, 2.3, 4.8, '2.500', 'ordini in PDF al mese, letti e inseriti a mano prima di Retica: "un risparmio equivalente a una persona in ufficio" (Gruppo Borghi). [VERIFICATO]', color='FF8A73', nsize=66, lsize=13, lh=1.8)
-for i, (t, d) in enumerate([('Tempo', 'Operatori dedicati a ordini, DDT, fatture e conferme d\'ordine.'),
-                            ('Errori', 'Più righe articolo, più rischio di errore di battitura nel gestionale.'),
-                            ('Persone', 'Risorse bloccate su attività ripetitive invece che di controllo.')]):
-    rrect(s, 6.4, 2.0 + i * 1.2, 6.2, 1.05, PANEL)
-    text(s, 6.65, 2.1 + i * 1.2, 1.7, 0.85, t, size=18, bold=True, color=BLUE2, anchor='m')
-    text(s, 8.3, 2.1 + i * 1.2, 4.2, 0.85, d, size=13, color=WHITE, anchor='m')
-text(s, 6.4, 5.7, 6.2, 0.8, 'Retica oggi: 6.000+ scansioni al giorno · 124 clienti attivi · 23 rivenditori e partner [VERIFICATO]', size=13, color=GREY)
+big(s, 1.0, 2.3, 4.8, 'DDT', 'Righe, codici e quantità riscritti a mano nel gestionale. Retica ha una pagina per la logistica e testimonianze su DDT e spedizioni (Carraro, Le Messaggerie Nazionali). [VERIFICATO]', color='FF8A73', nsize=66, lsize=13, lh=1.8)
+for i, (t, d) in enumerate([('Unità di misura', 'Colli, pezzi, pallet scritti a modo loro. Retica estrae “unità di misura o confezione”; la conversione è [DA CONFERMARE].'),
+                            ('Listini e prezzi', 'Retica estrae codice, prezzo e unità dal PDF; il confronto prezzi resta nel gestionale. Verifica in Retica: [DA CONFERMARE].'),
+                            ('Gestionale / ERP', 'Integrabile con qualsiasi ERP: CSV, XML, JSON con importazione via API o FTP. [VERIFICATO]')]):
+    rrect(s, 6.4, 2.0 + i * 1.5, 6.2, 1.35, PANEL)
+    text(s, 6.65, 2.1 + i * 1.5, 1.9, 1.15, t, size=16, bold=True, color=BLUE2, anchor='m')
+    text(s, 8.5, 2.1 + i * 1.5, 4.0, 1.15, d, size=11.5, color=WHITE, anchor='m')
 
 # ============================================================ SLIDE 4 — myBiros: verificato/bloccato
 s = new('Analisi di myBiros su LinkedIn · 1/4', 'Cosa sappiamo di myBiros e cosa ci manca',
@@ -180,7 +179,7 @@ for t in ['Bolletta', 'Busta paga', 'Carta d\'identità', 'Passaporto', 'Ricevut
 text(s, 0.7, 5.0, 5.5, 0.35, 'SETTORI IN PRIMO PIANO', size=10, color=GREY, bold=True)
 x = 0.7
 for t in ['Assicurativo', 'Finanziario', 'Utility', 'Lending']: x += chip(s, x, 5.4, t) + 0.12
-bullets(s, 6.7, 5.0, 6.0, ['Temi ricorrenti: "più di un OCR", AI trasparente, server europei e GDPR.', 'Retica non copia testi né claim: sfrutta lo spazio dei documenti di filiera.'], size=13)
+bullets(s, 6.7, 5.0, 6.0, ['Temi ricorrenti: "più di un OCR", AI trasparente, server europei e GDPR.', 'Retica non copia testi né claim: sfrutta lo spazio della logistica.'], size=13)
 
 # ============================================================ SLIDE 6 — stima investimento myBiros
 s = new('Analisi di myBiros su LinkedIn · 3/4', 'Quanto investe myBiros? Senza impression reali non si può dire',
@@ -199,16 +198,16 @@ text(s, 1.0, 2.15, 5.3, 0.4, 'Da raccogliere in 45 minuti [DA CONFERMARE]', size
 bullets(s, 1.0, 2.75, 5.4, ['Numero di annunci attivi e storici', 'Mix di formati e ritmo di rotazione', 'Lead magnet: demo, esperto, contenuti gated', 'Messaggi: numeri, prove sociali, GDPR', 'Impression, paesi e targeting dichiarato (DSA)', 'Thought Leader Ads dei fondatori'], size=15, gap=9)
 rrect(s, 6.9, 2.0, 5.75, 4.6, PANEL)
 text(s, 7.2, 2.15, 5.2, 0.4, 'Spazi liberi (ipotesi dal sito)', size=14, bold=True)
-bullets(s, 7.2, 2.75, 5.2, ['Ordini, DDT, conferme d\'ordine: assenti dai documenti di myBiros', 'Logistica, manifattura, distribuzione e retail', 'Ruoli operativi: EDP, back office ordini, amministrazione', 'Integrazione con il gestionale e assistenza vicina'], size=15, gap=10, dot='39B54A')
+bullets(s, 7.2, 2.75, 5.2, ['DDT, listini fornitori e documenti di logistica: assenti dai documenti di myBiros', 'Logistica, trasporti, magazzino e distribuzione', 'Ruoli operativi: EDP, back office ordini, amministrazione', 'Integrazione con il gestionale e assistenza vicina'], size=15, gap=10, dot='39B54A')
 
 # ============================================================ SLIDE 8 — posizionamento
-s = new('Posizionamento', 'Dove Retica può vincere: i documenti di filiera',
+s = new('Posizionamento', 'Dove Retica può vincere: la logistica',
         'retica.ai e mybiros.com, letti il 19/11/2026 [VERIFICATO]. Sede myBiros da idp-software.com (fonte terza). Ruoli myBiros: non verificati.')
 rows = [['', 'Retica', 'myBiros'],
-        ['Documenti', 'Ordini di acquisto, DDT, fatture, conferme d\'ordine, ricevute', 'Bollette, buste paga, carte d\'identità, passaporti, ricevute'],
-        ['Settori', 'Logistica, manifattura, retail, servizi finanziari, HR', 'Assicurativo, finanziario, utility, lending'],
+        ['Documenti', 'DDT, listini fornitori, fatture commerciali, certificati di origine', 'Bollette, buste paga, carte d\'identità, passaporti, ricevute'],
+        ['Settori', 'Logistica, trasporti, magazzino, distribuzione', 'Assicurativo, finanziario, utility, lending'],
         ['Integrazione', 'CSV, XML, JSON; importazione via API o FTP', 'Esportazione e API verso ERP, CRM, RPA'],
-        ['Prova sociale', '124 clienti attivi · 6.000+ scansioni al giorno', '50+ aziende clienti · 20 mln di documenti'],
+        ['Prova sociale', 'Carraro (DDT), Le Messaggerie Nazionali · 124 clienti', '50+ aziende clienti · 20 mln di documenti'],
         ['Vicinanza', 'Reggiolo (RE), supporto citato dai clienti', 'Roma (fonte terza)'],
         ['Ruoli target', 'IT manager, EDP, CEO nelle recensioni', '[DA CONFERMARE] in Ad Library']]
 table(s, 0.7, 2.0, [2.0, 5.0, 5.0], rows, size=12, rowh=0.62)
@@ -218,21 +217,21 @@ s = new('Retica oggi', 'Punti di forza e cose da sistemare prima di mandare traf
         'retica.ai, home letta e verificata via browser il 19/11/2026 [VERIFICATO].')
 rrect(s, 0.7, 2.0, 5.9, 4.6, PANEL)
 text(s, 1.0, 2.15, 5.3, 0.4, 'Punti di forza', size=15, bold=True, color='39B54A')
-bullets(s, 1.0, 2.7, 5.4, ['Proposta chiara: automatizza l\'importazione di documenti sul gestionale', '6 moduli: importazione, data capture, validazione, condizioni, esportazione, analisi', 'Testimonianze 5 stelle di IT manager, EDP e CEO', 'Calcolatore del risparmio annuo e CTA "Richiedi demo"'], size=14, gap=9, dot='39B54A')
+bullets(s, 1.0, 2.7, 5.4, ['Proposta chiara: automatizza l\'importazione di documenti sul gestionale', '6 moduli: importazione, data capture, validazione, condizioni, esportazione, analisi', 'Pagina Logistica e testimonianze su DDT (Carraro, Le Messaggerie Nazionali)', 'Calcolatore del risparmio annuo e CTA "Richiedi demo"'], size=14, gap=9, dot='39B54A')
 rrect(s, 6.9, 2.0, 5.75, 4.6, PANEL)
 text(s, 7.2, 2.15, 5.2, 0.4, 'Da sistemare [DA CONFERMARE]', size=15, bold=True, color='FF6B8B')
-bullets(s, 7.2, 2.7, 5.2, ['Menu laterale nascosto con segnaposto del template: New York, foton@qodeinteractive.com, telefono generico', 'Testi in inglese in cookie e moduli; "© 2023" nel footer', 'Nessuna landing dedicata alle campagne', 'Insight Tag e conversioni LinkedIn da installare'], size=14, gap=9, dot='FF6B8B')
+bullets(s, 7.2, 2.7, 5.2, ['Menu laterale nascosto con segnaposto del template: New York, foton@qodeinteractive.com, telefono generico', 'Testi in inglese in cookie e moduli; "© 2023" nel footer', 'Nessuna landing dedicata alle campagne', 'Insight Tag e conversioni LinkedIn da installare', 'Conversione unità e verifica prezzi non dichiarate sul sito'], size=14, gap=9, dot='FF6B8B')
 
 # ============================================================ SLIDE 10 — pubblici
-s = new('Pubblici target (Italia)', 'Chi raggiungiamo: ruoli operativi in aziende da 20 a 1.000 dipendenti',
+s = new('Pubblici target (Italia)', 'Chi raggiungiamo: logistica, trasporti e magazzino',
         'Dimensione e logica di targeting: Propaganda Adv [STIMA]. Dimensione del pubblico: leggibile solo in Campaign Manager [DA CONFERMARE].')
-cols = [('Funzioni', ['Operations, Supply Chain, Logistica', 'Amministrazione e Finance (CFO, ciclo passivo)', 'IT / EDP', 'Customer Service e back office ordini', 'CEO di PMI']),
-        ('Settori', ['Logistica e trasporti', 'Manifattura', 'Distribuzione all\'ingrosso', 'Retail', 'Servizi finanziari'])]
+cols = [('Funzioni', ['Magazzino, Logistica, Operations', 'Acquisti (listini fornitori)', 'Amministrazione (ciclo passivo)', 'IT / EDP', 'Titolari e CEO di PMI logistiche']),
+        ('Settori', ['Logistica e trasporti (principale)', 'Magazzino e stoccaggio (principale)', 'Distribuzione all\'ingrosso (test)', 'Manifattura (test)'])]
 for i, (h, items) in enumerate(cols):
     rrect(s, 0.7 + i * 4.1, 2.0, 3.9, 3.0, PANEL); text(s, 0.95 + i * 4.1, 2.1, 3.4, 0.4, h, size=15, bold=True, color=BLUE2)
     bullets(s, 0.95 + i * 4.1, 2.6, 3.5, items, size=11.5, gap=2)
 rrect(s, 8.9, 2.0, 3.75, 3.0, PANEL); text(s, 9.15, 2.1, 3.3, 0.4, 'Dimensione 20–1.000', size=15, bold=True, color=BLUE2)
-text(s, 9.15, 2.6, 3.3, 2.3, ['Sotto i 20 dipendenti il volume di documenti raramente giustifica un software.', 'Oltre 1.000, cicli di acquisto lunghi e IT più strutturato.', 'Ipotesi da validare con i dati reali dei 124 clienti.'], size=11, color=GREY, space=5)
+text(s, 9.15, 2.6, 3.3, 2.3, ['Sotto i 20 dipendenti il volume di DDT raramente giustifica un software.', 'Budget: circa 80% logistica, 20% test su distribuzione e manifattura. [STIMA]', 'Un pubblico più ristretto può alzare il CPM.'], size=11, color=GREY, space=5)
 rrect(s, 0.7, 5.2, 5.9, 1.45, PANEL); text(s, 0.95, 5.27, 5.4, 0.35, 'Matched Audiences', size=13, bold=True, color=BLUE2)
 text(s, 0.95, 5.65, 5.4, 1.0, 'Visitatori del sito (Insight Tag) · elenco ABM · video visto al 50% / 75% · Lead Form aperto e non inviato · lookalike', size=11, color=GREY)
 rrect(s, 6.9, 5.2, 5.75, 1.45, PANEL); text(s, 7.15, 5.27, 5.3, 0.35, 'Esclusioni', size=13, bold=True, color='FF6B8B')
@@ -267,7 +266,7 @@ s = new('Proposte creative · TOFU', 'Video e Thought Leader Ad: il problema pri
 x = feeds(s, ['A01', 'A02'], h=4.75)
 copyblock(s, x + 0.1, 2.0, 12.65 - x - 0.1, ADS['A01'], 10); copyblock(s, x + 0.1, 4.2, 12.65 - x - 0.1, ADS['A02'], 10)
 
-s = new('Proposte creative · MOFU', 'Document Ad gated: la guida a DDT e ordini',
+s = new('Proposte creative · MOFU', 'Document Ad gated: la guida a DDT, unità e listini',
         'Contenuti della guida da produrre con il cliente [DA CONFERMARE]; i 4 passi sono quelli del "Come funziona" di retica.ai [VERIFICATO].')
 x = feeds(s, ['A03'], h=4.75)
 x2 = x + 0.1
@@ -276,18 +275,18 @@ for i, p in enumerate(['A03_pagina1_copertina_4x5', 'A03_pagina2_4passi_4x5', 'A
 text(s, x2, 4.2, 5.3, 0.3, 'Le 3 pagine di anteprima', size=9, color=MUT)
 copyblock(s, x2, 4.55, 12.65 - x2, ADS['A03'], 10)
 
-s = new('Proposte creative · MOFU', 'Calcolatore del risparmio e carosello "qualsiasi layout"',
-        'Calcolatore: esiste su retica.ai [VERIFICATO]; versione LinkedIn e checklist [DA CONFERMARE]. Tipi di documento dal sito.')
+s = new('Proposte creative · MOFU', 'Listini e prezzi, e il carosello "DDT riga per riga"',
+        'Campi del listino: articolo di Retica sui listini [VERIFICATO]; checklist [DA CONFERMARE].')
 x = feeds(s, ['A04', 'A05'], h=4.75)
 copyblock(s, x + 0.1, 2.0, 12.65 - x - 0.1, ADS['A04'], 10); copyblock(s, x + 0.1, 4.2, 12.65 - x - 0.1, ADS['A05'], 10)
 
-s = new('Proposte creative · MOFU / BOFU', 'Integrazione con l\'ERP e caso d\'uso DDT',
+s = new('Proposte creative · MOFU / BOFU', 'Integrazione con l\'ERP e DDT con più unità di misura',
         'Formati e canali (CSV, XML, JSON, API, FTP) da retica.ai [VERIFICATO]; offerta "analisi gratuita" [DA CONFERMARE].')
 x = feeds(s, ['A06', 'A07'], h=4.75)
 copyblock(s, x + 0.1, 2.0, 12.65 - x - 0.1, ADS['A06'], 10); copyblock(s, x + 0.1, 4.2, 12.65 - x - 0.1, ADS['A07'], 10)
 
-s = new('Proposte creative · BOFU', 'Prova sociale: una storia vera e i numeri di Retica',
-        'Testimonianza Andrea Michelin e numeri da retica.ai [VERIFICATO]; uso di nome e azienda in annuncio [DA CONFERMARE].')
+s = new('Proposte creative · BOFU', 'Prova sociale dalla logistica: Carraro e Le Messaggerie Nazionali',
+        'Testimonianze da retica.ai [VERIFICATO]; uso di nome e azienda in annuncio [DA CONFERMARE].')
 x = feeds(s, ['A08', 'A09'], h=4.75)
 copyblock(s, x + 0.1, 2.0, 12.65 - x - 0.1, ADS['A08'], 10); copyblock(s, x + 0.1, 4.2, 12.65 - x - 0.1, ADS['A09'], 10)
 
@@ -302,7 +301,7 @@ bullets(s, 0.7 + w + 4.3, 2.6, 12.45 - (0.7 + w + 4.3), ['Una variabile alla vol
 # ============================================================ SLIDE 18 — video
 s = new('Strategia video', 'Tre tagli dal video del cliente: 15, 30 e 60 secondi',
         'LinkedIn: circa 79% dei video nel feed guardato senza audio (LinkedIn Marketing Solutions, 2021). Il "85%" non ha fonte primaria. Storyboard: output/storyboard_video.md.')
-for i, (d, t, u) in enumerate([('15″', 'Il costo del copia-incolla', 'TOFU · hook nei primi 3 secondi'), ('30″', 'Dal documento al gestionale', 'TOFU/MOFU · i 4 step in UI'), ('60″', 'Demo guidata', 'Solo retargeting · 50–75% del video')]):
+for i, (d, t, u) in enumerate([('15″', 'Le righe del DDT', 'TOFU · hook nei primi 3 secondi'), ('30″', 'Dal DDT al gestionale', 'TOFU/MOFU · i 4 step in UI'), ('60″', 'Demo guidata', 'Solo retargeting · 50–75% del video')]):
     rrect(s, 0.7 + i * 4.1, 2.0, 3.9, 2.25, PANEL); text(s, 0.95 + i * 4.1, 2.05, 3.4, 0.9, d, size=40, bold=True, color=BLUE2, space=0)
     text(s, 0.95 + i * 4.1, 3.0, 3.4, 0.4, t, size=14, bold=True); text(s, 0.95 + i * 4.1, 3.5, 3.4, 0.7, u, size=11, color=GREY)
 bullets(s, 0.7, 4.55, 7.4, ['Formati: 1:1 e 4:5 per il feed, 9:16 per mobile, 16:9 per sito; specifiche da ricontrollare in Campaign Manager.', 'Sottotitoli italiani incisi: obbligatori.', 'Video del cliente: cartella vuota, durata, audio e sottotitoli [DA CONFERMARE].'], size=12.5, gap=5)
@@ -317,7 +316,7 @@ for i, (a, b) in enumerate(steps):
     text(s, 0.8 + i * 2.5, 2.1, 2.0, 0.45, a, size=15, bold=True, align='c'); text(s, 0.8 + i * 2.5, 2.6, 2.0, 0.85, b, size=10.5, color=GREY if i != 4 else WHITE, align='c')
     if i < 4: text(s, 2.9 + i * 2.5, 2.4, 0.3, 0.5, '→', size=16, color=BLUE2, align='c', anchor='m')
 rrect(s, 0.7, 3.8, 5.9, 2.85, PANEL); text(s, 0.95, 3.9, 5.4, 0.4, 'Campi e qualifica', size=14, bold=True, color=BLUE2)
-bullets(s, 0.95, 4.4, 5.4, ['Nome, cognome, email di lavoro, azienda, ruolo', '"Quanti documenti gestisci al mese?"', '"Quale gestionale/ERP usi?"', 'Consenso privacy GDPR esplicito'], size=14, gap=6)
+bullets(s, 0.95, 4.4, 5.4, ['Nome, cognome, email di lavoro, azienda, ruolo', '"Quanti DDT gestisci al mese?"', '"Quale gestionale/ERP usi?"', 'Consenso privacy GDPR esplicito'], size=14, gap=6)
 rrect(s, 6.9, 3.8, 5.75, 2.85, PANEL); text(s, 7.15, 3.9, 5.3, 0.4, 'Dopo l\'invio', size=14, bold=True, color=BLUE2)
 bullets(s, 7.15, 4.4, 5.3, ['Thank-you page con pulsante "Prenota la demo"', 'Lead nel CRM con fonte e annuncio di origine', 'Definizione di MQL condivisa con il commerciale [DA CONFERMARE]'], size=14, gap=6)
 
@@ -335,7 +334,7 @@ rows = [hdr,
         ['Demo / mese (prud.–ottim.)'] + [f"{bud(k, 'Prudente')['demos']:.0f} – {bud(k, 'Ottimistico')['demos']:.0f}  (base {bud(k)['demos']:.1f})" for k in ('Start', 'Growth', 'Scale')],
         ['Spesa media in 12 settimane', '≈ 4.150 €', '≈ 8.300 €', '≈ 13.850 €']]
 table(s, 0.7, 2.0, [3.3, 2.9, 2.9, 2.9], rows, size=11.5, rowh=0.52)
-text(s, 0.7, 6.25, 12, 0.6, 'Sotto i 1.500 €/mese i volumi di impression sono scarsi (ZenABM): Start è un test del messaggio, non un canale a regime. [STIMA]', size=11.5, color=GREY)
+text(s, 0.7, 6.25, 12, 0.6, 'Sotto i 1.500 €/mese i volumi di impression sono scarsi (ZenABM): Start è un test del messaggio, non un canale a regime. Un pubblico logistico più ristretto può alzare il CPM. [STIMA]', size=11.5, color=GREY)
 
 # ============================================================ SLIDE 21 — KPI
 s = new('KPI attesi', 'Quanto costa un lead e quanto una demo: ordini di grandezza [STIMA]',
@@ -365,14 +364,15 @@ for i, (w, t, items) in enumerate(phases):
     rrect(s, x, 3.2, 2.9, 3.3, PANEL); bullets(s, x + 0.2, 3.4, 2.55, items, size=13, gap=8)
 
 # ============================================================ SLIDE 23 — cosa serve
-s = new('Cosa serve da Retica', 'Dodici cose per partire',
+s = new('Cosa serve da Retica', 'Quattordici cose per partire',
         'Elenco completo con motivazioni in output/note_da_confermare.md.')
 items = ['Video originali e diritti d\'uso [DA CONFERMARE]', 'Accesso a Campaign Manager e alla Pagina LinkedIn [DA CONFERMARE]', 'Quale CRM usate e chi fa il follow-up in 24 ore [DA CONFERMARE]', 'Footer e menu del sito: via i segnaposto [DA CONFERMARE]',
          'Lead magnet: guida, checklist, calcolatore LinkedIn [DA CONFERMARE]', 'Persona per il Thought Leader Ad [DA CONFERMARE]', 'Consenso a usare testimonianze e nomi [DA CONFERMARE]', 'Liste: ABM, clienti, partner, concorrenti [DA CONFERMARE]',
-         'Budget scelto e fee di agenzia [DA CONFERMARE]', 'Dati storici: chiusura demo, valore contratto [DA CONFERMARE]', 'Definizione di MQL e di demo fissata [DA CONFERMARE]', 'Accesso all\'Ad Library per myBiros [DA CONFERMARE]']
+         'Budget scelto e fee di agenzia [DA CONFERMARE]', 'Dati storici: chiusura demo, valore contratto [DA CONFERMARE]', 'Definizione di MQL e di demo fissata [DA CONFERMARE]', 'Accesso all\'Ad Library per myBiros [DA CONFERMARE]',
+         'Conversione unità e verifica prezzi: Retica le fa? [DA CONFERMARE]', 'DDT e listino di esempio, anonimizzati [DA CONFERMARE]']
 for i, it in enumerate(items):
-    c, r = i // 6, i % 6
-    rrect(s, 0.7 + c * 6.1, 2.0 + r * 0.78, 5.9, 0.68, PANEL); text(s, 0.95 + c * 6.1, 2.0 + r * 0.78, 5.5, 0.68, f'{i + 1}.  ' + it, size=11.5, anchor='m')
+    c, r = i // 7, i % 7
+    rrect(s, 0.7 + c * 6.1, 2.0 + r * 0.68, 5.9, 0.6, PANEL); text(s, 0.95 + c * 6.1, 2.0 + r * 0.68, 5.5, 0.6, f'{i + 1}.  ' + it, size=11.5, anchor='m')
 
 # ============================================================ SLIDE 24 — prossimi passi
 s = new('Prossimi passi e contatti', 'Dal sì al primo lead in circa quattro settimane',
