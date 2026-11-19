@@ -1,6 +1,6 @@
 # Strategia video LinkedIn — Retica (storyboard con timecode)
 
-> **FASE 2 — non in programma all'inizio.** Con un budget di 2.000 € al mese non si investe in video nella fase iniziale: gli annunci di partenza usano solo immagini e post del fondatore. Questo storyboard resta pronto per quando i primi risultati lo giustificheranno.
+> **FASE 2 — non in programma all'inizio.** Con un budget di 2.000 € al mese non si investe in video nella fase iniziale: gli annunci di partenza usano solo immagini, pubblicate dalla pagina Retica. Questo storyboard resta pronto per quando i primi risultati lo giustificheranno.
 
 **Stato dei materiali [DA CONFERMARE]:** la cartella `assets/video-retica/` è **vuota** (verificato il 19/11/2026). Non ho quindi durata, formato, sottotitoli e audio dei video del cliente, e non è stato possibile produrre anteprime con ffmpeg (ffmpeg è disponibile nell'ambiente, ma non c'è sorgente da tagliare).
 Sul sito retica.ai è incorporato un video introduttivo YouTube ("Scopri Retica!", id `fTL-2IPMevU`) [VERIFICATO la presenza]; durata e diritti d'uso per i tagli sono da confermare.

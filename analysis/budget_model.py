@@ -1,5 +1,5 @@
 """Modello di stima budget/KPI LinkedIn Ads per Retica — 2.000 €/MESE, SENZA LEAD MAGNET e SENZA VIDEO. Tutti i risultati sono [STIMA].
-Percorso: notorietà (solo Thought Leader Ads / post sponsorizzati) -> considerazione (retargeting con prove, verso landing) -> conversione (Lead Gen Form 'Richiedi demo').
+Percorso: notorietà (annunci sponsorizzati dalla pagina Retica) -> considerazione (retargeting con prove, verso landing) -> conversione (Lead Gen Form 'Richiedi demo').
 Nessun contenuto scaricabile: i contatti sono SOLO richieste di demo (da landing o da Lead Gen Form).
 Benchmark (USD) da:
  - ZenABM, "LinkedIn Ads Benchmarks: Real Data from 211 B2B Companies in 2026" (agg. 16/02/2026) https://zenabm.com/blog/linkedin-ads-benchmarks-2026

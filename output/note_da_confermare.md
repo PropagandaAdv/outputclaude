@@ -6,7 +6,7 @@ Elenco delle domande aperte. Ogni voce è marcata **[DA CONFERMARE]** anche nell
 1. **Video:** non servono per la partenza (con 2.000 € al mese non si investe in video nella fase iniziale). Restano una **fase 2**, da valutare dopo i primi risultati: in quel caso servono file originali, durata, formato, audio, sottotitoli e diritti d'uso del video YouTube "Scopri Retica!".
 2. **Accesso a Campaign Manager** (account inserzionista) e alla **Pagina LinkedIn di Retica** (ruolo Super Admin / inserzionista).
 3. **Logo, font e linee guida brand** ufficiali (oggi ricavati dal sito: navy #23253C, corallo #FF8A73, blu #5580FF, viola #58468C, Poppins).
-4. **Persona per i Thought Leader Ads** (founder o referente) e consenso a usarne il profilo.
+4. **Pubblicazione:** tutti gli annunci escono dalla pagina LinkedIn di Retica, nessun profilo personale (deciso).
 5. **Testimonianze:** consenso scritto a usare nome, ruolo e azienda nelle inserzioni (es. Andrea Michelin, Gruppo Borghi Spa) e a citare i numeri (2.500 ordini/mese).
 6. **Badge Capterra / GetApp:** autorizzazione e linee guida d'uso nelle creatività (visibili sul sito, non usati nei mockup).
 
@@ -50,5 +50,5 @@ Elenco delle domande aperte. Ogni voce è marcata **[DA CONFERMARE]** anche nell
 31. **Esempi reali:** 2–3 DDT e un listino fornitore (anonimizzati) per la landing e le demo; unità di misura più frequenti dei clienti logistici (colli, pallet, kg, m³…).
 32. **Testimonianze logistiche:** consenso a usare nome e azienda di Carraro (Dario Mazzocca, DDT in SAP), Le Messaggerie Nazionali (Federico Gatti) ed eventualmente Edildelta (DDT fornitori con molte righe).
 33. **Clienti Retica nella logistica:** quanti dei 124 clienti attivi sono logistica/trasporti/magazzino, e quali WMS/ERP usano: serve per validare il target e scegliere gli annunci.
-34. **Persona per i Thought Leader Ads:** chi firma il post del fondatore/referente e il suo consenso (con 2.000 € al mese i Thought Leader Ads sono il formato di notorietà principale).
+34. **Approvazione:** chi in Retica approva testi e immagini degli annunci. Gli annunci escono sempre dalla pagina Retica (deciso).
 35. **Documenti di logistica oltre al DDT** (la pagina retica.ai/logistica cita anche certificati di origine e fatture commerciali; CMR e packing list non sono citati): quali sono supportati e vale la pena mostrare.

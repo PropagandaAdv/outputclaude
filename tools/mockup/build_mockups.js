@@ -163,7 +163,7 @@ function feed(name, adId, imgFile, imgW, imgH, opts = {}) {
   files[name] = { w: W + 80, h: 10, html, full: true };
 }
 feed('A01_feed', 'A01', 'A01_static_4x5.png', 1080, 1350);
-feed('A02_feed', 'A02', 'A02_quote_1x1.png', 1080, 1080, { author: '[Nome Cognome] · Founder, Retica', sub: 'Sponsorizzato · [DA CONFERMARE: referente]', avatarHTML: '<div style="width:112px;height:112px;border-radius:50%;background:#C9CED6;display:flex;align-items:center;justify-content:center;font-size:60px;color:#fff">👤</div>' });
+feed('A02_feed', 'A02', 'A02_quote_1x1.png', 1080, 1080, );
 feed('A04_feed', 'A04', 'A04_listino_1x1.png', 1080, 1080);
 // carosello: 1 card + peek
 {

@@ -1,7 +1,7 @@
 # Copy annunci LinkedIn — Retica, focus LOGISTICA (proposta, nessuna campagna attiva)
 
 Leve del messaggio: **DDT** (righe, codici, quantità), **unità di misura** (colli, pezzi, pallet) e **listini / prezzi**. Target principale: aziende di logistica, trasporti e magazzino.
-**Piano da 2.000 €/mese, senza lead magnet (nessun contenuto da scaricare) e senza video.** Il percorso è: farsi notare (post del fondatore, annuncio sui DDT) → convincere (casi reali, carosello da leggere nel feed) → richiesta di demo (Lead Gen Form, messaggio diretto). L'annuncio A03 (guida) è ritirato.
+**Piano da 2.000 €/mese, senza lead magnet (nessun contenuto da scaricare) e senza video.** Il percorso è: farsi notare (due annunci dalla pagina Retica: DDT e unità di misura) → convincere (casi reali, carosello da leggere nel feed) → richiesta di demo (Lead Gen Form, messaggio diretto). L'annuncio A03 (guida) è ritirato.
 Tutti i testi sono in italiano, con il "tu", prima il beneficio. I campi *Intro* e *Headline* usano **solo claim presenti su retica.ai** (verificati il 19/11/2026).
 I conteggi tra parentesi sono caratteri, calcolati in codice. Limiti: intro text max 600 (i primi ~150 sono visibili prima di "…altro"), headline max 70, descrizione max 100, card carosello max 45; Conversation Ad: messaggio max 500, oggetto max 60.
 Segnaposto: `{FirstName}` = nome del destinatario (campo dinamico LinkedIn).
@@ -12,7 +12,7 @@ Segnaposto: `{FirstName}` = nome del destinatario (campo dinamico LinkedIn).
 > - **Verifica prezzi:** l'articolo di Retica sui listini dice che Retica *non sostituisce il gestionale nelle verifiche* e che il confronto dei prezzi resta nell'ERP [VERIFICATO]. Una testimonianza (Gruppo Borghi) cita "verifiche su prezzi e tempi richiesti" sugli ordini. Una verifica prezzi fatta da Retica è **[DA CONFERMARE]**.
 > - Per questo le varianti A e B qui sotto non promettono conversione né verifica. Le versioni più forti stanno nel blocco **"Solo se Retica conferma"** di ogni annuncio: **non caricarle finché non c'è la conferma scritta.**
 
-> **Prima del caricamento:** UTM, link di destinazione, testimonial con nome/azienda e persona del Thought Leader Ad sono **[DA CONFERMARE]**.
+> **Prima del caricamento:** UTM, link di destinazione, testimonial con nome/azienda sono **[DA CONFERMARE]**.
 
 ---
 
@@ -52,7 +52,7 @@ Segnaposto: `{FirstName}` = nome del destinatario (campo dinamico LinkedIn).
 ## A02 · TOFU · Unità di misura: colli, pezzi, pallet
 
 - **Leva:** Unità di misura
-- **Formato:** Thought Leader Ad (post del founder/referente Retica)
+- **Formato:** Immagine singola (post sponsorizzato dalla pagina Retica)
 - **Obiettivo Campaign Manager:** Visualizzazioni sito / Engagement
 - **CTA LinkedIn:** Scopri di più
 - **Destinazione:** Blog Retica: 'Quanto costa davvero il data entry manuale' (A) · articolo sui listini fornitori (B), entrambi esistenti
@@ -85,7 +85,7 @@ Segnaposto: `{FirstName}` = nome del destinatario (campo dinamico LinkedIn).
 
 **Headline** (46): Dall'unità del DDT a quella del tuo gestionale
 
-**Note:** Richiede un profilo persona (founder/referente) e il consenso a usarlo come Thought Leader Ad [DA CONFERMARE]. L'esempio 10×12 è solo aritmetica illustrativa. L'articolo sui listini cita 'unità di misura scritte in modo incoerente' (verificato).
+**Note:** Pubblicato sempre dalla pagina LinkedIn di Retica, non da un profilo personale. L'esempio 10×12 è solo aritmetica illustrativa. L'articolo sui listini cita 'unità di misura scritte in modo incoerente' (verificato).
 
 ---
 
