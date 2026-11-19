@@ -60,3 +60,11 @@ for impr in (50_000,150_000,400_000,1_000_000):
 print('12 settimane =', round(12/WEEKS_PER_MONTH,2),'mesi')
 for r in res:
     if r['case']=='Base': print(r['scenario'],'spesa media 12 sett: €',round(r['budget_eur']*12/WEEKS_PER_MONTH))
+
+# --- myBiros: scala complessiva dato il NUMERO DI ANNUNCI (35 in Ad Library, 19/11/2026) ---
+# Le impression per annuncio e le date NON sono visibili nella lista: valori illustrativi, NON una stima di myBiros.
+N_ADS=35
+print('\nmyBiros: 35 annunci in Ad Library; spesa complessiva (tutta la vita degli annunci) se ogni annuncio avesse X impression')
+for per_ad in (5_000,20_000,50_000):
+    tot=N_ADS*per_ad
+    print(f"{per_ad:>7,} imp/annuncio -> {tot:>9,} imp totali -> €{tot/1000*CPM_EUR[0]:,.0f} – €{tot/1000*CPM_EUR[1]:,.0f}")

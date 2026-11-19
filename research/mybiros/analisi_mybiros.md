@@ -1,70 +1,77 @@
-# Analisi myBiros — stato della ricerca (19/11/2026)
+# Analisi myBiros su LinkedIn (19/11/2026)
 
-## 1. Esito dell'accesso a LinkedIn — BLOCCATO
+## 1. Fonti e cosa è stato possibile vedere
 
-| Risorsa | Esito | Evidenza |
-|---|---|---|
-| LinkedIn Ad Library (`/ad-library/search?accountOwner=myBiros`) | **HTTP 403 – Cloudflare "Sorry, you have been blocked"** (browser Chromium reale, locale it-IT) | `linkedin_blocco_cloudflare_19-11-2026.png` [VERIFICATO] |
-| Pagina aziendale `linkedin.com/company/mybiros/` | **403 – verifica di sicurezza Cloudflare** | stesso screenshot [VERIFICATO] |
-| Thought Leader Ads dei fondatori | Non verificabili (dipendono dall'accesso a LinkedIn) | — |
-| Ricerca web "myBiros LinkedIn" | Nessuna pagina LinkedIn di myBiros restituita dal motore di ricerca | [VERIFICATO] |
+| Fonte | Esito |
+|---|---|
+| **Screenshot dell'Ad Library LinkedIn, pagina myBiros** (PDF fornito da Propaganda Adv, catturato il 19/11/2026 alle 18:49) — `adlibrary_myBiros_2026-11-19.pdf` | **Letto.** "35 ads match your search criteria", ordinati dal più recente. **25 annunci visibili** nella schermata, tutti catalogati. [VERIFICATO] |
+| Schede "View details" di ogni annuncio (date, impression per fascia, paesi, targeting dichiarato) | **Non incluse** nello screenshot. [DA CONFERMARE] |
+| Pagina aziendale LinkedIn di myBiros e Thought Leader Ads dei fondatori | Non verificati: l'accesso diretto a LinkedIn dal nostro ambiente è bloccato (Cloudflare 403, `linkedin_blocco_cloudflare_19-11-2026.png`). |
+| Sito mybiros.com | Letto il 19/11/2026. [VERIFICATO] |
 
-L'ambiente cloud usato per il lavoro è bloccato da LinkedIn. **Non ho aggirato la protezione** (sarebbe contro i termini del servizio) e **non ho inventato nessun annuncio**: `mybiros_ads.csv` contiene solo l'intestazione delle colonne richieste, senza righe.
+Il censimento è in `mybiros_ads.csv` (25 righe) con un ritaglio per ogni annuncio in `screens/`. I testi sono quelli mostrati in lista (spesso troncati con "…"). ID e link LinkedIn degli annunci non compaiono nella lista: ho assegnato ID interni `MB-01…MB-24` (MB-14 contiene due annunci identici sovrapposti, 14a e 14b).
 
-**Cosa NON posso dire oggi:** numero di annunci attivi e storici, formati, periodi, copy, CTA, destinazioni, impression DSA, paesi, targeting dichiarato, ritmo di rotazione. Tutto ciò che nelle slide riguarda questi punti è marcato **[DA CONFERMARE]**.
+## 2. Sintesi strategica (sui 25 annunci visibili su 35)
 
-**Come chiuderlo (circa 30–45 minuti, da un computer normale):**
-1. Aprire l'Ad Library con il link dato, filtrare per inserzionista "myBiros" e paese Italia/UE.
-2. Per ogni annuncio: salvare screenshot, copiare ID/link, e dalla scheda "Dettagli" i dati DSA (impression per range, paesi, targeting).
-3. Compilare `mybiros_ads.csv` e rilanciare il calcolo in `analysis/budget_model.py` (sezione myBiros) con le impression reali.
-In alternativa: collegare un computer a questa sessione di lavoro e rieseguo io la raccolta.
+**Mix di formati** [VERIFICATO]
+- **13 Document Ad** (52%) da 5 a 9 pagine; titoli del tipo "IDP nel settore utility…", "Lending finanziario: …".
+- **11 immagini singole** (44%), con il pulsante dentro la creatività.
+- **1** annuncio con anteprima non caricata (probabile video, non determinabile).
+- Il formato "Document Ad" è dedotto dall'etichetta "Preview N of N pages" mostrata dall'Ad Library [etichetta VERIFICATA, formato STIMA]. Nessun Conversation Ad né Event Ad visibile. Tutti pubblicati dalla pagina "myBiros": nessun Thought Leader Ad nella lista (i post sponsorizzati da profili personali non compaiono qui).
 
-## 2. Cosa è VERIFICATO: sito mybiros.com (letto il 19/11/2026)
+**Temi e settori** [VERIFICATO]
+- **20 su 25 sul credito (lending)**: l'idea portante è il **"Time-to-Yes"**, il tempo per arrivare all'approvazione.
+- **5 su 25 sull'utility** (attivazioni, switching, bollette, documenti d'identità).
+- **0 su 25 su logistica, DDT, ordini o listini fornitori.**
 
-Fonte: https://www.mybiros.com/ (testo e screenshot `mybiros_sito_home.png`).
+**Lead magnet e call to action** [VERIFICATO]
+- Un solo lead magnet ricorrente: il **"one-pager"** (6 annunci: "Scarica il one-pager" / "Ottieni il one-pager").
+- CTA "Scopri come" in 5 annunci, con la barra sotto l'immagine "Scopri come ora!" o "Scopri come L'AI può ottimizzare ogni fase del credito."
+- I Document Ad non mostrano una CTA nella lista.
+- Nessuna menzione di demo o call con esperto negli annunci visibili (restano le CTA del sito: "Prenota demo", "Parla con un esperto").
 
-- **Posizionamento:** "Un'unica Piattaforma. Qualsiasi Documento. Dati pronti all'uso." Idea chiave: "Oltre l'OCR" — Small Language Models + OCR + Computer Vision. [VERIFICATO]
-- **CTA principali:** "Prenota demo" e "Parla con un esperto". Prova sociale: recensioni Trustpilot (stelle mostrate in home). [VERIFICATO]
-- **Numeri dichiarati:** 85% tempo medio risparmiato · 98% accuratezza media · 60% risparmio costo operativo · 10+ anni di R&D in AI · 50+ aziende clienti · 20 mln di documenti processati. [VERIFICATO come claim di myBiros; non verificati nel merito]
-- **Documenti in primo piano:** bolletta, busta paga, carta d'identità, passaporto, ricevuta, personalizzato. [VERIFICATO]
-- **Settori in primo piano:** assicurativo, finanziario, utility, lending (soluzione dedicata "Lending myBiros"). Citati anche manifattura, sanità, logistica in una frase generica. [VERIFICATO]
-- **Loghi clienti in home** (es. Siglacredit, Comparetech, Ajò Energia, Revo, Fluida, Italsoft, Prestivalore, Freekar): coerenti con finance/utility/lending. [VERIFICATO]
-- **Temi ricorrenti:** "più di un OCR", AI trasparente (confidence score), server europei, GDPR, "ridurre costi", errori del data entry manuale ("fino a 20 volte più errori"), dati non strutturati (80–90%). [VERIFICATO]
-- **Profilo da fonti terze:** piattaforma no-code di IDP con sede a Roma, target SMB, validazione human-in-the-loop (idp-software.com); in Italia, azienda di ~5 anni (CB Insights). [fonte terza, non verificato direttamente]
+**Messaggi ricorrenti** [VERIFICATO]
+- Apertura con una **domanda o un problema** ("Raccogli ancora informazioni manualmente?", "Qual è oggi il tuo time-to-yes?"), qualche emoji (❌ ⏱ 🧠 👇).
+- **Numeri forti dichiarati da myBiros** (non verificati nel merito): fino a 5x più veloce, −70% sul Time-to-Yes, −40% sui costi, 3X la produttività dell'underwriting, "20,5% di switching" nel mercato utility, "oltre il 50% delle informazioni raccolto a mano", "mutui = 80% dei portafogli retail, ancora 30+ giorni".
+- Termine "IDP" (Intelligent Document Processing) usato nei titoli dei Document Ad.
+- **Non compaiono** nelle schermate: clienti citati, testimonianze, video, GDPR o sicurezza, "più di un OCR".
 
-## 3. Implicazioni strategiche (dedotte dal SITO, non dagli annunci)
+**Ritmo di rotazione** [VERIFICATO sui visual, resto STIMA]
+- Pochi visual riusati con testi introduttivi diversi: lo stesso visual "Time-to-Yes / one-pager" compare in 4 annunci (MB-01, 06, 21, 23), "Lending: Accelera il Time-to-Yes" in 2 (MB-03, 09), un Document Ad utility è doppio (MB-07/08), uno sul lending in filiale è doppio (MB-14a/b). I 11 annunci a immagine singola usano solo 7 visual distinti: sembra una **strategia di test dei testi** su poche creatività. Il periodo di pubblicazione non è visibile.
 
-Sono **ipotesi** da verificare con l'Ad Library: se gli annunci seguono il sito, myBiros parla soprattutto a **banche, assicurazioni, utility e lending** con documenti di identità e bollette.
+**Settori e ruoli presi di mira** [STIMA dai contenuti]: responsabili del credito/lending e dell'underwriting (banche, fintech, intermediari), utility (B2C e B2B). I ruoli e il targeting dichiarato (DSA) non sono visibili.
 
-**Spazio libero per Retica** [STIMA qualitativa, da confermare con l'Ad Library]:
-- documenti **di filiera**: ordini d'acquisto, DDT, conferme d'ordine (logistica, manifattura, distribuzione, retail) — assenti dall'elenco documenti di myBiros;
-- ruoli **operativi** (EDP/IT, back office ordini, amministrazione ciclo passivo, CEO di PMI);
-- **integrazione col gestionale/ERP** e supporto vicino (clienti Retica citano la disponibilità del team);
-- numeri di scala **più alti** dichiarati sul sito: 124 clienti attivi e 6.000+ scansioni al giorno (Retica) contro 50+ aziende clienti e 20 mln di documenti totali (myBiros) — metriche diverse, non direttamente confrontabili: non usarle in un confronto diretto negli annunci.
+## 3. Punti di forza e lacune sfruttabili da Retica
 
-Retica non copia né cita claim, testi o creatività di myBiros.
+**Cosa fa bene myBiros (da imitare nella struttura, non nel contenuto):**
+- una promessa sola, memorabile e misurabile ("Time-to-Yes");
+- molti Document Ad (carosello di pagine): il formato più usato;
+- un'esca semplice e ripetuta (il one-pager).
 
-## 4. Stima dell'investimento LinkedIn di myBiros — [STIMA] NON CALCOLABILE CON DATI REALI
+**Lacune** (sul campione visibile):
+- **Nessun annuncio sulla logistica**, sui DDT, sui listini o sull'integrazione con il gestionale/magazzino.
+- **Nessuna prova sociale visibile** (clienti, testimonianze): Retica ha Carraro e Le Messaggerie Nazionali.
+- **Nessun video e nessun Thought Leader Ad visibile.**
+- Nessuna demo come CTA diretta negli annunci.
 
-LinkedIn non pubblica la spesa. Il metodo corretto parte dalle **impression DSA per annuncio**, oggi non accessibili.
+## 4. Stima dell'investimento [STIMA] — ancora non calcolabile con dati reali
 
-**Formula:** `spesa mensile ≈ (impression/mese ÷ 1.000) × CPM`
+Date e impression per annuncio non sono nella lista. Ho però il numero di annunci: **35**.
 
-**CPM usato (fonti recenti, USD → EUR a 0,90 [STIMA, DA CONFERMARE]):**
-- Sponsored Content, traffico freddo: circa 33,80 USD (≈ 30,4 €) — ClickMinded, agg. 08/07/2026;
-- single image ZenABM (211 aziende B2B, feb 2026): 59,15 USD (≈ 53,2 €); video 38,94 USD; carosello 45,28 USD; Thought Leader 49,37 USD;
-- altri Paesi europei ZenABM: Paesi Bassi 50,08 USD, UK 56,62 USD; ClickMinded (lug 2026): range 30–90 USD.
-- Nessun benchmark specifico per l'Italia trovato: **[DA CONFERMARE]** con dati reali di campagna.
+Formula: `spesa ≈ (impression totali ÷ 1.000) × CPM`. CPM usato: 30,4 € (Sponsored Content, ClickMinded 08/07/2026, 33,80 $ × 0,90) – 53,2 € (single image, ZenABM 16/02/2026, 59,15 $ × 0,90). Nessun benchmark specifico per l'Italia. [DA CONFERMARE]
 
-**Tabella di sensibilità (non è la spesa di myBiros, mostra solo la scala):**
+**Scala complessiva (tutta la vita dei 35 annunci), puramente illustrativa:**
 
-| Impression/mese | Spesa con CPM 30,4 € | Spesa con CPM 53,2 € |
-|---|---|---|
-| 50.000 | 1.520 € | 2.660 € |
-| 150.000 | 4.560 € | 7.980 € |
-| 400.000 | 12.160 € | 21.280 € |
-| 1.000.000 | 30.400 € | 53.200 € |
+| Impression per annuncio | Impression totali | Spesa con CPM 30,4 € | Spesa con CPM 53,2 € |
+|---|---|---|---|
+| 5.000 | 175.000 | 5.320 € | 9.310 € |
+| 20.000 | 700.000 | 21.280 € | 37.240 € |
+| 50.000 | 1.750.000 | 53.200 € | 93.100 € |
 
-Calcolo riproducibile: `python3 analysis/budget_model.py`.
+Non è una stima di myBiros: mostra la scala. Per trasformarla in un dato servono, per ciascun annuncio, la **fascia di impression** e le **date** della scheda "View details" (circa un minuto ad annuncio). Calcolo riproducibile: `python3 analysis/budget_model.py`.
 
-**Fonti:** [ZenABM](https://zenabm.com/blog/linkedin-ads-benchmarks-2026) · [ClickMinded](https://www.clickminded.com/linkedin-ads-benchmarks/).
+## 5. Profilo da sito e fonti terze (invariato)
+
+Sito mybiros.com: "Un'unica Piattaforma. Qualsiasi Documento. Dati pronti all'uso.", "Oltre l'OCR"; claim 85% tempo risparmiato, 98% accuratezza, 60% risparmio costi, 50+ clienti, 20 mln di documenti; documenti: bolletta, busta paga, carta d'identità, passaporto, ricevuta; settori: assicurativo, finanziario, utility, lending ("Lending myBiros" per banche, istituti di credito, fintech). Sede Roma e target SMB da fonte terza (idp-software.com).
+
+**Fonti:** Ad Library LinkedIn (screenshot del 19/11/2026) · mybiros.com · [ZenABM](https://zenabm.com/blog/linkedin-ads-benchmarks-2026) · [ClickMinded](https://www.clickminded.com/linkedin-ads-benchmarks/).
