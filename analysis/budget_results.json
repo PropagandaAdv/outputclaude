@@ -1,0 +1,213 @@
+{
+ "params": {
+  "FX": 0.9,
+  "FMT": {
+   "TLA": {
+    "cpm": 49.37,
+    "ctr": 0.0268
+   },
+   "VIDEO": {
+    "cpm": 38.94,
+    "ctr": 0.0024
+   },
+   "DOC_LGF": {
+    "cpm": 52.215,
+    "ctr": 0.0043
+   },
+   "CAROUSEL": {
+    "cpm": 45.28,
+    "ctr": 0.0032
+   },
+   "IMG_LGF": {
+    "cpm": 59.15,
+    "ctr": 0.004
+   }
+  },
+  "LGF_RATE_MOFU": 0.1,
+  "LGF_RATE_BOFU": 0.15,
+  "LP_RATE": 0.035,
+  "LEAD_TO_DEMO_MOFU": 0.1,
+  "LEAD_TO_DEMO_BOFU": 0.35,
+  "SPLIT": {
+   "Start": [
+    0.15,
+    0.5,
+    0.35
+   ],
+   "Growth": [
+    0.25,
+    0.45,
+    0.3
+   ],
+   "Scale": [
+    0.3,
+    0.4,
+    0.3
+   ]
+  }
+ },
+ "results": [
+  {
+   "scenario": "Start",
+   "case": "Prudente",
+   "budget_eur": 1500,
+   "tofu": 225.0,
+   "mofu": 750.0,
+   "bofu": 525.0,
+   "impressions": 25935,
+   "clicks": 108,
+   "ctr_blend": 0.004169456496939954,
+   "leads_mofu": 2.4874369325793158,
+   "leads_bofu": 2.840236686390533,
+   "leads": 5.327673618969849,
+   "cpl_eur": 281.5487785623846,
+   "demos": 1.242826533494618,
+   "cost_per_demo_eur": 1206.9262761732755,
+   "cpc_eur": 13.87142762446426
+  },
+  {
+   "scenario": "Start",
+   "case": "Base",
+   "budget_eur": 1500,
+   "tofu": 225.0,
+   "mofu": 750.0,
+   "bofu": 525.0,
+   "impressions": 32419,
+   "clicks": 180,
+   "ctr_blend": 0.00555927532925327,
+   "leads_mofu": 5.182160276206907,
+   "leads_bofu": 5.9171597633136095,
+   "leads": 11.099320039520517,
+   "cpl_eur": 135.1434137099446,
+   "demos": 2.589221944780454,
+   "cost_per_demo_eur": 579.3246125631723,
+   "cpc_eur": 8.322856574678557
+  },
+  {
+   "scenario": "Start",
+   "case": "Ottimistico",
+   "budget_eur": 1500,
+   "tofu": 225.0,
+   "mofu": 750.0,
+   "bofu": 525.0,
+   "impressions": 38140,
+   "clicks": 265,
+   "ctr_blend": 0.0069490941615665885,
+   "leads_mofu": 9.144988722718074,
+   "leads_bofu": 10.442046641141664,
+   "leads": 19.587035363859737,
+   "cpl_eur": 76.5812677689686,
+   "demos": 4.569215196671389,
+   "cost_per_demo_eur": 328.28394711913097,
+   "cpc_eur": 5.659542470781418
+  },
+  {
+   "scenario": "Growth",
+   "case": "Prudente",
+   "budget_eur": 3000,
+   "tofu": 750.0,
+   "mofu": 1350.0,
+   "bofu": 900.0,
+   "impressions": 53051,
+   "clicks": 262,
+   "ctr_blend": 0.004941128637573895,
+   "leads_mofu": 4.477386478642769,
+   "leads_bofu": 4.8689771766694845,
+   "leads": 9.346363655312253,
+   "cpl_eur": 320.9804487218803,
+   "demos": 2.1518806596985964,
+   "cost_per_demo_eur": 1394.1293567925813,
+   "cpc_eur": 11.444686800751388
+  },
+  {
+   "scenario": "Growth",
+   "case": "Base",
+   "budget_eur": 3000,
+   "tofu": 750.0,
+   "mofu": 1350.0,
+   "bofu": 900.0,
+   "impressions": 66313,
+   "clicks": 437,
+   "ctr_blend": 0.006588171516765195,
+   "leads_mofu": 9.327888497172435,
+   "leads_bofu": 10.14370245139476,
+   "leads": 19.471590948567194,
+   "cpl_eur": 154.07061538650254,
+   "demos": 4.483084707705409,
+   "cost_per_demo_eur": 669.1820912604392,
+   "cpc_eur": 6.866812080450831
+  },
+  {
+   "scenario": "Growth",
+   "case": "Ottimistico",
+   "budget_eur": 3000,
+   "tofu": 750.0,
+   "mofu": 1350.0,
+   "bofu": 900.0,
+   "impressions": 78016,
+   "clicks": 642,
+   "ctr_blend": 0.008235214395956493,
+   "leads_mofu": 16.46097970089253,
+   "leads_bofu": 17.90065138481428,
+   "leads": 34.36163108570681,
+   "cpl_eur": 87.30668205235143,
+   "demos": 7.9113259547742505,
+   "cost_per_demo_eur": 379.20318504758217,
+   "cpc_eur": 4.669432214706565
+  },
+  {
+   "scenario": "Scale",
+   "case": "Prudente",
+   "budget_eur": 5000,
+   "tofu": 1500.0,
+   "mofu": 2000.0,
+   "bofu": 1500.0,
+   "impressions": 89038,
+   "clicks": 474,
+   "ctr_blend": 0.005325972974755031,
+   "leads_mofu": 6.633165153544842,
+   "leads_bofu": 8.114961961115808,
+   "leads": 14.748127114660651,
+   "cpl_eur": 339.0260987803432,
+   "demos": 3.5035532017450173,
+   "cost_per_demo_eur": 1427.1226129831985,
+   "cpc_eur": 10.543790430123046
+  },
+  {
+   "scenario": "Scale",
+   "case": "Base",
+   "budget_eur": 5000,
+   "tofu": 1500.0,
+   "mofu": 2000.0,
+   "bofu": 1500.0,
+   "impressions": 111297,
+   "clicks": 790,
+   "ctr_blend": 0.007101297299673377,
+   "leads_mofu": 13.819094069885088,
+   "leads_bofu": 16.9061707523246,
+   "leads": 30.725264822209688,
+   "cpl_eur": 162.73252741456474,
+   "demos": 7.299069170302118,
+   "cost_per_demo_eur": 685.0188542319353,
+   "cpc_eur": 6.326274258073827
+  },
+  {
+   "scenario": "Scale",
+   "case": "Ottimistico",
+   "budget_eur": 5000,
+   "tofu": 1500.0,
+   "mofu": 2000.0,
+   "bofu": 1500.0,
+   "impressions": 130938,
+   "clicks": 1162,
+   "ctr_blend": 0.00887662162459172,
+   "leads_mofu": 24.38663659391486,
+   "leads_bofu": 29.83441897469047,
+   "leads": 54.22105556860534,
+   "cpl_eur": 92.21509886825335,
+   "demos": 12.88071030053315,
+   "cost_per_demo_eur": 388.17735073143007,
+   "cpc_eur": 4.301866495490202
+  }
+ ]
+}
