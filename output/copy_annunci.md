@@ -1,6 +1,7 @@
 # Copy annunci LinkedIn — Retica, focus LOGISTICA (proposta, nessuna campagna attiva)
 
 Leve del messaggio: **DDT** (righe, codici, quantità), **unità di misura** (colli, pezzi, pallet) e **listini / prezzi**. Target principale: aziende di logistica, trasporti e magazzino.
+**Piano da 2.000 €/mese, senza lead magnet (nessun contenuto da scaricare) e senza video.** Il percorso è: farsi notare (post del fondatore, annuncio sui DDT) → convincere (casi reali, carosello da leggere nel feed) → richiesta di demo (Lead Gen Form, messaggio diretto). L'annuncio A03 (guida) è ritirato.
 Tutti i testi sono in italiano, con il "tu", prima il beneficio. I campi *Intro* e *Headline* usano **solo claim presenti su retica.ai** (verificati il 19/11/2026).
 I conteggi tra parentesi sono caratteri, calcolati in codice. Limiti: intro text max 600 (i primi ~150 sono visibili prima di "…altro"), headline max 70, descrizione max 100, card carosello max 45; Conversation Ad: messaggio max 500, oggetto max 60.
 Segnaposto: `{FirstName}` = nome del destinatario (campo dinamico LinkedIn).
@@ -18,18 +19,18 @@ Segnaposto: `{FirstName}` = nome del destinatario (campo dinamico LinkedIn).
 ## A01 · TOFU · DDT: il costo di riscrivere le righe
 
 - **Leva:** DDT
-- **Formato:** Video 30s (1:1 e 4:5, sottotitoli IT)
-- **Obiettivo Campaign Manager:** Visualizzazioni video (ThruPlay 50%)
+- **Formato:** Immagine singola 4:5 (post sponsorizzato)
+- **Obiettivo Campaign Manager:** Visite al sito web
 - **CTA LinkedIn:** Scopri di più
-- **Destinazione:** Landing dedicata alla logistica /demo (o retica.ai/logistica) con UTM [DA CONFERMARE]
-- **Creatività:** Hook nei primi 3 secondi: pila di DDT + domanda a schermo (file in `output/mockup/A01_*`)
+- **Destinazione:** Landing dedicata alla logistica (o retica.ai/logistica) con UTM [DA CONFERMARE]
+- **Creatività:** Domanda a tutto schermo + pila di DDT (file in `output/mockup/A01_*`)
 
 ### Variante A
 
-**Intro text** (124):
-> Quante righe di DDT ricopia il tuo team ogni giorno? Guarda come Retica le legge e le inserisce nel gestionale al posto suo.
+**Intro text** (112):
+> Quante righe di DDT ricopia il tuo team ogni giorno? Retica le legge e le inserisce nel gestionale al posto suo.
 
-*Gancio visibile (primi ~150 car.):* Quante righe di DDT ricopia il tuo team ogni giorno? Guarda come Retica le legge e le inserisce nel gestionale al posto suo.…
+*Gancio visibile (primi ~150 car.):* Quante righe di DDT ricopia il tuo team ogni giorno? Retica le legge e le inserisce nel gestionale al posto suo.…
 
 **Headline** (45): DDT nel gestionale, senza riscrivere le righe
 
@@ -37,14 +38,14 @@ Segnaposto: `{FirstName}` = nome del destinatario (campo dinamico LinkedIn).
 
 ### Variante B
 
-**Intro text** (124):
-> In logistica ogni minuto di magazzino conta. Eppure c'è ancora chi riscrive a mano i DDT. In 30 secondi vedi un'alternativa.
+**Intro text** (112):
+> In logistica ogni minuto di magazzino conta. Eppure c'è ancora chi riscrive a mano i DDT. Esiste un'alternativa.
 
-*Gancio visibile (primi ~150 car.):* In logistica ogni minuto di magazzino conta. Eppure c'è ancora chi riscrive a mano i DDT. In 30 secondi vedi un'alternativa.…
+*Gancio visibile (primi ~150 car.):* In logistica ogni minuto di magazzino conta. Eppure c'è ancora chi riscrive a mano i DDT. Esiste un'alternativa.…
 
 **Headline** (44): Il magazzino non aspetta che qualcuno digiti
 
-**Note:** Il video usa i filmati del cliente [DA CONFERMARE]; in mancanza, motion di UI prodotto. La pagina retica.ai/logistica esiste già.
+**Note:** Sostituisce il video del primo piano: con 2.000 €/mese non si investe in video all'inizio (il video resta una fase 2). La pagina retica.ai/logistica esiste già.
 
 ---
 
@@ -88,53 +89,13 @@ Segnaposto: `{FirstName}` = nome del destinatario (campo dinamico LinkedIn).
 
 ---
 
-## A03 · MOFU · Lead magnet: guida a DDT, unità di misura e listini
-
-- **Leva:** DDT + unità + listini
-- **Formato:** Document Ad con Lead Gen Form (3 pagine di anteprima)
-- **Obiettivo Campaign Manager:** Lead generation
-- **CTA LinkedIn:** Scarica
-- **Destinazione:** Lead Gen Form nativo → PDF della guida [DA CONFERMARE: la guida va realizzata]
-- **Creatività:** Copertina + 'i 4 passi' (dal sito) + pagina 'cosa trovi' (file in `output/mockup/A03_*`)
-
-### Variante A
-
-**Intro text** (122):
-> DDT, unità di misura e prezzi di listino: scopri cosa si può automatizzare e cosa resta da controllare nel tuo gestionale.
-
-*Gancio visibile (primi ~150 car.):* DDT, unità di misura e prezzi di listino: scopri cosa si può automatizzare e cosa resta da controllare nel tuo gestionale.…
-
-**Headline** (52): Guida: DDT, unità di misura e listini nel gestionale
-
-**Descrizione** (36): Scarica la guida gratuita di Retica.
-
-### Variante B
-
-**Intro text** (145):
-> Prima di cambiare processo vuoi sapere cosa cambia davvero. Nella guida trovi i passi per portare DDT e listini nel gestionale senza riscriverli.
-
-*Gancio visibile (primi ~150 car.):* Prima di cambiare processo vuoi sapere cosa cambia davvero. Nella guida trovi i passi per portare DDT e listini nel gestionale senza riscriverli.…
-
-**Headline** (60): Dal DDT al gestionale: cosa automatizzare e cosa controllare
-
-### ⚠ Solo se Retica conferma: Conversione unità di misura e verifica dei prezzi fatte da Retica **[DA CONFERMARE]**
-
-**Intro text** (120):
-> DDT, conversione delle unità di misura e verifica dei prezzi di listino: la guida per automatizzarli nel tuo gestionale.
-
-**Headline** (47): Guida: DDT, conversione unità e verifica prezzi
-
-**Note:** I 4 passi sono quelli del 'Come funziona' di retica.ai. Il tono è onesto: dice cosa si automatizza e cosa resta al gestionale (come l'articolo sui listini di Retica).
-
----
-
-## A04 · MOFU · Listini fornitori: prezzi e unità in ordine
+## A04 · BOFU · Listini fornitori: prezzi e unità in ordine
 
 - **Leva:** Listini / prezzi
 - **Formato:** Immagine singola 1:1 → Lead Gen Form
 - **Obiettivo Campaign Manager:** Lead generation
-- **CTA LinkedIn:** Scarica
-- **Destinazione:** Lead Gen Form → checklist 'I controlli su DDT e listini prima dell'import' [DA CONFERMARE: da produrre]
+- **CTA LinkedIn:** Richiedi demo
+- **Destinazione:** Lead Gen Form 'Richiedi demo'
 - **Creatività:** Listino PDF → dati: codice, prezzo, unità (file in `output/mockup/A04_*`)
 
 ### Variante A
@@ -150,10 +111,10 @@ Segnaposto: `{FirstName}` = nome del destinatario (campo dinamico LinkedIn).
 
 ### Variante B
 
-**Intro text** (144):
-> Ogni listino nuovo è un copia-incolla da ricontrollare. Scarica la checklist: i controlli su prezzi e unità di misura da fare prima dell'import.
+**Intro text** (116):
+> Ogni listino nuovo è un copia-incolla da ricontrollare. Mandaci un tuo listino: in una demo lo vedi letto da Retica.
 
-*Gancio visibile (primi ~150 car.):* Ogni listino nuovo è un copia-incolla da ricontrollare. Scarica la checklist: i controlli su prezzi e unità di misura da fare prima dell'import.…
+*Gancio visibile (primi ~150 car.):* Ogni listino nuovo è un copia-incolla da ricontrollare. Mandaci un tuo listino: in una demo lo vedi letto da Retica.…
 
 **Headline** (51): Prezzi e unità di misura del listino, già in ordine
 
@@ -164,15 +125,15 @@ Segnaposto: `{FirstName}` = nome del destinatario (campo dinamico LinkedIn).
 
 **Headline** (45): Verifica dei prezzi di listino, in automatico
 
-**Note:** I campi estratti (codice articolo, descrizione, prezzo, unità di misura o confezione) sono quelli elencati nell'articolo sui listini di Retica [VERIFICATO]. Lo stesso articolo precisa che il confronto prezzi resta nel gestionale.
+**Note:** I campi estratti (codice articolo, descrizione, prezzo, unità di misura o confezione) sono quelli elencati nell'articolo sui listini di Retica [VERIFICATO]. Lo stesso articolo precisa che il confronto prezzi resta nel gestionale. Nessun contenuto da scaricare: si va dritti alla demo.
 
 ---
 
 ## A05 · MOFU · Il DDT riga per riga
 
 - **Leva:** DDT + unità + prezzi
-- **Formato:** Carosello 5 card 1:1
-- **Obiettivo Campaign Manager:** Visite al sito web / Lead generation
+- **Formato:** Carosello 5 card 1:1 (si legge nel feed, nessun download)
+- **Obiettivo Campaign Manager:** Visite al sito web
 - **CTA LinkedIn:** Richiedi demo
 - **Destinazione:** Landing demo logistica con modulo breve
 - **Creatività:** 5 card: hook, righe, unità, prezzi, CTA (file in `output/mockup/A05_*`)
@@ -249,17 +210,17 @@ Segnaposto: `{FirstName}` = nome del destinatario (campo dinamico LinkedIn).
 - **Formato:** Immagine singola 1:1 → Lead Gen Form
 - **Obiettivo Campaign Manager:** Lead generation
 - **CTA LinkedIn:** Richiedi demo
-- **Destinazione:** Lead Gen Form 'Richiedi demo / Analisi dei tuoi DDT' [DA CONFERMARE offerta]
+- **Destinazione:** Lead Gen Form 'Richiedi demo' (demo personalizzata sui DDT del prospect) [DA CONFERMARE fattibilità]
 - **Creatività:** Prima/dopo: DDT cartaceo vs righe e unità nel gestionale (file in `output/mockup/A07_*`)
 
 ### Variante A
 
-**Intro text** (147):
-> Colli, pezzi, pallet: ogni DDT ha le sue unità di misura. Mandaci alcuni tuoi DDT e ti mostriamo come Retica ne porta righe e unità nel gestionale.
+**Intro text** (150):
+> Colli, pezzi, pallet: ogni DDT ha le sue unità di misura. Mandaci alcuni tuoi DDT: in una demo vedi come Retica ne porta righe e unità nel gestionale.
 
-*Gancio visibile (primi ~150 car.):* Colli, pezzi, pallet: ogni DDT ha le sue unità di misura. Mandaci alcuni tuoi DDT e ti mostriamo come Retica ne porta righe e unità nel gestionale.…
+*Gancio visibile (primi ~150 car.):* Colli, pezzi, pallet: ogni DDT ha le sue unità di misura. Mandaci alcuni tuoi DDT: in una demo vedi come Retica ne porta righe e unità nel gestionale.…
 
-**Headline** (29): Analisi gratuita dei tuoi DDT
+**Headline** (24): Vedi Retica sui tuoi DDT
 
 **Descrizione** (36): Richiedi la demo sui tuoi documenti.
 
@@ -279,7 +240,7 @@ Segnaposto: `{FirstName}` = nome del destinatario (campo dinamico LinkedIn).
 
 **Headline** (48): Unità di misura del DDT convertite in automatico
 
-**Note:** Settori: logistica, trasporti, magazzino. Offerta 'analisi gratuita' da confermare (tempi, numero di documenti, riservatezza).
+**Note:** Settori: logistica, trasporti, magazzino. Demo personalizzata sui DDT del prospect: da confermare (tempi, numero di documenti, riservatezza).
 
 ---
 
@@ -354,8 +315,8 @@ Segnaposto: `{FirstName}` = nome del destinatario (campo dinamico LinkedIn).
 - **Leva:** DDT
 - **Formato:** Conversation Ad (Message Ad)
 - **Obiettivo Campaign Manager:** Lead generation
-- **CTA LinkedIn:** Prenota la demo | Calcola il risparmio | Parla con un esperto
-- **Destinazione:** 3 bottoni: calendario demo, calcolatore del risparmio, Lead Gen Form
+- **CTA LinkedIn:** Prenota la demo | Parla con un esperto
+- **Destinazione:** 2 bottoni: calendario demo e Lead Gen Form
 - **Creatività:** Finestra di messaggio con 3 bottoni (file in `output/mockup/A10_*`)
 
 ### Variante A
@@ -382,12 +343,12 @@ Segnaposto: `{FirstName}` = nome del destinatario (campo dinamico LinkedIn).
 
 ---
 
-## Lead Gen Form (per A03, A04, A07, A08, A09)
+## Lead Gen Form (per A04, A07, A08, A09)
 - **Nome form:** Richiedi demo Retica — logistica
 - **Headline form (max 60):** Vediamo Retica sui tuoi DDT
 - **Dettagli (max 160):** Lascia i tuoi dati: ti ricontattiamo entro 24 ore lavorative per fissare la demo.
 - **Campi precompilati dal profilo LinkedIn:** nome, cognome, email di lavoro, azienda, ruolo, (telefono facoltativo)
 - **Domande di qualifica (max 2):** 1) "Quanti DDT gestisci al mese?" (<500 / 500–2.000 / 2.000–10.000 / >10.000) · 2) "Quale gestionale/ERP usi?" (elenco + Altro)
 - **Consenso privacy GDPR:** link all'informativa privacy di Retica + casella di consenso esplicita
-- **Thank-you page:** conferma + pulsante "Prenota la demo" + link al calcolatore del risparmio [DA CONFERMARE strumento calendario]
-- **Nota:** durata della demo e offerta "Analisi dei tuoi DDT" da confermare con il cliente.
+- **Thank-you page:** conferma + pulsante "Prenota la demo" [DA CONFERMARE strumento calendario]
+- **Nota:** durata della demo e demo personalizzata sui DDT del prospect da confermare con il cliente.

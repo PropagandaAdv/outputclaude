@@ -3,7 +3,7 @@
 Elenco delle domande aperte. Ogni voce è marcata **[DA CONFERMARE]** anche nelle slide.
 
 ## A. Accessi e materiali
-1. **Video del cliente** (cartella `assets/video-retica/` vuota): file originali, durata, formato, audio, sottotitoli, sorgenti editabili; diritti d'uso del video YouTube "Scopri Retica!".
+1. **Video:** non servono per la partenza (con 2.000 € al mese non si investe in video nella fase iniziale). Restano una **fase 2**, da valutare dopo i primi risultati: in quel caso servono file originali, durata, formato, audio, sottotitoli e diritti d'uso del video YouTube "Scopri Retica!".
 2. **Accesso a Campaign Manager** (account inserzionista) e alla **Pagina LinkedIn di Retica** (ruolo Super Admin / inserzionista).
 3. **Logo, font e linee guida brand** ufficiali (oggi ricavati dal sito: navy #23253C, corallo #FF8A73, blu #5580FF, viola #58468C, Poppins).
 4. **Persona per i Thought Leader Ads** (founder o referente) e consenso a usarne il profilo.
@@ -13,12 +13,12 @@ Elenco delle domande aperte. Ogni voce è marcata **[DA CONFERMARE]** anche nell
 ## B. Sito e landing
 7. **Contenuti segnaposto del template** — [VERIFICATO] presenti nel codice della home di retica.ai, nel **menu laterale nascosto** (non nel footer visibile): "198 West 21th Street, Suite 721, New York, NY 10010", "foton@qodeinteractive.com", "+88 (0) 101 0000 000", testo "Quisque actraqum… Lorem ipsum…". Il footer reale riporta dati corretti (Via Matteotti 102E, Reggiolo; info@retica.ai; +39 340 4910367). Da rimuovere/sostituire **prima di inviare traffico a pagamento**.
 8. Altri residui del template/lingua: testi in inglese nel pannello cookie e nei moduli ("Contact us for more information", "Let us show you how Retica…"); copyright "© 2023" nel footer.
-9. **Landing dedicata** alle campagne (consigliata, con form breve, calcolatore e thank-you page) oppure uso della home: da decidere. Insight Tag LinkedIn e tracciamento conversioni da installare.
-10. **Hosting della guida** PDF e della checklist (lead magnet) e della pagina di ringraziamento.
+9. **Landing dedicata alla logistica** con form breve e thank-you page (nessun contenuto da scaricare): da costruire oppure usare `retica.ai/logistica` (già esistente) con un modulo. Insight Tag LinkedIn e tracciamento conversioni da installare.
+10. **Thank-you page** con pulsante per prenotare la demo: hosting e strumento di calendario.
 
-## C. Lead magnet e offerta
-11. Conferma dei lead magnet: **"Guida all'automazione di DDT e ordini"**, **checklist "Quanto ti costa l'inserimento manuale"**, **versione LinkedIn del calcolatore del risparmio**; chi li produce e entro quando.
-12. Offerta BOFU: **"Analisi gratuita dei tuoi documenti"** — è fattibile? Con quali tempi e limiti (numero di documenti, riservatezza)?
+## C. Offerta (nessun lead magnet)
+11. **Budget: 2.000 € sono al mese o in totale?** E per quanti mesi? Il piano e le stime sono costruiti su 2.000 € **al mese** per almeno 12 settimane (circa 5.500 € in tutto). Con un solo mese i dati non bastano per decidere.
+12. **Demo personalizzata sui DDT del prospect** ("Vedi Retica sui tuoi DDT"): è fattibile? Con quali tempi e limiti (numero di documenti, riservatezza)? Non è un contenuto da scaricare ma va confermata.
 13. Durata e formato della demo; calendario (Calendly o altro) per la prenotazione.
 
 ## D. CRM e flusso lead
@@ -47,8 +47,8 @@ Elenco delle domande aperte. Ogni voce è marcata **[DA CONFERMARE]** anche nell
 ## H. Riposizionamento sulla logistica: leve DDT, unità di misura, listini/prezzi
 29. **Conversione delle unità di misura** (es. 10 colli da 12 pz → 120 pz): Retica la fa? Il sito dice solo che estrae "unità di misura o confezione" (articolo sui listini) e che il modulo "Condizioni" trasforma i dati nel formato del gestionale. Se sì: quali regole, con quale configurazione. Se no: gli annunci restano sulla sola lettura/estrazione.
 30. **Verifica dei prezzi dei listini** (confronto col prezzo in uso, soglie di variazione): Retica la fa o resta nel gestionale? L'articolo di Retica dice che "il controllo dei cambiamenti, dei prezzi precedenti e delle regole interne rimane nel vostro ERP". Va chiarito prima di promettere una verifica prezzi in un annuncio. Finché non c'è conferma scritta, le versioni "Solo se Retica conferma" in `copy_annunci.md` non vanno caricate.
-31. **Esempi reali:** 2–3 DDT e un listino fornitore (anonimizzati) per i mockup, la guida e la demo; unità di misura più frequenti dei clienti logistici (colli, pallet, kg, m³…).
+31. **Esempi reali:** 2–3 DDT e un listino fornitore (anonimizzati) per la landing e le demo; unità di misura più frequenti dei clienti logistici (colli, pallet, kg, m³…).
 32. **Testimonianze logistiche:** consenso a usare nome e azienda di Carraro (Dario Mazzocca, DDT in SAP), Le Messaggerie Nazionali (Federico Gatti) ed eventualmente Edildelta (DDT fornitori con molte righe).
 33. **Clienti Retica nella logistica:** quanti dei 124 clienti attivi sono logistica/trasporti/magazzino, e quali WMS/ERP usano: serve per validare il target e scegliere gli annunci.
-34. **Lead magnet logistici:** guida "DDT, unità di misura e listini nel gestionale" e checklist "I controlli su DDT e listini prima dell'import": chi li scrive e quando.
+34. **Persona per i Thought Leader Ads:** chi firma il post del fondatore/referente e il suo consenso (con 2.000 € al mese i Thought Leader Ads sono il formato di notorietà principale).
 35. **Documenti di logistica oltre al DDT** (la pagina retica.ai/logistica cita anche certificati di origine e fatture commerciali; CMR e packing list non sono citati): quali sono supportati e vale la pena mostrare.

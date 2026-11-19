@@ -60,26 +60,11 @@ const ddtRows = [['N. documento', 'DDT 2481'], ['Data', '12/03'], ['Fornitore', 
 const files = {}; // nome -> {w,h,html}
 const add = (name, w, h, body, extra) => files[name] = { w, h, html: page(w, h, body, extra) };
 
-// ---------- A01 video (4:5 + 1:1) — DDT
-const subtitle = (t, bottom) => `<div class="sub" style="bottom:${bottom}px">${t}</div>`;
-const ddtRows2 = [['N. documento', 'DDT 2481'], ['Codice', 'VT-M8-40'], ['Quantità', '10'], ['Unità', 'colli (CT)'], ['Confezione', '12 pz']];
-const hookHTML = `<div class="h" style="position:absolute;left:64px;top:170px;width:960px;font-size:84px">Quante <span class="co">righe di DDT</span> ricopi ogni giorno?</div>
- <div style="position:absolute;left:260px;top:560px">${pile()}</div>`;
-add('A01_frame1_hook_4x5', 1080, 1350, `${logo}${hookHTML}${subtitle('Quante righe di DDT ricopia il tuo team ogni giorno?', 120)}`);
-add('A01_frame2_flusso_4x5', 1080, 1350, `${logo}
- <div class="h" style="position:absolute;left:64px;top:170px;width:960px;font-size:70px">Retica legge il DDT, <span class="co">qualunque layout</span></div>
- <div style="position:absolute;left:50px;top:520px;display:flex;align-items:center;gap:6px">${ddt(360, 6, 0, true)}${flowArrow(120)}${datacard(ddtRows2, 440)}</div>${subtitle('Righe, codici, quantità e unità di misura', 120)}`);
-add('A01_frame3_cta_4x5', 1080, 1350, `${logo}
- <div class="h" style="position:absolute;left:64px;top:210px;width:960px;font-size:84px">Il magazzino non aspetta <span class="co">che qualcuno digiti</span></div>
- <div style="position:absolute;left:64px;top:700px"><span class="pill">RICHIEDI DEMO</span></div>
- <div style="position:absolute;left:64px;top:860px;font-size:34px;color:#c9ccea;width:900px">Calcola il tuo risparmio annuo su retica.ai</div>${subtitle('Calcola quanto puoi risparmiare con Retica', 120)}`);
-add('A01_cover_4x5', 1080, 1350, `${logo}${hookHTML}
- <div style="position:absolute;right:70px;bottom:220px;width:150px;height:150px;border-radius:50%;background:var(--coral);display:flex;align-items:center;justify-content:center"><div style="border-left:50px solid #fff;border-top:30px solid transparent;border-bottom:30px solid transparent;margin-left:14px"></div></div>
- <div style="position:absolute;left:64px;bottom:80px;font-size:30px;color:#c9ccea">0:30 · sottotitoli in italiano</div>`);
-add('A01_cover_1x1', 1080, 1080, `${logo}
- <div class="h" style="position:absolute;left:64px;top:160px;width:950px;font-size:78px">Quante <span class="co">righe di DDT</span> ricopi ogni giorno?</div>
- <div style="position:absolute;left:300px;top:470px;transform:scale(.8);transform-origin:top left">${pile()}</div>
- <div style="position:absolute;right:60px;bottom:60px;width:130px;height:130px;border-radius:50%;background:var(--coral);display:flex;align-items:center;justify-content:center"><div style="border-left:42px solid #fff;border-top:26px solid transparent;border-bottom:26px solid transparent;margin-left:12px"></div></div>`);
+// ---------- A01 immagine singola (post sponsorizzato) — DDT, senza video
+add('A01_static_4x5', 1080, 1350, `${logo}
+ <div class="h" style="position:absolute;left:64px;top:170px;width:960px;font-size:84px">Quante <span class="co">righe di DDT</span> ricopi ogni giorno?</div>
+ <div style="position:absolute;left:260px;top:560px">${pile()}</div>
+ <div style="position:absolute;left:64px;bottom:90px;font-size:34px;color:#c9ccea;width:950px;line-height:1.35">Retica legge i DDT e li porta nel gestionale.</div>`);
 
 // ---------- A02 quote card (TLA) — unità di misura
 add('A02_quote_1x1', 1080, 1080, `${logo}
@@ -91,26 +76,6 @@ add('A02_quote_1x1', 1080, 1080, `${logo}
  </div>
  <div style="position:absolute;left:64px;top:780px;width:950px;font-size:40px;line-height:1.35;color:#d9dcf5;font-weight:400">Ogni fornitore scrive l’unità di misura a modo suo.</div>
  <div style="position:absolute;left:64px;bottom:64px;font-size:30px;color:#9fa4cf">retica.ai</div>`);
-
-// ---------- A03 document ad (3 pagine) — guida DDT, unità, listini
-const steps = [['1', 'Identifica', 'il blocco di testo da scansionare'], ['2', 'Etichetta', 'l\'AI legge e associa un\'etichetta ad ogni testo'], ['3', 'Salva', 'la posizione e il contenuto del blocco'], ['4', 'Crea il modello', 'del documento dai blocchi salvati']];
-add('A03_pagina1_copertina_4x5', 1080, 1350, `${logo}
- <div style="position:absolute;left:64px;top:190px;font-size:28px;letter-spacing:4px;color:var(--coral);font-weight:600">GUIDA GRATUITA</div>
- <div class="h" style="position:absolute;left:64px;top:250px;width:950px;font-size:82px">DDT, unità di misura e <span class="co">listini</span> nel gestionale</div>
- <div style="position:absolute;left:64px;top:800px;display:flex;gap:30px;align-items:center">${ddt(300, 5, -4, true)}${flowArrow(90)}${datacard([['DDT', '2481'], ['Unità', 'CT'], ['Qtà', '10']], 330)}</div>
- <div style="position:absolute;left:64px;bottom:70px;font-size:30px;color:#c9ccea">Retica · lettore documenti con intelligenza artificiale</div>`);
-add('A03_pagina2_4passi_4x5', 1080, 1350, `${logo}
- <div class="h" style="position:absolute;left:64px;top:170px;width:950px;font-size:68px">Come Retica impara <span class="co">il tuo DDT</span></div>
- <div style="position:absolute;left:64px;top:400px;width:952px">${steps.map(s => `<div class="card" style="display:flex;gap:28px;align-items:center;margin-bottom:22px;padding:26px 30px"><div style="width:76px;height:76px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:38px;flex:none">${s[0]}</div><div style="font-size:34px;line-height:1.25"><b>${s[1]}</b> ${s[2]}</div></div>`).join('')}</div>`);
-add('A03_pagina3_cta_4x5', 1080, 1350, `${logo}
- <div class="h" style="position:absolute;left:64px;top:170px;width:950px;font-size:74px">Nella guida trovi</div>
- <div style="position:absolute;left:64px;top:340px;width:950px;font-size:36px;line-height:1.45;color:#e4e6fa">
-  <div style="margin-bottom:20px"><span class="co">✓</span> Cosa si legge da un DDT: righe, codici, quantità</div>
-  <div style="margin-bottom:20px"><span class="co">✓</span> Unità di misura: colli, pezzi, pallet</div>
-  <div style="margin-bottom:20px"><span class="co">✓</span> Prezzi e listini: cosa resta al gestionale</div>
-  <div style="margin-bottom:20px"><span class="co">✓</span> Come partire da un solo fornitore</div></div>
- <div style="position:absolute;left:64px;top:900px"><span class="pill">SCARICA LA GUIDA</span></div>
- <div style="position:absolute;left:64px;top:1030px;font-size:28px;color:#9fa4cf">Indice indicativo — contenuti da definire con il cliente</div>`);
 
 // ---------- A04 listino fornitori
 const listino = (w, rows, rot) => ddt(w, rows, rot, true).replace('DOCUMENTO DI TRASPORTO', 'LISTINO FORNITORE');
@@ -173,7 +138,7 @@ add('A10_conversation_4x5', 1080, 1350, `<div style="position:absolute;inset:0;b
  <div style="position:absolute;left:50px;top:50px;width:980px;height:1250px;background:#fff;border-radius:22px;box-shadow:0 10px 40px rgba(0,0,0,.12);color:#191919;overflow:hidden">
   <div style="display:flex;align-items:center;gap:22px;padding:28px 36px;border-bottom:2px solid #E6E6E6"><img src="${AVATAR}" style="width:90px;height:90px;border-radius:50%"><div><div style="font-size:34px;font-weight:600">[Nome Cognome] · Retica</div><div style="font-size:24px;color:#666">Messaggio sponsorizzato</div></div></div>
   <div style="padding:36px"><div style="background:#F1F5F9;border-radius:6px 26px 26px 26px;padding:30px 34px;font-size:32px;line-height:1.45;color:#191919">${byId.A10.intro_A.replace('{FirstName}', 'Marco').replace('Reggiolo (RE).', 'Reggiolo (RE).<br><br>').replace('E ti seguiamo', '<br><br>E ti seguiamo')}</div>
-  <div style="margin-top:34px;display:flex;flex-direction:column;gap:18px;align-items:flex-start">${['Prenota la demo', 'Calcola il risparmio', 'Parla con un esperto'].map(b => `<div style="border:3px solid #0A66C2;color:#0A66C2;border-radius:999px;padding:18px 44px;font-size:30px;font-weight:600">${b}</div>`).join('')}</div>
+  <div style="margin-top:34px;display:flex;flex-direction:column;gap:18px;align-items:flex-start">${['Prenota la demo', 'Parla con un esperto'].map(b => `<div style="border:3px solid #0A66C2;color:#0A66C2;border-radius:999px;padding:18px 44px;font-size:30px;font-weight:600">${b}</div>`).join('')}</div>
   <div style="font-size:22px;color:#888;margin-top:40px">Mockup: nome del mittente e testo da confermare con il cliente. {FirstName} sostituito da "Marco" solo come esempio.</div></div></div>`);
 
 // ---------- Feed frame
@@ -197,9 +162,8 @@ function feed(name, adId, imgFile, imgW, imgH, opts = {}) {
   </div></div></body></html>`;
   files[name] = { w: W + 80, h: 10, html, full: true };
 }
-feed('A01_feed', 'A01', 'A01_cover_4x5.png', 1080, 1350);
+feed('A01_feed', 'A01', 'A01_static_4x5.png', 1080, 1350);
 feed('A02_feed', 'A02', 'A02_quote_1x1.png', 1080, 1080, { author: '[Nome Cognome] · Founder, Retica', sub: 'Sponsorizzato · [DA CONFERMARE: referente]', avatarHTML: '<div style="width:112px;height:112px;border-radius:50%;background:#C9CED6;display:flex;align-items:center;justify-content:center;font-size:60px;color:#fff">👤</div>' });
-feed('A03_feed', 'A03', 'A03_pagina1_copertina_4x5.png', 1080, 1350, { cta: 'Scarica' });
 feed('A04_feed', 'A04', 'A04_listino_1x1.png', 1080, 1080);
 // carosello: 1 card + peek
 {

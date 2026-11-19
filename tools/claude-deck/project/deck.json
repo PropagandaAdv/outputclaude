@@ -1,17 +1,24 @@
 {
   "v": 5,
+  "attachments": {},
   "createdOnFiles": {
-    "v": 1,
-    "at": "2026-11-19T10:00:00Z"
+    "at": "2026-11-19T10:00:00Z",
+    "v": 1
   },
-  "lists": "css",
+  "designSystems": [],
+  "faces": {
+    "poppins": {
+      "family": "Poppins",
+      "href": "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+    }
+  },
   "format": {
-    "v": 1,
     "shared": [
       "project/deck.css"
-    ]
+    ],
+    "v": 1
   },
-  "title": "Retica LinkedIn Ads Proposta",
+  "lists": "css",
   "order": [
     "cover",
     "piano",
@@ -19,11 +26,12 @@
     "concorrente",
     "concorrente-come",
     "pubblico",
+    "strategia",
     "ads-notare",
-    "ads-scaricare",
+    "ads-convincere",
     "ads-chiamare",
-    "video",
-    "investimento",
+    "richiesta",
+    "budget",
     "roadmap",
     "servono",
     "prossimi"
@@ -34,18 +42,17 @@
       "start": "cover"
     },
     "s2": {
-      "description": "Concorrente, pubblico e annunci.",
+      "description": "Concorrente e pubblico.",
       "start": "concorrente"
     },
     "s3": {
-      "description": "Video, investimento, tempi e prossimi passi.",
-      "start": "video"
+      "description": "Strategia da 2.000 € al mese, annunci e percorso della richiesta.",
+      "start": "strategia"
+    },
+    "s4": {
+      "description": "Investimento, tempi e prossimi passi.",
+      "start": "budget"
     }
   },
-  "faces": {
-    "poppins": {
-      "family": "Poppins",
-      "href": "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-    }
-  }
+  "title": "Retica LinkedIn Ads Proposta"
 }

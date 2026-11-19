@@ -3,6 +3,7 @@ sys.path.insert(0,'analysis')
 from ads_data import ADS, LIM, hook
 out=["# Copy annunci LinkedIn — Retica, focus LOGISTICA (proposta, nessuna campagna attiva)\n",
 "Leve del messaggio: **DDT** (righe, codici, quantità), **unità di misura** (colli, pezzi, pallet) e **listini / prezzi**. Target principale: aziende di logistica, trasporti e magazzino.",
+"**Piano da 2.000 €/mese, senza lead magnet (nessun contenuto da scaricare) e senza video.** Il percorso è: farsi notare (post del fondatore, annuncio sui DDT) → convincere (casi reali, carosello da leggere nel feed) → richiesta di demo (Lead Gen Form, messaggio diretto). L'annuncio A03 (guida) è ritirato.",
 "Tutti i testi sono in italiano, con il \"tu\", prima il beneficio. I campi *Intro* e *Headline* usano **solo claim presenti su retica.ai** (verificati il 19/11/2026).",
 "I conteggi tra parentesi sono caratteri, calcolati in codice. Limiti: intro text max 600 (i primi ~150 sono visibili prima di \"…altro\"), headline max 70, descrizione max 100, card carosello max 45; Conversation Ad: messaggio max 500, oggetto max 60.",
 "Segnaposto: `{FirstName}` = nome del destinatario (campo dinamico LinkedIn).\n",
@@ -27,15 +28,15 @@ for a in ADS:
         out.append(f"**Intro text** ({len(sc['intro'])}):\n> {sc['intro']}\n")
         out.append(f"**Headline** ({len(sc['headline'])}): {sc['headline']}\n")
     out.append(f"**Note:** {a['notes']}\n\n---\n")
-out.append("""## Lead Gen Form (per A03, A04, A07, A08, A09)
+out.append("""## Lead Gen Form (per A04, A07, A08, A09)
 - **Nome form:** Richiedi demo Retica — logistica
 - **Headline form (max 60):** Vediamo Retica sui tuoi DDT
 - **Dettagli (max 160):** Lascia i tuoi dati: ti ricontattiamo entro 24 ore lavorative per fissare la demo.
 - **Campi precompilati dal profilo LinkedIn:** nome, cognome, email di lavoro, azienda, ruolo, (telefono facoltativo)
 - **Domande di qualifica (max 2):** 1) "Quanti DDT gestisci al mese?" (<500 / 500–2.000 / 2.000–10.000 / >10.000) · 2) "Quale gestionale/ERP usi?" (elenco + Altro)
 - **Consenso privacy GDPR:** link all'informativa privacy di Retica + casella di consenso esplicita
-- **Thank-you page:** conferma + pulsante "Prenota la demo" + link al calcolatore del risparmio [DA CONFERMARE strumento calendario]
-- **Nota:** durata della demo e offerta "Analisi dei tuoi DDT" da confermare con il cliente.
+- **Thank-you page:** conferma + pulsante "Prenota la demo" [DA CONFERMARE strumento calendario]
+- **Nota:** durata della demo e demo personalizzata sui DDT del prospect da confermare con il cliente.
 """)
 open('output/copy_annunci.md','w',encoding='utf8').write('\n'.join(out))
 print('ok',len('\n'.join(out)))
