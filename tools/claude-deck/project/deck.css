@@ -1,0 +1,37 @@
+body { font-family: 'Poppins', Arial, sans-serif; color: #F4F4F2; }
+section { background: #050505; color: #F4F4F2; padding: 112px 128px 140px; display: flex; flex-direction: column; }
+section.l { background: #F6F6F3; color: #0B0B0F; }
+.lg { position: absolute; right: 128px; top: 48px; width: 180px; height: 63px; object-fit: contain; }
+.kick { display: flex; flex-direction: row; align-items: center; gap: 20px; margin-bottom: 28px; }
+.kick p { font-size: 24px; font-weight: 700; letter-spacing: 5px; color: #7F8CFF; }
+section.l .kick p { color: #233DFF; }
+h1 { font-size: 100px; font-weight: 700; line-height: 1.04; letter-spacing: -2px; margin-bottom: 36px; }
+h2 { font-size: 88px; font-weight: 700; line-height: 1.04; letter-spacing: -2px; margin-bottom: 36px; }
+h3 { font-size: 38px; font-weight: 600; line-height: 1.2; margin-bottom: 14px; }
+p { font-size: 30px; line-height: 1.4; }
+.sub { font-size: 32px; line-height: 1.45; color: #A9ADBE; }
+section.l .sub { color: #565869; }
+.p { font-size: 28px; line-height: 1.45; color: #A9ADBE; }
+section.l .p { color: #565869; }
+.row { display: flex; flex-direction: row; gap: 32px; }
+.col { display: flex; flex-direction: column; gap: 24px; }
+.grow { flex: 1; }
+.card { background: #0F1016; border: 2px solid #23263A; border-radius: 28px; padding: 40px; }
+section.l .card { background: #FFFFFF; border: 2px solid #E3E3DD; }
+.card.hl { border: 2px solid #233DFF; }
+.n { font-size: 26px; font-weight: 700; letter-spacing: 3px; color: #7F8CFF; margin-bottom: 18px; }
+section.l .n { color: #233DFF; }
+.big { font-size: 84px; font-weight: 700; line-height: 1.05; letter-spacing: -2px; }
+.chip { font-size: 24px; font-weight: 600; padding: 8px 22px; border-radius: 999px; }
+.ok { background: #10341D; color: #58D277; }
+.st { background: #3A2C0C; color: #F5B83D; }
+.cf { background: #3E1522; color: #FF7D9B; }
+section.l .ok { background: #DDF3E4; color: #1A7336; }
+section.l .st { background: #FBEBC8; color: #8A5A00; }
+section.l .cf { background: #FADCE5; color: #B3204F; }
+.btn { background: #233DFF; color: #FFFFFF; font-size: 30px; font-weight: 600; padding: 22px 48px; border-radius: 14px; }
+.cap { font-size: 24px; line-height: 1.35; color: #A9ADBE; margin-top: 18px; text-align: center; }
+section.l .cap { color: #565869; }
+.fn { position: absolute; left: 128px; bottom: 56px; width: 1500px; font-size: 24px; line-height: 1.3; color: #8A8FA3; }
+section.l .fn { color: #6B6E80; }
+.ph { border-radius: 28px; }

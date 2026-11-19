@@ -1,0 +1,50 @@
+{
+  "v": 5,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-11-19T10:00:00Z"
+  },
+  "lists": "css",
+  "format": {
+    "v": 1,
+    "shared": [
+      "project/deck.css"
+    ]
+  },
+  "title": "Retica LinkedIn Ads Proposta",
+  "order": [
+    "cover",
+    "piano",
+    "problema",
+    "concorrente",
+    "pubblico",
+    "ads-notare",
+    "ads-scaricare",
+    "ads-chiamare",
+    "video",
+    "investimento",
+    "roadmap",
+    "servono",
+    "prossimi"
+  ],
+  "sections": {
+    "s1": {
+      "description": "Il piano in tre mosse e il problema della logistica.",
+      "start": "cover"
+    },
+    "s2": {
+      "description": "Concorrente, pubblico e annunci.",
+      "start": "concorrente"
+    },
+    "s3": {
+      "description": "Video, investimento, tempi e prossimi passi.",
+      "start": "video"
+    }
+  },
+  "faces": {
+    "poppins": {
+      "family": "Poppins",
+      "href": "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    }
+  }
+}
