@@ -1,38 +1,40 @@
 body { font-family: 'Poppins', Arial, sans-serif; font-weight: 400; color: #FFFFFF; }
-section { background: #000000; color: #FFFFFF; padding: 112px 128px 140px; display: flex; flex-direction: column; }
+section { background: #233DFF; color: #FFFFFF; padding: 112px 128px 140px; display: flex; flex-direction: column; }
 section.l { background: #F9F7F3; color: #000000; }
+b { font-weight: 700; }
 .lg { position: absolute; right: 128px; top: 48px; width: 180px; height: 63px; object-fit: contain; }
 .kick { display: flex; flex-direction: row; align-items: center; gap: 20px; margin-bottom: 28px; }
 .kick p { font-size: 24px; font-weight: 600; letter-spacing: 4px; color: #FFFFFF; }
 section.l .kick p { color: #000000; }
-h1 { font-size: 100px; font-weight: 700; line-height: 1.04; letter-spacing: -2px; margin-bottom: 36px; }
-h2 { font-size: 88px; font-weight: 700; line-height: 1.04; letter-spacing: -2px; margin-bottom: 36px; }
+h1 { font-size: 100px; font-weight: 300; line-height: 1.04; letter-spacing: -2px; margin-bottom: 36px; }
+h2 { font-size: 88px; font-weight: 300; line-height: 1.04; letter-spacing: -2px; margin-bottom: 36px; }
 h3 { font-size: 38px; font-weight: 600; line-height: 1.2; margin-bottom: 14px; }
 p { font-size: 30px; line-height: 1.4; font-weight: 400; }
-.sub { font-size: 32px; line-height: 1.45; font-weight: 300; color: #D0D0D0; }
+.sub { font-size: 32px; line-height: 1.45; font-weight: 300; color: #FFFFFF; }
 section.l .sub { color: #3D3D3D; }
-.p { font-size: 28px; line-height: 1.45; font-weight: 400; color: #C4C4C4; }
+.p { font-size: 28px; line-height: 1.45; font-weight: 400; color: #FFFFFF; }
+.card .p { color: #3D3D3D; }
 section.l .p { color: #3D3D3D; }
 .row { display: flex; flex-direction: row; gap: 32px; }
 .col { display: flex; flex-direction: column; gap: 24px; }
 .grow { flex: 1; }
-.card { background: #0E0E0E; border: 2px solid #2C2C2C; border-radius: 28px; padding: 40px; }
-section.l .card { background: #FFFFFF; border: 2px solid #E6E3DD; }
+.card { background: #FFFFFF; border: 2px solid #FFFFFF; border-radius: 28px; padding: 40px; color: #000000; }
+section.l .card { border: 2px solid #E6E3DD; }
 .card.hl { border: 2px solid #233DFF; }
 section.l .card.hl { background: #F1F2FF; border: 2px solid #233DFF; }
 .n { width: 64px; padding: 16px 0; text-align: center; border-radius: 16px; background: #233DFF; color: #FFFFFF; font-size: 26px; font-weight: 700; line-height: 1.2; margin-bottom: 24px; }
-.lab { font-size: 24px; font-weight: 600; letter-spacing: 3px; color: #FFFFFF; margin-bottom: 18px; }
-section.l .lab { color: #233DFF; }
+.lab { font-size: 24px; font-weight: 600; letter-spacing: 3px; color: #233DFF; margin-bottom: 18px; }
 .big { font-size: 84px; font-weight: 700; line-height: 1.05; letter-spacing: -2px; }
+.card .big { color: #233DFF; }
+section.l .card .big { color: #000000; }
 .chip { font-size: 24px; font-weight: 600; padding: 8px 22px; border-radius: 999px; }
 .ok { background: #233DFF; color: #FFFFFF; }
-.st { background: #000000; color: #FFFFFF; border: 2px solid #233DFF; }
-.cf { background: #FFFFFF; color: #000000; }
-section.l .st { background: #F1F2FF; color: #233DFF; border: 2px solid #233DFF; }
-section.l .cf { background: #000000; color: #FFFFFF; }
-.btn { background: #233DFF; color: #FFFFFF; font-size: 30px; font-weight: 600; padding: 22px 48px; border-radius: 14px; }
-.cap { font-size: 24px; line-height: 1.35; color: #C4C4C4; margin-top: 18px; text-align: center; }
+.st { background: #F1F2FF; color: #233DFF; border: 2px solid #233DFF; }
+.cf { background: #000000; color: #FFFFFF; }
+.chip.onb { background: #FFFFFF; color: #233DFF; }
+.btn { background: #FFFFFF; color: #233DFF; font-size: 30px; font-weight: 600; padding: 22px 48px; border-radius: 14px; }
+.cap { font-size: 24px; line-height: 1.35; color: #FFFFFF; margin-top: 18px; text-align: center; }
 section.l .cap { color: #3D3D3D; }
-.fn { position: absolute; left: 128px; bottom: 56px; width: 1500px; font-size: 24px; line-height: 1.3; color: #9A9A9A; }
+.fn { position: absolute; left: 128px; bottom: 56px; width: 1500px; font-size: 24px; line-height: 1.3; font-weight: 300; color: #FFFFFF; }
 section.l .fn { color: #5E5E5E; }
 .ph { border-radius: 28px; }
