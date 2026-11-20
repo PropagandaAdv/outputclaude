@@ -3,3 +3,4 @@ work/*.pkl
 work/*.jsonl
 work/*.log
 work/progress.csv
+__pycache__/
