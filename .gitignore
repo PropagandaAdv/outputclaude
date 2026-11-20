@@ -1,0 +1,5 @@
+work/*.xlsx
+work/*.pkl
+work/*.jsonl
+work/*.log
+work/progress.csv
