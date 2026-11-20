@@ -1,31 +1,33 @@
 # -*- coding: utf-8 -*-
-"""Genera output/Retica_LinkedIn_Ads_Proposta.pptx (brand Propaganda Adv: nero, Poppins, blu #233DFF)."""
-import json, re, os, sys
+"""Genera output/Retica_LinkedIn_Ads_Proposta.pptx: stessa presentazione del deck Claude (15 slide),
+stile Propaganda Adv: blu #233DFF / nero / bianco, Poppins. Piano da 2.000 €/mese, niente video, niente lead magnet.
+Coordinate in pixel su una tela 1920x1080 (1 px = 0,5 pt). Le note dell'oratore sono prese dai tag <aside> delle slide."""
+import json, re, os
 from pptx import Presentation
-from pptx.util import Inches, Pt
+from pptx.util import Emu, Pt
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.enum.shapes import MSO_SHAPE
 from PIL import Image
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+DECK = f'{ROOT}/tools/claude-deck/project'
 MOCK = f'{ROOT}/output/mockup'
-ADS = {a['id']: a for a in json.load(open(f'{ROOT}/analysis/ads.json', encoding='utf8'))}
+AS = f'{ROOT}/assets/propaganda/deck'
 BUD = json.load(open(f'{ROOT}/analysis/budget_results.json'))['results']
-def bud(sc, case='Base'): return next(r for r in BUD if r['scenario'] == sc and r['case'] == case)
 
-def rgb(h): return RGBColor.from_string(h.lstrip('#'))
-BG, PANEL, PANEL2 = '05060A', '10121A', '181B27'
-BLUE, BLUE2, WHITE, GREY, MUT = '233DFF', '5568FF', 'FFFFFF', 'B4B7C2', '8C8F99'
-TAG = {'[VERIFICATO]': '39B54A', '[STIMA]': 'F5B83D', '[DA CONFERMARE]': 'FF6B8B'}
-FONT = 'Poppins'
+BLUE, BLACK, WHITE, PAPER, LINE, SOFT, GREY, DGREY = '233DFF', '000000', 'FFFFFF', 'F9F7F3', 'E6E3DD', 'F1F2FF', '5E5E5E', '3D3D3D'
+PX = 6350  # EMU per px (13,333in / 1920)
 
-prs = Presentation(); prs.slide_width = Inches(13.333); prs.slide_height = Inches(7.5)
+prs = Presentation(); prs.slide_width = Emu(1920 * PX); prs.slide_height = Emu(1080 * PX)
 BLANK = prs.slide_layouts[6]
-state = {'n': 0}
 
-def box(s, x, y, w, h, fill=None, line=None, shape=MSO_SHAPE.RECTANGLE, lw=1):
-    sh = s.shapes.add_shape(shape, Inches(x), Inches(y), Inches(w), Inches(h))
+def rgb(h): return RGBColor.from_string(h)
+def E(v): return Emu(int(v * PX))
+
+def rect(s, x, y, w, h, fill=None, line=None, r=None, lw=2):
+    sh = s.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE if r else MSO_SHAPE.RECTANGLE, E(x), E(y), E(w), E(h))
+    if r: sh.adjustments[0] = min(0.5, r / min(w, h))
     if fill: sh.fill.solid(); sh.fill.fore_color.rgb = rgb(fill)
     else: sh.fill.background()
     if line: sh.line.color.rgb = rgb(line); sh.line.width = Pt(lw)
@@ -33,365 +35,261 @@ def box(s, x, y, w, h, fill=None, line=None, shape=MSO_SHAPE.RECTANGLE, lw=1):
     sh.shadow.inherit = False
     return sh
 
-def rrect(s, x, y, w, h, fill=PANEL, line=None, r=0.08):
-    sh = box(s, x, y, w, h, fill, line, MSO_SHAPE.ROUNDED_RECTANGLE)
-    sh.adjustments[0] = r
-    return sh
+def fontname(weight):
+    return {'light': 'Poppins Light', 'reg': 'Poppins', 'semi': 'Poppins SemiBold', 'bold': 'Poppins'}[weight]
 
-def _runs(p, text, size, color, bold, font=FONT):
-    parts = re.split(r'(\[VERIFICATO\]|\[STIMA\]|\[DA CONFERMARE\])', text)
-    for part in parts:
-        if not part: continue
-        r = p.add_run(); r.text = part; f = r.font; f.name = font; f.size = Pt(size)
-        if part in TAG: f.color.rgb = rgb(TAG[part]); f.bold = True; f.size = Pt(max(size - 1, 8))
-        else: f.color.rgb = rgb(color); f.bold = bold
-
-def text(s, x, y, w, h, paras, size=16, color=WHITE, bold=False, align='l', anchor='t', space=4, line=1.1, font=FONT):
-    tb = s.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(h)); tf = tb.text_frame
-    tf.word_wrap = True; tf.margin_left = tf.margin_right = Inches(0.02); tf.margin_top = tf.margin_bottom = Inches(0.02)
+def text(s, x, y, w, h, paras, size=30, color=BLACK, weight='reg', align='l', anchor='t', lh=1.35, after=0, spacing=None):
+    """paras: str o lista; '**x**' = grassetto, '{x}' = blu semibold (accento)."""
+    tb = s.shapes.add_textbox(E(x), E(y), E(w), E(h)); tf = tb.text_frame
+    tf.word_wrap = True
+    tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0
     tf.vertical_anchor = {'t': MSO_ANCHOR.TOP, 'm': MSO_ANCHOR.MIDDLE, 'b': MSO_ANCHOR.BOTTOM}[anchor]
     if isinstance(paras, str): paras = [paras]
     for i, para in enumerate(paras):
         p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
         p.alignment = {'l': PP_ALIGN.LEFT, 'c': PP_ALIGN.CENTER, 'r': PP_ALIGN.RIGHT}[align]
-        p.space_after = Pt(space); p.line_spacing = line
-        if isinstance(para, tuple):  # (testo, dict)
-            t, o = para; _runs(p, t, o.get('size', size), o.get('color', color), o.get('bold', bold), o.get('font', font))
-        else: _runs(p, para, size, color, bold, font)
+        p.line_spacing = lh; p.space_after = Pt(after * 0.5)
+        for part in re.split(r'(\*\*.*?\*\*)', para):
+            if not part: continue
+            bold = part.startswith('**'); t = part.strip('*') if bold else part
+            r = p.add_run(); r.text = t; f = r.font
+            f.size = Pt(size * 0.5); f.color.rgb = rgb(color)
+            f.name = fontname('bold' if bold else weight); f.bold = bool(bold) or weight == 'bold'
+            if spacing:
+                r._r.get_or_add_rPr().set('spc', str(int(spacing * 50)))  # px -> centesimi di pt
     return tb
 
-def bullets(s, x, y, w, items, size=15, color=WHITE, gap=7, dot=BLUE2, h=None):
-    yy = y
-    for it in items:
-        box(s, x, yy + 0.085, 0.09, 0.09, dot, shape=MSO_SHAPE.OVAL)
-        lines = max(1, int(len(re.sub(r'\[.*?\]', '', it)) * size * 0.0076 / (w - 0.3)) + 1)
-        hh = lines * size * 0.0185 + 0.06
-        text(s, x + 0.22, yy, w - 0.25, hh, it, size=size, color=color, space=0)
-        yy += hh + gap / 72 * 1.0 + 0.04
-    return yy
+def pic(s, path, x, y, w=None, h=None):
+    im = Image.open(path); iw, ih = im.size
+    if w and h:  # contiene (object-fit: contain)
+        sc = min(w / iw, h / ih); pw, ph = iw * sc, ih * sc
+        x += (w - pw) / 2; y += (h - ph) / 2; w, h = pw, ph
+    elif w: h = w * ih / iw
+    else: w = h * iw / ih
+    return s.shapes.add_picture(path, E(x), E(y), E(w), E(h))
 
-def new(kicker, title, source=None, title_size=28):
-    s = prs.slides.add_slide(BLANK); state['n'] += 1
-    bg = s.background.fill; bg.solid(); bg.fore_color.rgb = rgb(BG)
-    box(s, 0.7, 0.62, 0.45, 0.035, BLUE)
-    text(s, 1.25, 0.5, 8, 0.3, kicker.upper(), size=10, color=WHITE, bold=True)
-    text(s, 0.7, 0.85, 11.9, 1.1, title, size=title_size, bold=True, line=1.0)
-    if source: text(s, 0.7, 6.88, 10.8, 0.45, 'Fonte: ' + source, size=8.5, color=MUT, space=0)
-    text(s, 11.2, 6.98, 1.5, 0.3, f'{state["n"]:02d}', size=9, color=MUT, align='r')
+def aside(name):
+    t = open(f'{DECK}/slides/{name}.html', encoding='utf8').read()
+    m = re.search(r'<aside>(.*?)</aside>', t, re.S)
+    return re.sub(r'<[^>]+>', '', m.group(1)).strip() if m else ''
+
+def new(name, kind='blue', kicker=None, title=None, size=88, sub=None):
+    s = prs.slides.add_slide(BLANK)
+    light = kind == 'light'
+    bg = s.background.fill; bg.solid(); bg.fore_color.rgb = rgb(PAPER if light else BLUE)
+    fg = BLACK if light else WHITE
+    pic(s, f'{AS}/logo_blu.png' if light else f'{AS}/logo_bianco.png', 1612, 48, w=180)
+    if kicker:
+        rect(s, 128, 126, 56, 4, BLUE if light else WHITE)
+        text(s, 204, 112, 1200, 36, kicker.upper(), size=24, color=fg, weight='semi', spacing=4)
+    if title:
+        text(s, 128, 178, 1664, size * 1.1 * (title.count('\n') + 1), title.split('\n'), size=size, color=fg, weight='light', lh=1.04, spacing=-2)
+    s.notes_slide.notes_text_frame.text = aside(name)
+    s.light = light
     return s
 
-def pic(s, path, x, y, h=None, w=None):
-    im = Image.open(path); ar = im.width / im.height
-    if h: w = h * ar
-    else: h = w / ar
-    s.shapes.add_picture(path, Inches(x), Inches(y), Inches(w), Inches(h)); return w, h
+def foot(s, txt):
+    text(s, 128, 1000, 1664, 40, txt, size=22, color=GREY if s.light else WHITE, weight='light', anchor='b', lh=1.2)
 
-def big(s, x, y, w, num, label, color=WHITE, nsize=40, lsize=11, lh=0.6):
-    text(s, x, y, w, 0.9, num, size=nsize, bold=True, color=color, space=0, line=1.0)
-    text(s, x, y + nsize * 0.0195 + 0.12, w, lh, label, size=lsize, color=GREY, space=0)
+def card(s, x, y, w, h, hl=False, light=True):
+    if light: return rect(s, x, y, w, h, SOFT if hl else WHITE, BLUE if hl else LINE, r=28)
+    return rect(s, x, y, w, h, WHITE, BLUE if hl else WHITE, r=28)
 
-def chip(s, x, y, t, w=None, fill=PANEL2, color=WHITE, size=11, h=0.36):
-    w = w or (len(t) * size * 0.0098 + 0.4)
-    rrect(s, x, y, w, h, fill, None, 0.5); text(s, x, y, w, h, t, size=size, color=color, align='c', anchor='m', space=0)
-    return w
+def badge(s, x, y, n):
+    rect(s, x, y, 64, 64, BLUE, r=16)
+    text(s, x, y, 64, 64, n, size=26, color=WHITE, weight='bold', align='c', anchor='m', lh=1)
 
-def table(s, x, y, colw, rows, head=True, size=11, rowh=0.5, hfill=BLUE, zebra=True):
-    shp = s.shapes.add_table(len(rows), len(colw), Inches(x), Inches(y), Inches(sum(colw)), Inches(rowh * len(rows)))
-    tbl = shp.table
-    tblPr = shp._element.graphic.graphicData.tbl.tblPr; tblPr.set('firstRow', '0'); tblPr.set('bandRow', '0')
-    for j, w in enumerate(colw): tbl.columns[j].width = Inches(w)
-    for i, row in enumerate(rows):
-        tbl.rows[i].height = Inches(rowh)
-        for j, val in enumerate(row):
-            c = tbl.cell(i, j); c.margin_left = c.margin_right = Inches(0.1); c.margin_top = c.margin_bottom = Inches(0.04)
-            c.vertical_anchor = MSO_ANCHOR.MIDDLE
-            c.fill.solid(); c.fill.fore_color.rgb = rgb(hfill if (head and i == 0) else (PANEL if (i % 2 == 1 or not zebra) else PANEL2))
-            tf = c.text_frame; tf.word_wrap = True; p = tf.paragraphs[0]
-            _runs(p, val, size, WHITE, bool((head and i == 0) or j == 0))
-    return tbl
+def chip(s, x, y, w, label, kind='ok'):
+    fill, fg, ln = {'ok': (BLUE, WHITE, None), 'st': (SOFT, BLUE, BLUE), 'cf': (BLACK, WHITE, None)}[kind]
+    rect(s, x, y, w, 52, fill, ln, r=26)
+    text(s, x, y, w, 52, label, size=24, color=fg, weight='semi', align='c', anchor='m', lh=1)
 
-# ============================================================ SLIDE 1 — cover
-s = prs.slides.add_slide(BLANK); state['n'] += 1
-bg = s.background.fill; bg.solid(); bg.fore_color.rgb = rgb(BG)
-box(s, 0, 0, 13.333, 7.5, '0B0E22')
-box(s, 8.6, -1.5, 7.5, 7.5, '233DFF', shape=MSO_SHAPE.OVAL).fill.fore_color.rgb = rgb('141C66')
-pic(s, f'{ROOT}/assets/propaganda/logo_propaganda_ritagliato.png', 0.7, 0.5, h=0.55)
-box(s, 0.7, 2.2, 0.45, 0.035, BLUE)
-text(s, 1.25, 2.08, 9, 0.3, 'PROPOSTA · FASE PRELIMINARE', size=11, bold=True)
-text(s, 0.7, 2.6, 10.5, 2.4, ['Propaganda Adv × Retica', ('LinkedIn Ads per portare demo qualificate dalla logistica', {'size': 30, 'bold': False, 'color': GREY})], size=54, bold=True, space=10, line=1.0)
-text(s, 0.7, 5.6, 8, 0.8, ['19 novembre 2026', 'Documento di lavoro: nessuna campagna creata, nessuna spesa attiva.'], size=13, color=GREY, space=2)
-pic(s, f'{ROOT}/assets/retica/logo_retica-3.png', 10.7, 6.3, h=0.55)
+# ---------------------------------------------------------------- 1 cover
+s = new('cover', 'blue')
+pic(s, f'{AS}/logo_retica_chiaro.png', 128, 112, h=70)
+text(s, 128, 300, 1300, 40, 'MARKETING CHE PORTA CLIENTI.', size=24, weight='semi', color=WHITE, spacing=4)
+text(s, 128, 360, 1500, 260, ['Più demo per Retica,', 'da LinkedIn.'], size=100, weight='light', color=WHITE, lh=1.04, spacing=-2)
+text(s, 128, 680, 1100, 130, 'Un piano per portare aziende di logistica a chiedere una dimostrazione.', size=32, weight='light', color=WHITE, lh=1.45)
+text(s, 128, 980, 1500, 40, 'Novembre 2026 · Documento preliminare: nessuna campagna è ancora attiva.', size=24, weight='light', color=WHITE)
 
-# ============================================================ SLIDE 2 — obiettivo e sintesi
-s = new('Obiettivo e sintesi', 'Fare di LinkedIn un canale di demo per Retica',
-        'Propaganda Adv, proposta di strategia; numeri di budget dal modello analysis/budget_model.py [STIMA].')
-x = 0.7
-for t in ['Lead', 'MQL', 'Demo fissata']:
-    w = chip(s, x, 2.0, t, w=2.1, fill=BLUE if t == 'Demo fissata' else PANEL2, size=15, h=0.55); x += 2.1
-    if t != 'Demo fissata': text(s, x, 2.0, 0.5, 0.55, '→', size=20, color=BLUE2, align='c', anchor='m'); x += 0.5
-big(s, 0.7, 3.0, 2.8, '10', 'annunci pronti, con 2 varianti di copy ciascuno')
-big(s, 3.7, 3.0, 2.8, '3', 'livelli di funnel: TOFU, MOFU, BOFU')
-big(s, 6.7, 3.0, 2.8, '3', 'scenari di budget: 1.500 / 3.000 / 5.000 € al mese')
-big(s, 9.7, 3.0, 2.8, '12', 'settimane di test minimo prima di giudicare')
-bullets(s, 0.7, 4.75, 7.3, ['Target principale: logistica, trasporti e magazzino; ruoli di magazzino, operations, acquisti, amministrazione, IT/EDP.',
-                           'Tre leve: DDT, unità di misura, listini e prezzi. Prima il beneficio, poi la prova (Carraro, Le Messaggerie Nazionali).',
-                           'Misuriamo lead, costo per lead e costo per demo, non solo clic.'], size=13, gap=6)
-rrect(s, 8.4, 4.7, 4.25, 1.95, PANEL)
-text(s, 8.6, 4.8, 3.9, 0.35, 'Attenzione', size=13, bold=True, color='FF6B8B')
-text(s, 8.6, 5.2, 3.9, 1.4, "Ad Library bloccata: analisi di myBiros incompleta. Conversione unità e verifica prezzi da confermare con Retica. [DA CONFERMARE]", size=12, color=GREY)
+# ---------------------------------------------------------------- 2 piano
+s = new('piano', 'light', '01 · Il piano', '**Tre mosse,** una demo.')
+text(s, 128, 296, 1500, 50, 'Accompagniamo chi lavora in logistica dal primo sguardo fino alla richiesta di demo.', size=32, weight='light', color=DGREY, lh=1.4)
+cards = [('01', 'Ci notano', 'Due annunci di Retica parlano del loro problema di tutti i giorni: riscrivere i DDT a mano.'),
+         ('02', 'Ci contattano', 'Proponiamo di risolvere il loro problema in modo semplice.'),
+         ('03', 'Ci chiamano', 'Un modulo di due domande, una demo prenotata e una risposta entro 24 ore.')]
+for i, (n, h, p) in enumerate(cards):
+    x = 128 + i * 560
+    card(s, x, 430, 520, 460, hl=(i == 2)); badge(s, x + 40, 470, n)
+    text(s, x + 40, 570, 440, 60, h, size=38, weight='semi', lh=1.2)
+    text(s, x + 40, 640, 440, 220, p, size=28, color=DGREY, lh=1.45)
 
-# ============================================================ SLIDE 3 — le tre leve (logistica)
-s = new('Il mercato e il problema', 'Tre punti dove la logistica perde tempo',
-        'retica.ai/logistica, articolo sui listini fornitori, testimonianze Carraro e Le Messaggerie Nazionali [VERIFICATO].')
-rrect(s, 0.7, 2.0, 5.3, 4.5, PANEL)
-big(s, 1.0, 2.3, 4.8, 'DDT', 'Righe, codici e quantità riscritti a mano nel gestionale. Retica ha una pagina per la logistica e testimonianze su DDT e spedizioni (Carraro, Le Messaggerie Nazionali). [VERIFICATO]', color='FF8A73', nsize=66, lsize=13, lh=1.8)
-for i, (t, d) in enumerate([('Unità di misura', 'Colli, pezzi, pallet scritti a modo loro. Retica estrae “unità di misura o confezione”; la conversione è [DA CONFERMARE].'),
-                            ('Listini e prezzi', 'Retica estrae codice, prezzo e unità dal PDF; il confronto prezzi resta nel gestionale. Verifica in Retica: [DA CONFERMARE].'),
-                            ('Gestionale / ERP', 'Integrabile con qualsiasi ERP: CSV, XML, JSON con importazione via API o FTP. [VERIFICATO]')]):
-    rrect(s, 6.4, 2.0 + i * 1.5, 6.2, 1.35, PANEL)
-    text(s, 6.65, 2.1 + i * 1.5, 1.9, 1.15, t, size=16, bold=True, color=BLUE2, anchor='m')
-    text(s, 8.5, 2.1 + i * 1.5, 4.0, 1.15, d, size=11.5, color=WHITE, anchor='m')
+# ---------------------------------------------------------------- 3 problema
+s = new('problema', 'blue', '02 · Il problema', 'In logistica, i **DDT**\nsi riscrivono ancora a mano.')
+rows = [('01', 'DDT', 'Righe, codici e quantità copiati a mano nel gestionale.', 'Retica li legge e li inserisce.'),
+        ('02', 'Unità di misura', 'Colli, pezzi, pallet: ogni fornitore li scrive a modo suo.', 'Retica li converte automaticamente'),
+        ('03', 'Listini e prezzi', 'I prezzi arrivano in PDF e vanno portati nel gestionale.', 'Retica li controlla')]
+for i, (n, h, p, r_) in enumerate(rows):
+    x = 128 + i * 560
+    card(s, x, 520, 520, 420, light=False); badge(s, x + 40, 556, n)
+    text(s, x + 40, 650, 440, 56, h, size=38, weight='semi', lh=1.2)
+    text(s, x + 40, 716, 440, 110, p, size=26, color=DGREY, lh=1.4)
+    text(s, x + 40, 836, 440, 90, r_, size=26, color=BLUE, weight='semi', lh=1.35)
+foot(s, 'Fonte: retica.ai/logistica, articolo di Retica sui listini fornitori, testimonianze Carraro e Le Messaggerie Nazionali')
 
-# ============================================================ SLIDE 4 — myBiros: verificato/bloccato
-s = new('Analisi di myBiros su LinkedIn · 1/4', 'Cosa sappiamo di myBiros e cosa ci manca',
-        'Screenshot research/mybiros/linkedin_blocco_cloudflare_19-11-2026.png; mybiros.com letto il 19/11/2026.')
-rrect(s, 0.7, 2.0, 5.9, 4.6, PANEL)
-text(s, 1.0, 2.15, 5.3, 0.4, 'Verificato [VERIFICATO]', size=15, bold=True)
-bullets(s, 1.0, 2.7, 5.4, ['Sito mybiros.com: posizionamento, numeri, documenti e settori.',
-                           'CTA: "Prenota demo" e "Parla con un esperto".',
-                           'Recensioni Trustpilot mostrate in home.',
-                           'Nessuna pagina LinkedIn di myBiros nei risultati di ricerca.'], size=15, gap=10)
-rrect(s, 6.9, 2.0, 5.75, 4.6, PANEL)
-text(s, 7.2, 2.1, 2.6, 1.2, '403', size=66, bold=True, color='FF6B8B', space=0, line=1.0)
-text(s, 7.2, 3.35, 5.2, 0.8, 'Ad Library e pagina aziendale LinkedIn bloccate da Cloudflare. [VERIFICATO]', size=13, color=GREY)
-bullets(s, 7.2, 4.2, 5.2, ['Annunci, formati, rotazione, impression DSA e targeting: non verificati. [DA CONFERMARE]',
-                           'Non aggiriamo la protezione e non inventiamo dati: il CSV è vuoto.',
-                           'Chiusura: 30–45 minuti di raccolta manuale, o un computer collegato.'], size=12, gap=5, dot='FF6B8B')
+# ---------------------------------------------------------------- 4 concorrente
+s = new('concorrente', 'light', '03 · Il concorrente', 'La **logistica**\nè ancora libera.')
+text(s, 128, 440, 880, 130, 'myBiros ha 35 annunci su LinkedIn. Ne abbiamo letti 25: nessuno parla di DDT, listini o logistica.', size=30, weight='light', color=DGREY, lh=1.45)
+stats = [('20', 'sul credito, il tema principale'), ('5', 'sull’utility: bollette e attivazioni'), ('0', 'sulla logistica')]
+for i, (n, t) in enumerate(stats):
+    y = 600 + i * 120
+    text(s, 128, y, 190, 100, n, size=84, weight='bold', color=BLACK if i < 2 else BLUE, lh=1, spacing=-2, anchor='m')
+    text(s, 330, y, 700, 100, t, size=28, color=DGREY, anchor='m', lh=1.3)
+pic(s, f'{AS}/MB-03.png', 1130, 300, w=300, h=620)
+pic(s, f'{AS}/MB-05.png', 1470, 300, w=300, h=620)
+text(s, 1130, 930, 640, 40, 'Dall’Ad Library · annunci letti: 25 su 35', size=22, color=GREY, align='c')
+foot(s, 'Fonte: LinkedIn Ad Library, pagina myBiros, 19/11/2026')
 
-# ============================================================ SLIDE 5 — messaggi myBiros
-s = new('Analisi di myBiros su LinkedIn · 2/4', 'myBiros parla di "oltre l\'OCR" a finanza, assicurazioni e utility',
-        'mybiros.com (19/11/2026): numeri e settori come dichiarati da myBiros; non verificati nel merito [VERIFICATO come claim].')
-for i, (n, l) in enumerate([('85%', 'tempo medio risparmiato'), ('98%', 'accuratezza media dei dati'), ('60%', 'risparmio costo operativo')]):
-    rrect(s, 0.7 + i * 4.1, 2.0, 3.9, 1.7, PANEL); big(s, 1.0 + i * 4.1, 2.1, 3.4, n, l + ' (claim di myBiros)', color=BLUE2, nsize=44, lsize=12)
-text(s, 0.7, 4.0, 5.5, 0.35, 'DOCUMENTI IN PRIMO PIANO', size=10, color=GREY, bold=True)
-x = 0.7
-for t in ['Bolletta', 'Busta paga', 'Carta d\'identità', 'Passaporto', 'Ricevuta']: x += chip(s, x, 4.4, t) + 0.12
-text(s, 0.7, 5.0, 5.5, 0.35, 'SETTORI IN PRIMO PIANO', size=10, color=GREY, bold=True)
-x = 0.7
-for t in ['Assicurativo', 'Finanziario', 'Utility', 'Lending']: x += chip(s, x, 5.4, t) + 0.12
-bullets(s, 6.7, 5.0, 6.0, ['Temi ricorrenti: "più di un OCR", AI trasparente, server europei e GDPR.', 'Retica non copia testi né claim: sfrutta lo spazio della logistica.'], size=13)
+# ---------------------------------------------------------------- 5 concorrente-come
+s = new('concorrente-come', 'blue', '03 · Il concorrente', 'Cosa **dicono,** cosa no.')
+rows = [('01', 'Una promessa sola', '«Time-to-Yes»: arrivare prima al sì del credito. Numeri forti: fino a 5x più veloce, −70% di tempi, −40% di costi.'),
+        ('02', 'Un’esca sola', 'Un «one-pager» da scaricare e il pulsante «Scopri come». Pochi visual, riusati con testi diversi. Oltre metà sono Document Ad.'),
+        ('03', 'Cosa non si vede', 'Nessun cliente citato, nessun video, nessuna demo come invito diretto. Date e diffusione: da guardare nelle schede.')]
+for i, (n, h, p) in enumerate(rows):
+    x = 128 + i * 560
+    card(s, x, 400, 520, 520, light=False); badge(s, x + 40, 440, n)
+    text(s, x + 40, 540, 440, 60, h, size=38, weight='semi', lh=1.2)
+    text(s, x + 40, 616, 440, 280, p, size=28, color=DGREY, lh=1.45)
+foot(s, 'I numeri sono dichiarati da myBiros e non verificati. Fonte: LinkedIn Ad Library, 19/11/2026 (25 annunci su 35)')
 
-# ============================================================ SLIDE 6 — stima investimento myBiros
-s = new('Analisi di myBiros su LinkedIn · 3/4', 'Quanto investe myBiros? Senza impression reali non si può dire',
-        'ZenABM (agg. 16/02/2026) e ClickMinded (agg. 08/07/2026). CPM 33,80 $ → 30,4 € e 59,15 $ → 53,2 € a cambio 0,90 [STIMA].')
-rrect(s, 0.7, 2.0, 12.0, 1.0, PANEL)
-text(s, 0.9, 2.05, 11.6, 0.9, 'Spesa mensile ≈ (impression al mese ÷ 1.000) × CPM    [STIMA]', size=22, bold=True, anchor='m')
-rows = [['Impression al mese', 'CPM 30,4 € (Sponsored Content)', 'CPM 53,2 € (single image)'], ['50.000', '1.520 €', '2.660 €'], ['150.000', '4.560 €', '7.980 €'], ['400.000', '12.160 €', '21.280 €'], ['1.000.000', '30.400 €', '53.200 €']]
-table(s, 0.7, 3.3, [3.0, 4.5, 4.5], rows, size=13, rowh=0.48)
-text(s, 0.7, 5.85, 12, 0.9, 'La tabella mostra la scala, non la spesa di myBiros: le impression per annuncio (dati DSA) vanno lette in Ad Library. Nessun benchmark CPM specifico per l\'Italia trovato. [DA CONFERMARE]', size=12, color=GREY)
+# ---------------------------------------------------------------- 6 pubblico
+s = new('pubblico', 'blue', '04 · A chi parliamo', 'Chi gestisce\n**DDT e listini.**')
+pic(s, f'{AS}/grid_panel.jpg', 1400, 0, h=1080)
+rows = [('Le persone', 'Responsabili di magazzino e logistica, ufficio acquisti, amministrazione, IT e titolari di PMI.'),
+        ('I settori', 'Solo logistica, trasporti e magazzino all’inizio: con 2.000 € al mese restiamo concentrati. Distribuzione e manifattura, più avanti.'),
+        ('Le dimensioni', 'Aziende da 20 a 1.000 dipendenti: sotto i 20, il volume di DDT raramente giustifica un software.')]
+for i, (h, p) in enumerate(rows):
+    y = 520 + i * 170
+    rect(s, 128, y, 1180, 150, WHITE, r=24)
+    text(s, 168, y, 300, 150, h, size=30, weight='semi', color=BLUE, anchor='m')
+    text(s, 480, y, 800, 150, p, size=26, color=DGREY, anchor='m', lh=1.35)
+# il logo resta sopra l'immagine: lo ridisegniamo
+pic(s, f'{AS}/logo_bianco.png', 1612, 48, w=180)
 
-# ============================================================ SLIDE 7 — cosa verificare e dove inserirsi
-s = new('Analisi di myBiros su LinkedIn · 4/4', 'Cosa verificare in Ad Library e dove Retica può inserirsi',
-        'Checklist Propaganda Adv; spazi liberi dedotti dal sito myBiros (19/11/2026), da confermare con gli annunci.')
-rrect(s, 0.7, 2.0, 5.9, 4.6, PANEL)
-text(s, 1.0, 2.15, 5.3, 0.4, 'Da raccogliere in 45 minuti [DA CONFERMARE]', size=14, bold=True)
-bullets(s, 1.0, 2.75, 5.4, ['Numero di annunci attivi e storici', 'Mix di formati e ritmo di rotazione', 'Lead magnet: demo, esperto, contenuti gated', 'Messaggi: numeri, prove sociali, GDPR', 'Impression, paesi e targeting dichiarato (DSA)', 'Thought Leader Ads dei fondatori'], size=15, gap=9)
-rrect(s, 6.9, 2.0, 5.75, 4.6, PANEL)
-text(s, 7.2, 2.15, 5.2, 0.4, 'Spazi liberi (ipotesi dal sito)', size=14, bold=True)
-bullets(s, 7.2, 2.75, 5.2, ['DDT, listini fornitori e documenti di logistica: assenti dai documenti di myBiros', 'Logistica, trasporti, magazzino e distribuzione', 'Ruoli operativi: EDP, back office ordini, amministrazione', 'Integrazione con il gestionale e assistenza vicina'], size=15, gap=10, dot='39B54A')
+# ---------------------------------------------------------------- 7 strategia
+s = new('strategia', 'light', '05 · La strategia', '**Concentrati** sulla demo.')
+text(s, 128, 296, 1300, 110, 'Con 2.000 € al mese niente video e niente contenuti da scaricare: si passa dalla fiducia alla richiesta di demo.', size=32, weight='light', color=DGREY, lh=1.45)
+cards = [('01', 'Farsi notare', 'Due annunci della pagina Retica, sui DDT e sulle unità di misura, per chi lavora in logistica e ancora non ci conosce.', '500 € al mese'),
+         ('02', 'Convincere', 'Un carosello da leggere nel feed e come Retica si collega al gestionale, per chi ci ha già visti o è venuto sul sito.', '300 € al mese'),
+         ('03', 'Chiedere la demo', 'Annunci con un modulo di due domande e le testimonianze di Carraro e Le Messaggerie Nazionali.', '1.200 € al mese')]
+for i, (n, h, p, c) in enumerate(cards):
+    x = 128 + i * 560
+    card(s, x, 440, 520, 520, hl=(i == 2)); badge(s, x + 40, 476, n)
+    text(s, x + 40, 570, 440, 60, h, size=38, weight='semi', lh=1.2)
+    text(s, x + 40, 640, 440, 220, p, size=26, color=DGREY, lh=1.4)
+    chip(s, x + 40, 880, 260, c)
+foot(s, 'Ripartizione: 25% notorietà, 15% considerazione, 60% richiesta di demo. Stima Propaganda Adv')
 
-# ============================================================ SLIDE 8 — posizionamento
-s = new('Posizionamento', 'Dove Retica può vincere: la logistica',
-        'retica.ai e mybiros.com, letti il 19/11/2026 [VERIFICATO]. Sede myBiros da idp-software.com (fonte terza). Ruoli myBiros: non verificati.')
-rows = [['', 'Retica', 'myBiros'],
-        ['Documenti', 'DDT, listini fornitori, fatture commerciali, certificati di origine', 'Bollette, buste paga, carte d\'identità, passaporti, ricevute'],
-        ['Settori', 'Logistica, trasporti, magazzino, distribuzione', 'Assicurativo, finanziario, utility, lending'],
-        ['Integrazione', 'CSV, XML, JSON; importazione via API o FTP', 'Esportazione e API verso ERP, CRM, RPA'],
-        ['Prova sociale', 'Carraro (DDT), Le Messaggerie Nazionali · 124 clienti', '50+ aziende clienti · 20 mln di documenti'],
-        ['Vicinanza', 'Reggiolo (RE), supporto citato dai clienti', 'Roma (fonte terza)'],
-        ['Ruoli target', 'IT manager, EDP, CEO nelle recensioni', '[DA CONFERMARE] in Ad Library']]
-table(s, 0.7, 2.0, [2.0, 5.0, 5.0], rows, size=12, rowh=0.62)
+# ---------------------------------------------------------------- 8 ads-notare
+s = new('ads-notare', 'light', '06 · Gli annunci · 1 di 3', '**Prima** ci notano.', size=80)
+pic(s, f'{MOCK}/A01_feed.png', 128, 330, w=400, h=640)
+pic(s, f'{MOCK}/A02_feed.png', 568, 330, w=420, h=640)
+for i, (lab, q) in enumerate([('ANNUNCIO · IMMAGINE', '«Quante righe di DDT ricopia il tuo team ogni giorno?»'),
+                              ('ANNUNCIO · UNITÀ DI MISURA', '«10 colli o 120 pezzi? Ogni fornitore scrive l’unità di misura a modo suo.»')]):
+    y = 350 + i * 270
+    card(s, 1060, y, 732, 240)
+    text(s, 1100, y + 34, 660, 36, lab, size=24, weight='semi', color=BLUE, spacing=3)
+    text(s, 1100, y + 84, 660, 140, q, size=34, weight='semi', lh=1.3)
+text(s, 1060, 900, 732, 50, 'Parliamo del problema, non del prodotto.', size=28, color=DGREY)
 
-# ============================================================ SLIDE 9 — Retica oggi
-s = new('Retica oggi', 'Punti di forza e cose da sistemare prima di mandare traffico',
-        'retica.ai, home letta e verificata via browser il 19/11/2026 [VERIFICATO].')
-rrect(s, 0.7, 2.0, 5.9, 4.6, PANEL)
-text(s, 1.0, 2.15, 5.3, 0.4, 'Punti di forza', size=15, bold=True, color='39B54A')
-bullets(s, 1.0, 2.7, 5.4, ['Proposta chiara: automatizza l\'importazione di documenti sul gestionale', '6 moduli: importazione, data capture, validazione, condizioni, esportazione, analisi', 'Pagina Logistica e testimonianze su DDT (Carraro, Le Messaggerie Nazionali)', 'Calcolatore del risparmio annuo e CTA "Richiedi demo"'], size=14, gap=9, dot='39B54A')
-rrect(s, 6.9, 2.0, 5.75, 4.6, PANEL)
-text(s, 7.2, 2.15, 5.2, 0.4, 'Da sistemare [DA CONFERMARE]', size=15, bold=True, color='FF6B8B')
-bullets(s, 7.2, 2.7, 5.2, ['Menu laterale nascosto con segnaposto del template: New York, foton@qodeinteractive.com, telefono generico', 'Testi in inglese in cookie e moduli; "© 2023" nel footer', 'Nessuna landing dedicata alle campagne', 'Insight Tag e conversioni LinkedIn da installare', 'Conversione unità e verifica prezzi non dichiarate sul sito'], size=14, gap=9, dot='FF6B8B')
+# ---------------------------------------------------------------- 9 ads-convincere
+s = new('ads-convincere', 'blue', '06 · Gli annunci · 2 di 3', 'Poi li **convinciamo.**', size=80)
+items = [('A05_feed.png', 'Carosello da leggere nel feed: il DDT, riga per riga'),
+         ('A04_feed.png', 'Listini fornitori: dal PDF al gestionale'),
+         ('A06_feed.png', 'Dal DDT al tuo ERP, senza trascrizioni')]
+for i, (f, cap) in enumerate(items):
+    x = 128 + i * 560
+    pic(s, f'{MOCK}/{f}', x, 320, w=520, h=560)
+    text(s, x, 895, 520, 90, cap, size=24, align='c', lh=1.35)
+foot(s, 'Nessun contenuto da scaricare: tutto si legge nel feed')
 
-# ============================================================ SLIDE 10 — pubblici
-s = new('Pubblici target (Italia)', 'Chi raggiungiamo: logistica, trasporti e magazzino',
-        'Dimensione e logica di targeting: Propaganda Adv [STIMA]. Dimensione del pubblico: leggibile solo in Campaign Manager [DA CONFERMARE].')
-cols = [('Funzioni', ['Magazzino, Logistica, Operations', 'Acquisti (listini fornitori)', 'Amministrazione (ciclo passivo)', 'IT / EDP', 'Titolari e CEO di PMI logistiche']),
-        ('Settori', ['Logistica e trasporti (principale)', 'Magazzino e stoccaggio (principale)', 'Distribuzione all\'ingrosso (test)', 'Manifattura (test)'])]
-for i, (h, items) in enumerate(cols):
-    rrect(s, 0.7 + i * 4.1, 2.0, 3.9, 3.0, PANEL); text(s, 0.95 + i * 4.1, 2.1, 3.4, 0.4, h, size=15, bold=True, color=BLUE2)
-    bullets(s, 0.95 + i * 4.1, 2.6, 3.5, items, size=11.5, gap=2)
-rrect(s, 8.9, 2.0, 3.75, 3.0, PANEL); text(s, 9.15, 2.1, 3.3, 0.4, 'Dimensione 20–1.000', size=15, bold=True, color=BLUE2)
-text(s, 9.15, 2.6, 3.3, 2.3, ['Sotto i 20 dipendenti il volume di DDT raramente giustifica un software.', 'Budget: circa 80% logistica, 20% test su distribuzione e manifattura. [STIMA]', 'Un pubblico più ristretto può alzare il CPM.'], size=11, color=GREY, space=5)
-rrect(s, 0.7, 5.2, 5.9, 1.45, PANEL); text(s, 0.95, 5.27, 5.4, 0.35, 'Matched Audiences', size=13, bold=True, color=BLUE2)
-text(s, 0.95, 5.65, 5.4, 1.0, 'Visitatori del sito (Insight Tag) · elenco ABM · video visto al 50% / 75% · Lead Form aperto e non inviato · lookalike', size=11, color=GREY)
-rrect(s, 6.9, 5.2, 5.75, 1.45, PANEL); text(s, 7.15, 5.27, 5.3, 0.35, 'Esclusioni', size=13, bold=True, color='FF6B8B')
-text(s, 7.15, 5.65, 5.3, 1.0, 'Clienti attuali · concorrenti · rivenditori e partner (liste da fornire) [DA CONFERMARE]', size=11, color=GREY)
+# ---------------------------------------------------------------- 10 ads-chiamare
+s = new('ads-chiamare', 'light', '06 · Gli annunci · 3 di 3', 'Infine **chiedono** la demo.', size=80)
+items = [('A07_feed.png', 'Vedi Retica sui tuoi DDT: richiedi la demo'),
+         ('A08_feed.png', 'Carraro: DDT nell’ERP, meno tempo e meno errori'),
+         ('A09_feed.png', 'Le Messaggerie Nazionali: meno data entry')]
+for i, (f, cap) in enumerate(items):
+    x = 128 + i * 560
+    pic(s, f'{MOCK}/{f}', x, 320, w=520, h=560)
+    text(s, x, 895, 520, 90, cap, size=24, color=DGREY, align='c', lh=1.35)
+foot(s, 'Un modulo breve, nessun contenuto da scaricare. Nomi e testimonianze: serve il permesso dei clienti')
 
-# ============================================================ SLIDE 11 — funnel
-s = new('Architettura del funnel', 'Tre livelli: farsi notare, farsi scaricare, farsi chiamare',
-        'Struttura Propaganda Adv. Frequenze e quote di budget: pratica di settore, da calibrare sui dati [STIMA].')
-rows = [['', 'TOFU · Consapevolezza', 'MOFU · Considerazione', 'BOFU · Conversione'],
-        ['Obiettivo', 'Visualizzazioni video · visite al sito', 'Lead generation', 'Lead generation'],
-        ['Formati', 'Video 15–30 s · Thought Leader Ad', 'Document Ad gated · carosello · calcolatore', 'Lead Gen Form · Conversation Ad · testimonianze'],
-        ['Pubblico', 'Ruoli e settori, freddo', 'Freddo + video visto 50% + visitatori', 'Retargeting: visitatori, form aperto, video 75%'],
-        ['Budget', '15–30%', '40–50%', '30–35%'],
-        ['Durata', 'Sempre attiva', '12 settimane di test', '12 settimane di test'],
-        ['Frequenza target', '1–2 a settimana', '2–3 a settimana', '3–4 a settimana, con tetto']]
-table(s, 0.7, 2.0, [1.9, 3.3, 3.4, 3.4], rows, size=11.5, rowh=0.6)
-text(s, 0.7, 6.3, 12, 0.5, 'Annunci: A01–A02 (TOFU) · A03–A06 (MOFU) · A07–A10 (BOFU)', size=12, color=GREY)
+# ---------------------------------------------------------------- 11 richiesta
+s = new('richiesta', 'blue', '07 · Dalla richiesta alla demo', 'Una **risposta** entro 24 ore.')
+steps = [('01', 'Annuncio', 'Chi è interessato tocca «Richiedi demo».'),
+         ('02', 'Modulo', 'Nome, mail e azienda già pronti, più due domande: quanti DDT al mese e quale gestionale.'),
+         ('03', 'CRM', 'La richiesta arriva subito al vostro CRM.'),
+         ('04', 'Richiamo', 'Un commerciale risponde entro 24 ore.'),
+         ('05', 'Demo', 'Una dimostrazione sui loro documenti.')]
+for i, (n, h, p) in enumerate(steps):
+    x = 128 + i * 335
+    card(s, x, 400, 311, 520, hl=(i == 4), light=False); badge(s, x + 28, 436, n)
+    text(s, x + 28, 530, 260, 50, h, size=34, weight='semi', lh=1.2)
+    text(s, x + 28, 596, 260, 300, p, size=24, color=DGREY, lh=1.4)
+foot(s, 'Il CRM di Retica e chi richiama: da confermare. Nessun contenuto da scaricare in cambio dei dati')
 
-# ============================================================ creative slides
-def copyblock(s, x, y, w, a, size=10.5):
-    text(s, x, y, w, 0.3, f"{a['id']} · {a['funnel']} · {a['fmt'].split('(')[0].strip()}", size=11, bold=True, color=BLUE2)
-    text(s, x, y + 0.32, w, 3.3, [f"Angolo: {a['angle']}", f"Gancio: {a['hook_A']}…", f"Headline: {a['headline_A']}", f"Variante B: {a['headline_B']}", f"CTA: {a['cta']}"], size=size, color=WHITE, space=4)
+# ---------------------------------------------------------------- 12 budget
+s = new('budget', 'light', '08 · L’investimento', 'Tutto su **2.000 €** al mese.')
+nums = [('circa 8', 'richieste di demo al mese', False), ('2–3', 'demo svolte al mese', True), ('5.500 €', 'spesi in 12 settimane', False)]
+for i, (n, l, hl) in enumerate(nums):
+    x = 128 + i * 560
+    card(s, x, 330, 520, 250, hl=hl)
+    text(s, x + 40, 360, 440, 110, n, size=84, weight='bold', color=BLACK, lh=1, spacing=-2, anchor='m')
+    text(s, x + 40, 490, 440, 70, l, size=28, color=DGREY, lh=1.3)
+chip(s, 128, 616, 140, 'Stima', 'st')
+text(s, 292, 616, 1500, 52, 'Valori medi. Richieste da 4 a 14, demo da 1 a 5. Compenso dell’agenzia escluso.', size=26, color=DGREY, anchor='m')
+card(s, 128, 710, 1664, 220)
+text(s, 168, 738, 1500, 50, 'Cosa non facciamo ora', size=32, weight='semi')
+text(s, 168, 800, 1580, 110, 'Video e contenuti da scaricare: li valutiamo dopo i primi mesi. Con questi numeri servono 3–4 mesi per capire cosa funziona.', size=26, color=DGREY, lh=1.4)
+foot(s, 'Stime da benchmark 2026 (ZenABM, ClickMinded). Da richiesta a demo svolta: ipotesi 35%, da verificare')
 
-def feeds(s, ids, x0=0.7, gap=0.25, h=4.75, y=1.95):
-    x = x0
-    for i in ids:
-        w, _ = pic(s, f'{MOCK}/{i}_feed.png', x, y, h=h); x += w + gap
-    return x
+# ---------------------------------------------------------------- 13 roadmap
+s = new('roadmap', 'blue', '09 · I primi 90 giorni', 'Si parte in **due settimane.**')
+pic(s, f'{AS}/stairs.jpg', 1500, 380, h=700)
+phases = [('SETTIMANE 1–2', 'Prepariamo tutto', 'Tracciamento, pubblici, moduli, CRM e pagina sul sito.'),
+          ('SETTIMANE 3–4', 'Partiamo', 'Due annunci di notorietà, poi la richiesta di demo.'),
+          ('SETTIMANE 5–8', 'Rinforziamo', 'Retargeting per chi ci ha già visti. Due messaggi a confronto.'),
+          ('SETTIMANE 9–12', 'Puntiamo sul meglio', 'Più budget dove arrivano le demo. Report ogni mese. Valutiamo il video.')]
+for i, (lab, h, p) in enumerate(phases):
+    x = 128 + (i % 2) * 640; y = 340 + (i // 2) * 320
+    card(s, x, y, 600, 290, light=False)
+    text(s, x + 36, y + 32, 520, 36, lab, size=24, weight='semi', color=BLUE, spacing=3)
+    text(s, x + 36, y + 84, 530, 56, h, size=34, weight='semi', lh=1.2)
+    text(s, x + 36, y + 150, 530, 120, p, size=26, color=DGREY, lh=1.4)
+foot(s, 'I tempi dipendono da accessi e materiali di Retica')
 
-s = new('Proposte creative · TOFU', 'Video e Thought Leader Ad: il problema prima della soluzione',
-        'Copy e mockup: output/copy_annunci.md. Claim da retica.ai; mockup illustrativi; persona del Thought Leader [DA CONFERMARE].')
-x = feeds(s, ['A01', 'A02'], h=4.75)
-copyblock(s, x + 0.1, 2.0, 12.65 - x - 0.1, ADS['A01'], 10); copyblock(s, x + 0.1, 4.2, 12.65 - x - 0.1, ADS['A02'], 10)
+# ---------------------------------------------------------------- 14 servono
+s = new('servono', 'light', '10 · Cosa ci serve', 'Sei cose **da Retica** per partire.')
+items = ['Chi approva testi e immagini degli annunci di Retica', 'L’accesso a LinkedIn e al vostro CRM', 'Un sito pulito: via i testi di prova dal menu',
+         'Il via libera a citare Carraro e Le Messaggerie Nazionali', '2.000 €: al mese o in totale? Per quanto tempo?', None]
+for i, t in enumerate(items):
+    x = 128 + (i % 3) * 560; y = 380 + (i // 3) * 290
+    key = t is None
+    card(s, x, y, 520, 260, hl=key); badge(s, x + 40, y + 36, f'{i + 1:02d}')
+    if key:
+        text(s, x + 120, y + 48, 380, 36, 'DOMANDA CHIAVE', size=22, weight='semi', color=BLUE, spacing=3)
+        t = 'Retica converte le unità di misura e controlla i prezzi?'
+    text(s, x + 40, y + 120, 440, 130, t, size=28, weight='semi', lh=1.3)
+foot(s, 'L’elenco completo è nel file note_da_confermare.md')
 
-s = new('Proposte creative · MOFU', 'Document Ad gated: la guida a DDT, unità e listini',
-        'Contenuti della guida da produrre con il cliente [DA CONFERMARE]; i 4 passi sono quelli del "Come funziona" di retica.ai [VERIFICATO].')
-x = feeds(s, ['A03'], h=4.75)
-x2 = x + 0.1
-for i, p in enumerate(['A03_pagina1_copertina_4x5', 'A03_pagina2_4passi_4x5', 'A03_pagina3_cta_4x5']):
-    pic(s, f'{MOCK}/{p}.png', x2 + i * 1.75, 2.0, h=2.15)
-text(s, x2, 4.2, 5.3, 0.3, 'Le 3 pagine di anteprima', size=9, color=MUT)
-copyblock(s, x2, 4.55, 12.65 - x2, ADS['A03'], 10)
-
-s = new('Proposte creative · MOFU', 'Listini e prezzi, e il carosello "DDT riga per riga"',
-        'Campi del listino: articolo di Retica sui listini [VERIFICATO]; checklist [DA CONFERMARE].')
-x = feeds(s, ['A04', 'A05'], h=4.75)
-copyblock(s, x + 0.1, 2.0, 12.65 - x - 0.1, ADS['A04'], 10); copyblock(s, x + 0.1, 4.2, 12.65 - x - 0.1, ADS['A05'], 10)
-
-s = new('Proposte creative · MOFU / BOFU', 'Integrazione con l\'ERP e DDT con più unità di misura',
-        'Formati e canali (CSV, XML, JSON, API, FTP) da retica.ai [VERIFICATO]; offerta "analisi gratuita" [DA CONFERMARE].')
-x = feeds(s, ['A06', 'A07'], h=4.75)
-copyblock(s, x + 0.1, 2.0, 12.65 - x - 0.1, ADS['A06'], 10); copyblock(s, x + 0.1, 4.2, 12.65 - x - 0.1, ADS['A07'], 10)
-
-s = new('Proposte creative · BOFU', 'Prova sociale dalla logistica: Carraro e Le Messaggerie Nazionali',
-        'Testimonianze da retica.ai [VERIFICATO]; uso di nome e azienda in annuncio [DA CONFERMARE].')
-x = feeds(s, ['A08', 'A09'], h=4.75)
-copyblock(s, x + 0.1, 2.0, 12.65 - x - 0.1, ADS['A08'], 10); copyblock(s, x + 0.1, 4.2, 12.65 - x - 0.1, ADS['A09'], 10)
-
-s = new('Proposte creative · BOFU', 'Conversation Ad e piano di test A/B',
-        'Mittente reale e testo [DA CONFERMARE]. Piano di test: Propaganda Adv.')
-w, _ = pic(s, f'{MOCK}/A10_conversation_4x5.png', 0.7, 1.95, h=4.75)
-copyblock(s, 0.7 + w + 0.3, 2.0, 3.6, ADS['A10'], 10)
-rrect(s, 0.7 + w + 4.1, 2.0, 12.65 - (0.7 + w + 4.1), 4.6, PANEL)
-text(s, 0.7 + w + 4.3, 2.1, 3.6, 0.35, 'Test A/B', size=14, bold=True, color=BLUE2)
-bullets(s, 0.7 + w + 4.3, 2.6, 12.45 - (0.7 + w + 4.3), ['Una variabile alla volta: gancio (A/B), poi immagine, poi CTA', 'Almeno 2 settimane e un numero di clic sufficiente prima di decidere', 'Si ruotano le creatività ogni 3–4 settimane per limitare la fatica da frequenza'], size=11, gap=5)
-
-# ============================================================ SLIDE 18 — video
-s = new('Strategia video', 'Tre tagli dal video del cliente: 15, 30 e 60 secondi',
-        'LinkedIn: circa 79% dei video nel feed guardato senza audio (LinkedIn Marketing Solutions, 2021). Il "85%" non ha fonte primaria. Storyboard: output/storyboard_video.md.')
-for i, (d, t, u) in enumerate([('15″', 'Le righe del DDT', 'TOFU · hook nei primi 3 secondi'), ('30″', 'Dal DDT al gestionale', 'TOFU/MOFU · i 4 step in UI'), ('60″', 'Demo guidata', 'Solo retargeting · 50–75% del video')]):
-    rrect(s, 0.7 + i * 4.1, 2.0, 3.9, 2.25, PANEL); text(s, 0.95 + i * 4.1, 2.05, 3.4, 0.9, d, size=40, bold=True, color=BLUE2, space=0)
-    text(s, 0.95 + i * 4.1, 3.0, 3.4, 0.4, t, size=14, bold=True); text(s, 0.95 + i * 4.1, 3.5, 3.4, 0.7, u, size=11, color=GREY)
-bullets(s, 0.7, 4.55, 7.4, ['Formati: 1:1 e 4:5 per il feed, 9:16 per mobile, 16:9 per sito; specifiche da ricontrollare in Campaign Manager.', 'Sottotitoli italiani incisi: obbligatori.', 'Video del cliente: cartella vuota, durata, audio e sottotitoli [DA CONFERMARE].'], size=12.5, gap=5)
-pic(s, f'{MOCK}/A01_frame1_hook_4x5.png', 8.7, 4.35, h=2.3); pic(s, f'{MOCK}/A01_frame2_flusso_4x5.png', 10.4, 4.35, h=2.3)
-
-# ============================================================ SLIDE 19 — LGF e flusso
-s = new('Lead Gen Form e flusso lead → demo', 'Un form breve, e una risposta entro 24 ore',
-        'Struttura Propaganda Adv. CRM e strumento di calendario non noti [DA CONFERMARE].')
-steps = [('Annuncio', 'Lead Gen Form nativo'), ('Form', 'Campi precompilati + 2 domande'), ('CRM', 'Integrazione nativa o Zapier/Make'), ('Follow-up', 'Entro 24 ore'), ('Demo', 'Prenotazione su calendario')]
-for i, (a, b) in enumerate(steps):
-    rrect(s, 0.7 + i * 2.5, 2.0, 2.2, 1.5, BLUE if i == 4 else PANEL)
-    text(s, 0.8 + i * 2.5, 2.1, 2.0, 0.45, a, size=15, bold=True, align='c'); text(s, 0.8 + i * 2.5, 2.6, 2.0, 0.85, b, size=10.5, color=GREY if i != 4 else WHITE, align='c')
-    if i < 4: text(s, 2.9 + i * 2.5, 2.4, 0.3, 0.5, '→', size=16, color=BLUE2, align='c', anchor='m')
-rrect(s, 0.7, 3.8, 5.9, 2.85, PANEL); text(s, 0.95, 3.9, 5.4, 0.4, 'Campi e qualifica', size=14, bold=True, color=BLUE2)
-bullets(s, 0.95, 4.4, 5.4, ['Nome, cognome, email di lavoro, azienda, ruolo', '"Quanti DDT gestisci al mese?"', '"Quale gestionale/ERP usi?"', 'Consenso privacy GDPR esplicito'], size=14, gap=6)
-rrect(s, 6.9, 3.8, 5.75, 2.85, PANEL); text(s, 7.15, 3.9, 5.3, 0.4, 'Dopo l\'invio', size=14, bold=True, color=BLUE2)
-bullets(s, 7.15, 4.4, 5.3, ['Thank-you page con pulsante "Prenota la demo"', 'Lead nel CRM con fonte e annuncio di origine', 'Definizione di MQL condivisa con il commerciale [DA CONFERMARE]'], size=14, gap=6)
-
-# ============================================================ SLIDE 20 — budget
-s = new('Budget: tre scenari', 'Start, Growth, Scale: da 1.500 a 5.000 € al mese di spesa media',
-        'Modello analysis/budget_model.py: CPM e CTR ZenABM (2026), lead form ~10%, landing 2–5% ClickMinded; cambio 0,90 [STIMA]. Fee di agenzia escluso [DA CONFERMARE].')
-hdr = ['', 'Start', 'Growth', 'Scale']
-def f(n): return f'{n:,.0f}'.replace(',', '.')
-rows = [hdr,
-        ['Spesa media / mese', '1.500 €', '3.000 €', '5.000 €'],
-        ['TOFU / MOFU / BOFU', '15% / 50% / 35%', '25% / 45% / 30%', '30% / 40% / 30%'],
-        ['Impression / mese'] + [f(bud(k)['impressions']) for k in ('Start', 'Growth', 'Scale')],
-        ['Clic / mese'] + [f(bud(k)['clicks']) for k in ('Start', 'Growth', 'Scale')],
-        ['Lead / mese (prud.–ottim.)'] + [f"{bud(k, 'Prudente')['leads']:.0f} – {bud(k, 'Ottimistico')['leads']:.0f}  (base {bud(k)['leads']:.0f})" for k in ('Start', 'Growth', 'Scale')],
-        ['Demo / mese (prud.–ottim.)'] + [f"{bud(k, 'Prudente')['demos']:.0f} – {bud(k, 'Ottimistico')['demos']:.0f}  (base {bud(k)['demos']:.1f})" for k in ('Start', 'Growth', 'Scale')],
-        ['Spesa media in 12 settimane', '≈ 4.150 €', '≈ 8.300 €', '≈ 13.850 €']]
-table(s, 0.7, 2.0, [3.3, 2.9, 2.9, 2.9], rows, size=11.5, rowh=0.52)
-text(s, 0.7, 6.25, 12, 0.6, 'Sotto i 1.500 €/mese i volumi di impression sono scarsi (ZenABM): Start è un test del messaggio, non un canale a regime. Un pubblico logistico più ristretto può alzare il CPM. [STIMA]', size=11.5, color=GREY)
-
-# ============================================================ SLIDE 21 — KPI
-s = new('KPI attesi', 'Quanto costa un lead e quanto una demo: ordini di grandezza [STIMA]',
-        'ZenABM (16/02/2026): CPL Europa 120–150 $, lead form ~10%, CTR; ClickMinded (08/07/2026): lead form 8–15%, landing 2–5%. Ipotesi lead→demo [DA CONFERMARE].')
-big(s, 0.7, 2.0, 3.0, f"€{bud('Growth')['cpl_eur']:.0f}", 'costo per lead, scenario Growth, caso base', color=BLUE2, nsize=44)
-big(s, 3.9, 2.0, 3.0, f"€{bud('Growth')['cost_per_demo_eur']:.0f}", 'costo per demo, scenario Growth, caso base', color=BLUE2, nsize=44)
-big(s, 7.1, 2.0, 2.9, '~10%', 'apertura→invio del Lead Gen Form (range 8–15%)', nsize=44)
-big(s, 10.1, 2.0, 2.6, '0,4%', 'CTR di single image e Document Ads', nsize=44)
-rows = [['KPI', 'Benchmark citato', 'Uso nel modello'],
-        ['CTR', 'Single image 0,40–0,42% · Document 0,43% · video 0,24% · Thought Leader 2,68%', 'Per formato'],
-        ['CPM', 'Video 38,94 $ · carosello 45,28 $ · Thought Leader 49,37 $ · single image 59,15 $', 'Per formato, ×0,90'],
-        ['Lead Gen Form', '~10% medio, 15%+ alto (ZenABM) · 8–15% (ClickMinded)', '10% MOFU · 15% BOFU'],
-        ['Lead → demo', 'Nessuna fonte: dati storici Retica [DA CONFERMARE]', 'MOFU 10% · BOFU 35%']]
-table(s, 0.7, 3.65, [2.0, 7.2, 2.8], rows, size=11, rowh=0.6)
-
-# ============================================================ SLIDE 22 — roadmap
-s = new('Roadmap dei primi 90 giorni', 'Due settimane di setup, poi lancio, test e report ogni mese',
-        'Piano Propaganda Adv. Tempi dipendono dalla consegna di accessi e materiali [DA CONFERMARE].')
-phases = [('Settimane 1–2', 'Setup', ['Insight Tag e conversioni', 'Pubblici e liste ABM', 'Lead Gen Form e CRM', 'Landing e footer del sito']),
-          ('Settimane 3–4', 'Lancio', ['TOFU e MOFU attivi', 'BOFU appena i pubblici sono sufficienti', 'Controllo del tracciamento']),
-          ('Settimane 5–8', 'Test A/B', ['Gancio, immagine, CTA', 'Prima lettura di CPL e qualità lead', 'Rotazione creatività']),
-          ('Settimane 9–12', 'Ottimizzazione', ['Budget verso ciò che porta demo', 'Report mensile con costo per demo', 'Decisione sullo scenario'])]
-for i, (w, t, items) in enumerate(phases):
-    x = 0.7 + i * 3.05
-    box(s, x, 2.1, 2.9, 0.08, BLUE if i == 0 else BLUE2)
-    text(s, x, 2.25, 2.9, 0.3, w.upper(), size=10, bold=True, color=GREY); text(s, x, 2.55, 2.9, 0.5, t, size=20, bold=True)
-    rrect(s, x, 3.2, 2.9, 3.3, PANEL); bullets(s, x + 0.2, 3.4, 2.55, items, size=13, gap=8)
-
-# ============================================================ SLIDE 23 — cosa serve
-s = new('Cosa serve da Retica', 'Quattordici cose per partire',
-        'Elenco completo con motivazioni in output/note_da_confermare.md.')
-items = ['Video originali e diritti d\'uso [DA CONFERMARE]', 'Accesso a Campaign Manager e alla Pagina LinkedIn [DA CONFERMARE]', 'Quale CRM usate e chi fa il follow-up in 24 ore [DA CONFERMARE]', 'Footer e menu del sito: via i segnaposto [DA CONFERMARE]',
-         'Lead magnet: guida, checklist, calcolatore LinkedIn [DA CONFERMARE]', 'Persona per il Thought Leader Ad [DA CONFERMARE]', 'Consenso a usare testimonianze e nomi [DA CONFERMARE]', 'Liste: ABM, clienti, partner, concorrenti [DA CONFERMARE]',
-         'Budget scelto e fee di agenzia [DA CONFERMARE]', 'Dati storici: chiusura demo, valore contratto [DA CONFERMARE]', 'Definizione di MQL e di demo fissata [DA CONFERMARE]', 'Accesso all\'Ad Library per myBiros [DA CONFERMARE]',
-         'Conversione unità e verifica prezzi: Retica le fa? [DA CONFERMARE]', 'DDT e listino di esempio, anonimizzati [DA CONFERMARE]']
-for i, it in enumerate(items):
-    c, r = i // 7, i % 7
-    rrect(s, 0.7 + c * 6.1, 2.0 + r * 0.68, 5.9, 0.6, PANEL); text(s, 0.95 + c * 6.1, 2.0 + r * 0.68, 5.5, 0.6, f'{i + 1}.  ' + it, size=11.5, anchor='m')
-
-# ============================================================ SLIDE 24 — prossimi passi
-s = new('Prossimi passi e contatti', 'Dal sì al primo lead in circa quattro settimane',
-        'Contatti da propagandaadv.com (19/11/2026) [VERIFICATO]. Tempistica indicativa [STIMA].')
-for i, (a, b) in enumerate([('1', 'Scegliete lo scenario di budget'), ('2', 'Ci inviate accessi e materiali'), ('3', 'Setup e approvazione degli annunci'), ('4', 'Lancio e report mensile')]):
-    rrect(s, 0.7, 2.0 + i * 1.1, 6.6, 0.95, PANEL); text(s, 0.95, 2.0 + i * 1.1, 0.7, 0.95, a, size=30, bold=True, color=BLUE2, anchor='m')
-    text(s, 1.75, 2.0 + i * 1.1, 5.4, 0.95, b, size=15, anchor='m')
-rrect(s, 7.7, 2.0, 4.95, 4.2, BLUE)
-text(s, 8.0, 2.2, 4.4, 3.9, [('Propaganda Adv', {'size': 20, 'bold': True}), ('Giovanni Bertoni', {'size': 13}), 'info@propagandaadv.com', 'commerciale@propagandaadv.com', '+39 351 397 3029', 'Via Giacomo Matteotti 102/e', '42046 Reggiolo (RE)', 'propagandaadv.com'], size=13, space=8)
-
-# ============================================================ SLIDE 25 — fonti
-s = new('Appendice', 'Fonti e metodo dei numeri', None)
-bullets(s, 0.7, 2.0, 11.9, [
-    '[VERIFICATO] retica.ai (home, testimonianze, numeri, codice della pagina) e mybiros.com, letti il 19/11/2026.',
-    '[VERIFICATO] LinkedIn Ad Library e pagina aziendale myBiros: bloccate da Cloudflare (screenshot in research/mybiros/).',
-    '[STIMA] Benchmark CPM, CTR, lead form: ZenABM "LinkedIn Ads Benchmarks: Real Data from 211 B2B Companies in 2026" (16/02/2026) e ClickMinded "LinkedIn Ads Benchmarks 2026" (08/07/2026). Sono articoli di agenzie, valori globali o EMEA: nessun dato specifico Italia.',
-    '[STIMA] Cambio USD→EUR 0,90 e tassi di conversione lead→MQL→demo: ipotesi del modello, da sostituire con dati reali.',
-    '[STIMA] 79% di video guardati senza audio: LinkedIn Marketing Solutions (2021). Il dato "85%" non ha una fonte primaria.',
-    'Calcoli riproducibili: python3 analysis/budget_model.py. Testi e limiti di caratteri: analysis/ads_data.py.'], size=12.5, gap=8)
+# ---------------------------------------------------------------- 15 prossimi
+s = new('prossimi', 'blue')
+text(s, 128, 330, 1300, 36, 'MARKETING CHE PORTA CLIENTI.', size=24, weight='semi', spacing=4, color=WHITE)
+text(s, 128, 390, 1500, 150, 'Partiamo?', size=120, weight='light', lh=1.04, spacing=-2, color=WHITE)
+text(s, 128, 580, 1200, 150, 'Confermiamo i 2.000 € al mese e partiamo: la prima richiesta di demo arriva in circa quattro settimane.', size=32, weight='light', lh=1.45, color=WHITE)
+rect(s, 128, 780, 420, 90, WHITE, r=14)
+text(s, 128, 780, 420, 90, 'Scriviamoci →', size=30, color=BLUE, weight='semi', align='c', anchor='m', lh=1)
+text(s, 600, 780, 1000, 90, ['Giovanni Bertoni · Propaganda Adv', 'commerciale@propagandaadv.com · +39 351 397 3029'], size=26, weight='light', anchor='m', lh=1.4, color=WHITE)
 
 out = f'{ROOT}/output/Retica_LinkedIn_Ads_Proposta.pptx'
-prs.save(out); print('salvato', out, state['n'], 'slide')
+prs.save(out); print('ok', out, len(prs.slides._sldIdLst), 'slide')
