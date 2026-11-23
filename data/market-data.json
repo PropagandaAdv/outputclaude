@@ -1,0 +1,430 @@
+{
+ "meta": {
+  "progetto": "FamiClick - dati di mercato per strategia social",
+  "consultato_il": "2026-11-23",
+  "tag": "DATO | NON TROVATO",
+  "avvertenza": "Nessuna stima inventata. Valori derivati indicati come CALCOLO nelle note."
+ },
+ "dati": [
+  {
+   "area": "1 ISTAT",
+   "dato": "Nascite in Italia",
+   "valore": "355.000 (-3,9% vs 2024); 6,0 nati per mille abitanti (6,3 nel 2024)",
+   "anno": "2025 (provvisorio)",
+   "fonte_url": "https://www.istat.it/wp-content/uploads/2026/03/Report_Indicatori-demografici_Anno-2025.pdf",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "Letto direttamente nel PDF Istat. Un nato su otto ha cittadinanza straniera (48.000)."
+  },
+  {
+   "area": "1 ISTAT",
+   "dato": "Nascite in Italia 2024",
+   "valore": "circa 370.000",
+   "anno": "2024",
+   "fonte_url": "https://www.istat.it/wp-content/uploads/2026/03/Report_Indicatori-demografici_Anno-2025.pdf",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "Citato nel report 2025 come '370mila nati' per il 2024 (dato 2024 poi consolidato)."
+  },
+  {
+   "area": "1 ISTAT",
+   "dato": "Trend nascite 2024->2025",
+   "valore": "-15.000 nati (-3,9%); saldo naturale 2025 circa -296.000 (-283.000 nel 2024)",
+   "anno": "2024-2025",
+   "fonte_url": "https://www.istat.it/wp-content/uploads/2026/03/Report_Indicatori-demografici_Anno-2025.pdf",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "Calo prosegue."
+  },
+  {
+   "area": "1 ISTAT",
+   "dato": "Numero medio figli per donna",
+   "valore": "1,14 (2025, stima provvisoria); 1,18 (2024)",
+   "anno": "2025/2024",
+   "fonte_url": "https://www.istat.it/wp-content/uploads/2026/03/Report_Indicatori-demografici_Anno-2025.pdf",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "Minimo storico."
+  },
+  {
+   "area": "1 ISTAT",
+   "dato": "Popolazione residente totale",
+   "valore": "58.943.000 al 1 gennaio 2026 (provvisorio)",
+   "anno": "2026",
+   "fonte_url": "https://www.istat.it/wp-content/uploads/2026/03/Report_Indicatori-demografici_Anno-2025.pdf",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": ""
+  },
+  {
+   "area": "1 ISTAT",
+   "dato": "Popolazione 0-14 anni",
+   "valore": "6.852.000 (11,6% del totale) al 1/1/2026; -168.000 sul 1/1/2025",
+   "anno": "2026",
+   "fonte_url": "https://www.istat.it/wp-content/uploads/2026/03/Report_Indicatori-demografici_Anno-2025.pdf",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "Il valore al 1/1/2025 (circa 7,02 mln) e' calcolato per differenza (6.852k+168k), non citato esplicitamente nel PDF."
+  },
+  {
+   "area": "1 ISTAT",
+   "dato": "Famiglie in Italia",
+   "valore": "26.600.000 (media biennio 2024-2025)",
+   "anno": "2024-2025",
+   "fonte_url": "https://www.istat.it/wp-content/uploads/2026/03/Report_Indicatori-demografici_Anno-2025.pdf",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": ""
+  },
+  {
+   "area": "1 ISTAT",
+   "dato": "Quota coppie con figli sul totale famiglie",
+   "valore": "28,4% (coppie senza figli 20,2%; monogenitore circa 10%: madri sole 8,6%, padri soli 2,2%; unipersonali 37,1%)",
+   "anno": "2024-2025",
+   "fonte_url": "https://www.istat.it/wp-content/uploads/2026/03/Report_Indicatori-demografici_Anno-2025.pdf",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "Numero assoluto di coppie con figli NON pubblicato nel PDF; stima derivata 28,4% x 26,6 mln = circa 7,5 mln (CALCOLO MIO, da non citare come dato Istat)."
+  },
+  {
+   "area": "2 DataReportal",
+   "dato": "Utenti social (identita' utente) Italia",
+   "valore": "41,2 mln (69,7% popolazione)",
+   "anno": "ott 2025 (Digital 2026)",
+   "fonte_url": "https://datareportal.com/reports/digital-2026-italy",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "De-duplicazione imperfetta; possono non essere persone uniche."
+  },
+  {
+   "area": "2 DataReportal",
+   "dato": "Utenti social (identita' utente) Italia - aggiornamento",
+   "valore": "44,1 mln (74,9% popolazione)",
+   "anno": "ott 2026 (Digital 2027)",
+   "fonte_url": "https://datareportal.com/reports/digital-2027-italy",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "Dato piu' recente disponibile."
+  },
+  {
+   "area": "2 DataReportal",
+   "dato": "Utenti internet Italia",
+   "valore": "53,1 mln (89,9%) fine 2025; 53,6 mln (91,1%) fine 2026",
+   "anno": "2025/2026",
+   "fonte_url": "https://datareportal.com/reports/digital-2026-italy ; https://datareportal.com/reports/digital-2027-italy",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": ""
+  },
+  {
+   "area": "2 DataReportal",
+   "dato": "Instagram Italia (ad reach Meta)",
+   "valore": "29,9 mln (50,5% pop.; 58,8% degli adulti 18+; 51,5% donne) fine 2025; 28,2 mln (47,9% pop.) fine 2026",
+   "anno": "2025/2026",
+   "fonte_url": "https://datareportal.com/reports/digital-2026-italy ; https://datareportal.com/reports/digital-2027-italy",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "Ad reach Meta, non utenti attivi certificati. Variazione ott 2024-ott 2025: +1,20 mln (+4,2%)."
+  },
+  {
+   "area": "2 DataReportal",
+   "dato": "TikTok Italia (ad reach, 18+)",
+   "valore": "22,0 mln (43,5% adulti 18+; 59,7% donne) fine 2025; 23,5 mln (46,5% adulti 18+) fine 2026",
+   "anno": "2025/2026",
+   "fonte_url": "https://datareportal.com/reports/digital-2026-italy ; https://datareportal.com/reports/digital-2027-italy",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "Solo utenti 18+ (limite strumenti pubblicitari TikTok)."
+  },
+  {
+   "area": "2 DataReportal",
+   "dato": "Facebook Italia (ad reach)",
+   "valore": "28,5 mln",
+   "anno": "fine 2025",
+   "fonte_url": "https://datareportal.com/reports/digital-2026-italy",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "Meta ha rivisto la metodologia: confronti storici da prendere con cautela."
+  },
+  {
+   "area": "2 DataReportal",
+   "dato": "Quota popolazione 25-34 e 35-44 anni",
+   "valore": "10,7% (25-34) e 11,7% (35-44) della popolazione",
+   "anno": "2025",
+   "fonte_url": "https://datareportal.com/reports/digital-2026-italy",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "Dati ONU sulla POPOLAZIONE, non sugli utenti social. Utile come proxy del target genitori."
+  },
+  {
+   "area": "2 DataReportal",
+   "dato": "Penetrazione Instagram/TikTok nella fascia 25-44",
+   "valore": "NON TROVATO",
+   "anno": "-",
+   "fonte_url": "https://datareportal.com/reports/digital-2026-italy",
+   "consultato_il": "2026-11-23",
+   "tag": "NON TROVATO",
+   "note": "La ripartizione per eta' degli utenti e' in grafici non estraibili dal testo della pagina."
+  },
+  {
+   "area": "2 DataReportal",
+   "dato": "Tempo speso sui social in Italia (min/giorno)",
+   "valore": "NON TROVATO",
+   "anno": "-",
+   "fonte_url": "https://datareportal.com/reports/digital-2026-italy",
+   "consultato_il": "2026-11-23",
+   "tag": "NON TROVATO",
+   "note": "Non presente nel testo della pagina Italia. Una sintesi secondaria cita TikTok 1h30/giorno ma non e' verificata: non usare."
+  },
+  {
+   "area": "3 PoliMi / e-commerce",
+   "dato": "eCommerce B2c Italia",
+   "valore": "62,3 mld EUR (+7%); servizi 22,3 mld (+9%); prodotti 40 mld (+5%)",
+   "anno": "2025",
+   "fonte_url": "https://www.economyup.it/?p=219271",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "Fonte: Osservatori Politecnico di Milano (eCommerce B2c e Innovazione Digitale nel Retail), presentato 17-25 feb 2026; letto su EconomyUp."
+  },
+  {
+   "area": "3 PoliMi / e-commerce",
+   "dato": "Investimenti digitali degli studi professionali",
+   "valore": "2,01 mld EUR (+3% sul 2024); previsione 2026 +4%; spesa media 10.500 EUR studi legali, 14.450 commercialisti, 14.700 consulenti del lavoro",
+   "anno": "2025",
+   "fonte_url": "https://www.teleborsa.it/News/2026/07/02/professionisti-cresce-la-digitalizzazione-l-ia-traina-gli-investimenti-negli-studi-187.html",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "Osservatorio Professionisti e Innovazione Digitale PoliMi. Riguarda legali/commercialisti/consulenti del lavoro, NON professionisti dell'infanzia: solo proxy."
+  },
+  {
+   "area": "3 PoliMi / altro",
+   "dato": "Adozione app per prenotazione servizi/visite (quota utenti)",
+   "valore": "NON TROVATO",
+   "anno": "-",
+   "fonte_url": "-",
+   "consultato_il": "2026-11-23",
+   "tag": "NON TROVATO",
+   "note": "Una percentuale (68% Doxa/PoliMi 2025) emersa in una sintesi di ricerca NON e' verificabile: il documento AGCOM citato contiene solo il questionario."
+  },
+  {
+   "area": "3 PoliMi / altro",
+   "dato": "Digitalizzazione di PMI e professioni sanitarie (quota)",
+   "valore": "NON TROVATO",
+   "anno": "-",
+   "fonte_url": "-",
+   "consultato_il": "2026-11-23",
+   "tag": "NON TROVATO",
+   "note": "Percentuali circolate (es. 19% PMI con soluzioni integrate) non verificate in fonte primaria."
+  },
+  {
+   "area": "4 Professionisti",
+   "dato": "Pediatri di libera scelta (PLS) attivi",
+   "valore": "6.284, con quasi 5,8 mln di assistiti (41,9% fascia 0-5, 58,1% fascia 6-13)",
+   "anno": "1/1/2025",
+   "fonte_url": "https://www.lapresse.it/salute/sanita/2026/06/04/pediatri-di-famiglia-introvabili-ne-mancano-quasi-500-l80-in-3-regioni-del-nord/",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "Dati Sisac riportati da GIMBE/LaPresse 4-6-2026."
+  },
+  {
+   "area": "4 Professionisti",
+   "dato": "Carenza pediatri di libera scelta",
+   "valore": "almeno 497 (186 Lombardia, 109 Piemonte, 96 Veneto)",
+   "anno": "2026 (analisi GIMBE)",
+   "fonte_url": "https://www.lapresse.it/salute/sanita/2026/06/04/pediatri-di-famiglia-introvabili-ne-mancano-quasi-500-l80-in-3-regioni-del-nord/",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": ""
+  },
+  {
+   "area": "4 Professionisti",
+   "dato": "Pensionamenti PLS attesi 2025-2029",
+   "valore": "1.547 (dati FIMP 2025)",
+   "anno": "2025-2029",
+   "fonte_url": "https://www.lapresse.it/salute/sanita/2026/06/04/pediatri-di-famiglia-introvabili-ne-mancano-quasi-500-l80-in-3-regioni-del-nord/",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": ""
+  },
+  {
+   "area": "4 Professionisti",
+   "dato": "Logopedisti iscritti",
+   "valore": "13.982 (circa 24 ogni 100.000 abitanti, media europea 36)",
+   "anno": "2023",
+   "fonte_url": "https://documenti.camera.it/leg19/documentiAcquisiti/COM12/Audizioni/leg19.com12.Audizioni.Memoria.PUBBLICO.ideGes.51507.26-11-2024-10-45-28.553.pdf",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "Memoria Federazione Logopedisti Italiani (audizione 26/11/2024) su dati iscritti agli Ordini FNO TSRM e PSTRP."
+  },
+  {
+   "area": "4 Professionisti",
+   "dato": "Terapisti della neuro e psicomotricita' dell'eta' evolutiva (TNPEE)",
+   "valore": "'quasi 6.000' iscritti a Ordini ed elenchi speciali",
+   "anno": "2021",
+   "fonte_url": "https://www.quotidianosanita.it/lavoro-e-professioni/viaggio-nelle-professioni-sanitarie-i-terapisti-della-neuro-e-psicomotricit-dell-et-evolutiva-intervista-al-presidente-andrea-bonifacio/",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "Dato vecchio (articolo 26-7-2021) e approssimato; non copre psicomotricisti non sanitari (es. educatori/psicomotricisti privati)."
+  },
+  {
+   "area": "4 Professionisti",
+   "dato": "Fotografi (ATECO 74.20) imprese attive",
+   "valore": "NON TROVATO (conteggio ufficiale Unioncamere/Infocamere non reperito)",
+   "anno": "-",
+   "fonte_url": "-",
+   "consultato_il": "2026-11-23",
+   "tag": "NON TROVATO",
+   "note": "Piste non verificate: CNA parla di 15.678 imprese fotografiche (gen 2025; PDF non accessibile, 403); un aggregatore non datato indica 12.613. Dal 2025 vige ATECO 2025, i codici cambiano."
+  },
+  {
+   "area": "4 Professionisti",
+   "dato": "Animatori / organizzatori eventi per bambini",
+   "valore": "NON TROVATO",
+   "anno": "-",
+   "fonte_url": "-",
+   "consultato_il": "2026-11-23",
+   "tag": "NON TROVATO",
+   "note": ""
+  },
+  {
+   "area": "4 Professionisti",
+   "dato": "Centri sportivi / scuole sport per bambini",
+   "valore": "NON TROVATO",
+   "anno": "-",
+   "fonte_url": "-",
+   "consultato_il": "2026-11-23",
+   "tag": "NON TROVATO",
+   "note": "Registro RASD del Dipartimento Sport esiste ma non e' stato trovato un totale."
+  },
+  {
+   "area": "4 Professionisti",
+   "dato": "Negozi per l'infanzia (ATECO)",
+   "valore": "NON TROVATO",
+   "anno": "-",
+   "fonte_url": "-",
+   "consultato_il": "2026-11-23",
+   "tag": "NON TROVATO",
+   "note": "Nessun dato aggregato nazionale trovato; solo reti di singole catene (non datate/obsolete)."
+  },
+  {
+   "area": "4 Professionisti",
+   "dato": "Consulenti allattamento (IBCLC) e consulenti del sonno",
+   "valore": "NON TROVATO",
+   "anno": "-",
+   "fonte_url": "-",
+   "consultato_il": "2026-11-23",
+   "tag": "NON TROVATO",
+   "note": "Nessun registro nazionale; AICPAM mappa gli IBCLC ma senza totale reperito."
+  },
+  {
+   "area": "5 Benchmark ADV",
+   "dato": "CPM Meta (Facebook Ads, tutti i settori) ITALIA",
+   "valore": "media mensile mediana circa 10,5 EUR (min 7,05 apr 2026; max 15,54 ott 2025); globale circa 20,6 EUR",
+   "anno": "lug 2025 - lug 2026",
+   "fonte_url": "https://www.superads.ai/facebook-ads-costs/cpm-cost-per-mille/italy",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "ITALIA. Superads (dataset 3 mld USD), 'direzionale'. Alta stagionalita'."
+  },
+  {
+   "area": "5 Benchmark ADV",
+   "dato": "CPC Meta ITALIA",
+   "valore": "media circa 0,50 (min 0,37 lug 2025; max 0,59 nov 2025); globale circa 1,05",
+   "anno": "lug 2025 - lug 2026",
+   "fonte_url": "https://www.superads.ai/facebook-ads-costs/cpc-cost-per-click/italy",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "ITALIA. Valuta non esplicitata dalla fonte."
+  },
+  {
+   "area": "5 Benchmark ADV",
+   "dato": "CPL Meta ITALIA (tutti i settori)",
+   "valore": "mediana media 22,9 EUR (min 3,61 gen 2026; max 47,88 giu 2026); globale 46,0",
+   "anno": "lug 2025 - giu 2026",
+   "fonte_url": "https://www.superads.ai/facebook-ads-costs/cost-per-lead/italy",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "ITALIA. Volatilita' molto alta (CV circa 68%): usare come ordine di grandezza."
+  },
+  {
+   "area": "5 Benchmark ADV",
+   "dato": "Costo per install app (Meta) ITALIA",
+   "valore": "tutti i settori: media 0,844 (mediana 0,431) su soli 7 mesi; Marketplaces: media 33,83 (min 3,17 giu 2026; max 119,71 dic 2025) vs globale 21,83",
+   "anno": "dic 2025 - nov 2026",
+   "fonte_url": "https://www.superads.ai/facebook-ads-costs/cost-per-app-install/italy ; https://www.superads.ai/facebook-ads-costs/cost-per-app-install/marketplaces/italy",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "ITALIA ma BASSA AFFIDABILITA' (pochi punti, enormi oscillazioni, valuta non indicata). Nessun benchmark CPI iOS/Android lifestyle trovato."
+  },
+  {
+   "area": "5 Benchmark ADV",
+   "dato": "CPM Meta e TikTok (globale)",
+   "valore": "Meta 14,19 USD; TikTok 13,26 USD (+16% YoY); CTR TikTok 1,77%; CVR 2,01%; CPA 32,74 USD",
+   "anno": "2025",
+   "fonte_url": "https://influee.co/it/blog/tiktok-ads-benchmarks",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "GLOBALE, brand e-commerce/DTC (Triple Whale via Influee). TikTok ITALIA (CPM/CPC/CPL): NON TROVATO."
+  },
+  {
+   "area": "5 Benchmark ADV",
+   "dato": "Engagement rate Instagram (per follower), brand globali",
+   "valore": "medio 0,48% (carosello 0,55%; Reel 0,52%; immagini 0,37%)",
+   "anno": "2025",
+   "fonte_url": "https://www.socialinsider.io/blog/instagram-benchmarks/",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "GLOBALE. Socialinsider, 67,5 mln post / 579.000 account (la pagina cita anche 35 mln). Nessun dato per Italia: NON TROVATO."
+  },
+  {
+   "area": "5 Benchmark ADV",
+   "dato": "Engagement rate Instagram - trimestre piu' recente",
+   "valore": "medio 0,45%; carosello 0,50%; Reel 0,48%; immagini 0,35%",
+   "anno": "Q3 2026",
+   "fonte_url": "https://www.socialinsider.io/blog/instagram-benchmarks/",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "GLOBALE."
+  },
+  {
+   "area": "5 Benchmark ADV",
+   "dato": "Frequenza di pubblicazione consigliata",
+   "valore": "Instagram 3-5 post/settimana, Stories 2/giorno; TikTok 3-5/settimana (Hootsuite). Buffer: 3-5/sett. ottimale, 6-9/sett. => crescita follower circa 3,7x rispetto a 1-2/sett.",
+   "anno": "2025",
+   "fonte_url": "https://blog.hootsuite.com/how-often-to-post-on-social-media/ ; https://buffer.com/resources/how-often-to-post-on-instagram/",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "GLOBALE. Hootsuite: approccio teorico (best practice), Buffer: 2,1 mln post da 102.000 account."
+  },
+  {
+   "area": "5 Benchmark ADV",
+   "dato": "Tasso di conversione landing page (mediana tutti i settori)",
+   "valore": "6,6% (Unbounce; Finance 8,3%, Healthcare 5,1%, E-commerce 4,2%, SaaS 3,8% - tabelle citate da Colorlib)",
+   "anno": "2024",
+   "fonte_url": "https://unbounce.com/landing-pages/whats-a-good-conversion-rate/",
+   "consultato_il": "2026-11-23",
+   "tag": "DATO",
+   "note": "GLOBALE. SOLO FONTE SECONDARIA: pagina Unbounce non accessibile (403), valore riportato da sintesi di ricerca. Verificare prima di citare. Benchmark specifico lead gen Italia: NON TROVATO."
+  },
+  {
+   "area": "6 Tendenze",
+   "dato": "Quota di professionisti/freelance italiani che acquisiscono clienti da TikTok/Instagram",
+   "valore": "NON TROVATO",
+   "anno": "-",
+   "fonte_url": "-",
+   "consultato_il": "2026-11-23",
+   "tag": "NON TROVATO",
+   "note": "Nessuna indagine quantitativa italiana trovata (solo guide/blog)."
+  },
+  {
+   "area": "6 Tendenze",
+   "dato": "LinkedIn e gruppi Facebook come canali per freelance",
+   "valore": "NON TROVATO (dato quantitativo)",
+   "anno": "-",
+   "fonte_url": "-",
+   "consultato_il": "2026-11-23",
+   "tag": "NON TROVATO",
+   "note": "Solo indicazioni qualitative da blog (LinkedIn citato come canale principale per freelance); nessuna statistica verificabile. Pista: indagine AGCOM 2023 sui liberi professionisti non ordinistici (non verificata)."
+  }
+ ]
+}
