@@ -3,7 +3,6 @@ work/cap/
 public/
 source/
 frames/
-out/*.mp4
 work/*.png
 work/app.js
 work/hero-scrub.mp4
