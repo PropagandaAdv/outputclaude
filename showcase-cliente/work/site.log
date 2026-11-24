@@ -1,0 +1,11 @@
+node:internal/process/promises:394
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+page.waitForTimeout: Target page, context or browser has been closed
+    at grab (/home/user/outputclaude/showcase-cliente/work/capture.js:11:13)
+    at async /home/user/outputclaude/showcase-cliente/work/capture.js:45:5 {
+  log: []
+}
+
+Node.js v22.23.5
