@@ -9,22 +9,34 @@ export const FONT = "'Chivo', 'Inter Tight', system-ui, sans-serif";
 
 export const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
-// ---------- Sfondo: nero + glow sfocato dal colore del frame corrente ----------
-export const Background: React.FC<{ src?: string; glow?: number }> = ({ src, glow = 0.5 }) => (
-  <div style={{ position: 'absolute', inset: 0, background: COLORS.ink, overflow: 'hidden' }}>
-    {src && (
-      <Img
-        src={src}
-        style={{
-          position: 'absolute', left: -300, top: -200, width: 1680, height: 2320, objectFit: 'cover',
-          filter: 'blur(90px) saturate(1.2)', opacity: glow, transform: 'scale(1.1)',
-        }}
-      />
-    )}
-    <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 50% 45%, rgba(10,11,13,0) 0%, rgba(10,11,13,0.55) 100%)' }} />
-    <Grain />
-  </div>
-);
+// ---------- Sfondo: nero + glow dai colori medi del frame corrente (niente filtri pesanti) ----------
+import bgcolors from './bgcolors.json';
+const COLS = bgcolors as Record<string, string[][]>;
+const hex2rgb = (h: string) => [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
+const tint = (h: string, g: number) => {
+  const [r, gg, b] = hex2rgb(h);
+  const l = (r + gg + b) / 3;
+  const sat = 1.5;
+  const [r2, g2, b2] = [r, gg, b].map((v) => Math.max(0, Math.min(255, l + (v - l) * sat)));
+  const ink = [10, 11, 13];
+  return [r2, g2, b2].map((v, i) => Math.round(ink[i] * (1 - g) + v * g * 0.8));
+};
+export const Background: React.FC<{ src?: string; glow?: number }> = ({ src, glow = 0.5 }) => {
+  let stops = 'transparent, transparent';
+  const m = src && src.match(/((?:hero|mobile|shots\/s\d+))\/(\d{4})\.jpg/);
+  if (m) {
+    const arr = COLS[m[1]];
+    const fr = arr && arr[Math.min(parseInt(m[2], 10), arr.length - 1)];
+    if (fr) stops = fr.map((c, i) => { const [r, g, b] = tint(c, glow); return `rgb(${r},${g},${b}) ${(i / 7) * 100}%`; }).join(', ');
+  }
+  return (
+    <div style={{ position: 'absolute', inset: 0, background: COLORS.ink, overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(180deg, ${stops})` }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 50% 48%, rgba(10,11,13,0) 0%, rgba(10,11,13,0.72) 100%)' }} />
+      <Grain />
+    </div>
+  );
+};
 
 // grana finissima animata (2-3%)
 export const Grain: React.FC = () => {
@@ -87,7 +99,7 @@ export const Words: React.FC<{
 };
 
 // ---------- Didascalia (pillola) ----------
-export const Caption: React.FC<{ text: string; from: number; dur: number; y?: number }> = ({ text, from, dur, y = 1385 }) => {
+export const Caption: React.FC<{ text: string; from: number; dur: number; y?: number }> = ({ text, from, dur, y = 1400 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const inP = spring({ frame: frame - from, fps, config: { damping: 20, mass: 0.6 } });

@@ -1,1 +1,1 @@
-{"name":"showcase-inprotec","private":true,"version":"1.0.0","dependencies":{"@remotion/cli":"^4.0.250","@remotion/google-fonts":"^4.0.250","@types/react":"^18.3.31","react":"^18.3.1","react-dom":"^18.3.1","remotion":"^4.0.250","typescript":"^7.0.2"}}
+{"name":"showcase-inprotec","private":true,"version":"1.0.0","dependencies":{"@remotion/cli":"^4.0.250","@remotion/google-fonts":"^4.0.250","@types/react":"^18.3.31","react":"^18.3.1","react-dom":"^18.3.1","remotion":"^4.0.250"},"devDependencies":{"typescript":"^5.6.3"}}

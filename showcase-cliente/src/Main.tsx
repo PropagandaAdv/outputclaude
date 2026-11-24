@@ -13,14 +13,14 @@ const outCubic = Easing.out(Easing.cubic);
 
 const MOCK_W = 1000;
 const MOCK_H = BAR + MOCK_W / (1440 / 900); // 665
-const MOCK_CY = 930;
+const MOCK_CY = 990;
 
 // ============ ATTO 1 — HERO INTEGRALE ============
 const HeroAct: React.FC<{ showText: boolean }> = ({ showText }) => {
   const f = useCurrentFrame();
   const idx = Math.min(f, HERO_CAPTURED - 1);
   const src = frameSrc('hero', idx);
-  const tilt = interpolate(f, [0, 90], [6, 0], { ...clamp, easing: outCubic });
+  const tilt = 0; // tilt 3D disattivato: instabile nel rendering software di Chromium
   let scale = interpolate(f, [0, HERO_FRAMES - 24], [0.96, 1.0], clamp);
   const floatY = Math.sin((f / 60) * ((Math.PI * 2) / 6)) * 6;
   // zoom-through finale (dopo la fine del ciclo, sul beat)
@@ -29,19 +29,19 @@ const HeroAct: React.FC<{ showText: boolean }> = ({ showText }) => {
   const stageOpacity = 1 - interpolate(zt, [0.7, 1], [0, 1], clamp);
   return (
     <AbsoluteFill>
-      <Background src={src} glow={0.55} />
+      <Background src={src} glow={0.42} />
       <AbsoluteFill style={{ opacity: stageOpacity, filter: `blur(${zt * 12}px)` }}>
-        <div style={{ position: 'absolute', left: 40, top: MOCK_CY - MOCK_H / 2 + floatY, perspective: 2200 }}>
-          <Mockup width={MOCK_W} style={{ transform: `rotateX(${tilt}deg) scale(${scale})`, transformOrigin: '50% 50%' }}>
+        <div style={{ position: 'absolute', left: 40, top: MOCK_CY - MOCK_H / 2 + floatY,  }}>
+          <Mockup width={MOCK_W} style={{ transform: `scale(${scale})`, transformOrigin: '50% 50%' }}>
             <Img src={src} style={{ width: '100%', height: '100%', display: 'block' }} />
           </Mockup>
         </div>
       </AbsoluteFill>
       {showText && (
         <AbsoluteFill style={{ opacity: 1 - zt }}>
-          <div style={{ position: 'absolute', left: 70, width: 940, top: 275, display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'center' }}>
-            <Words text={TEXT.hook[0]} start={0} lead={6} size={76} end={HERO_FRAMES - 30} accent={TEXT.hookAccentWord} />
-            <Words text={TEXT.hook[1]} start={16} lead={6} size={76} end={HERO_FRAMES - 30} accent={TEXT.hookAccentWord} />
+          <div style={{ position: 'absolute', left: 70, width: 940, top: 330, display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'center' }}>
+            <Words text={TEXT.hook[0]} start={0} lead={40} size={76} end={HERO_FRAMES - 30} accent={TEXT.hookAccentWord} />
+            <Words text={TEXT.hook[1]} start={16} lead={8} size={76} end={HERO_FRAMES - 30} accent={TEXT.hookAccentWord} />
           </div>
         </AbsoluteFill>
       )}
@@ -75,7 +75,7 @@ const ShotView: React.FC<{ shot: Shot }> = ({ shot }) => {
     return (
       <AbsoluteFill>
         <Background src={src} glow={0.4} />
-        <div style={{ position: 'absolute', left: 40, top: 960 - (h * 2 * s) / 2, width: 1000, height: h * 2 * s, borderRadius: 28, overflow: 'hidden', boxShadow: '0 60px 120px -20px rgba(0,0,0,0.65), 0 12px 24px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.07)' }}>
+        <div style={{ position: 'absolute', left: 40, top: 900 - (h * 2 * s) / 2, width: 1000, height: h * 2 * s, borderRadius: 28, overflow: 'hidden', boxShadow: '0 60px 120px -20px rgba(0,0,0,0.65), 0 12px 24px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.07)' }}>
           <div style={{ position: 'absolute', inset: 0, transform: `scale(${1 + push})`, transformOrigin: '50% 50%' }}>
             <Img src={src} style={{ position: 'absolute', left: -r.x * 2 * s, top: -r.y * 2 * s, width: 2880 * s, height: 1800 * s }} />
           </div>
@@ -88,7 +88,7 @@ const ShotView: React.FC<{ shot: Shot }> = ({ shot }) => {
   return (
     <AbsoluteFill>
       <Background src={src} glow={0.45} />
-      <div style={{ position: 'absolute', left: 40, top: 960 - MOCK_H / 2, transform: `scale(${1 + push})`, transformOrigin: '50% 50%' }}>
+      <div style={{ position: 'absolute', left: 40, top: 900 - MOCK_H / 2, transform: `scale(${1 + push})`, transformOrigin: '50% 50%' }}>
         <Mockup width={MOCK_W}>
           <Img src={src} style={{ width: '100%', height: '100%', display: 'block', filter: blur ? `blur(${blur}px)` : undefined }} />
         </Mockup>
@@ -141,13 +141,13 @@ const Signature: React.FC<{ showText: boolean }> = ({ showText }) => {
   const back = interpolate(f, [SIGN_FRAMES - 30, SIGN_FRAMES - 1], [0, 1], { ...clamp, easing: Easing.inOut(Easing.cubic) });
   const sc = interpolate(shrink, [0, 1], [1, 0.6]) * (1 - back) + 0.96 * back;
   const cy = interpolate(shrink, [0, 1], [MOCK_CY, 560]) * (1 - back) + MOCK_CY * back;
-  const tilt = 6 * back;
+  const tilt = 0;
   const textOut = interpolate(f, [SIGN_FRAMES - 48, SIGN_FRAMES - 34], [0, 1], clamp);
   return (
     <AbsoluteFill>
-      <Background src={src} glow={0.55} />
-      <div style={{ position: 'absolute', left: 40, top: cy - MOCK_H / 2, perspective: 2200 }}>
-        <Mockup width={MOCK_W} style={{ transform: `rotateX(${tilt}deg) scale(${sc})`, transformOrigin: '50% 50%' }}>
+      <Background src={src} glow={0.42} />
+      <div style={{ position: 'absolute', left: 40, top: cy - MOCK_H / 2,  }}>
+        <Mockup width={MOCK_W} style={{ transform: `scale(${sc})`, transformOrigin: '50% 50%' }}>
           <Img src={src} style={{ width: '100%', height: '100%', display: 'block' }} />
         </Mockup>
       </div>
@@ -185,7 +185,7 @@ export const Main: React.FC<{ showText: boolean }> = ({ showText }) => {
       </Sequence>
       <Sequence from={t2} durationInFrames={MOBILE_FRAMES}>
         <Mobile />
-        {showText && <Caption text={TEXT.captionMobile} from={14} dur={84} y={1430} />}
+        {showText && <Caption text={TEXT.captionMobile} from={14} dur={84} y={1400} />}
       </Sequence>
       <Sequence from={t3} durationInFrames={SIGN_FRAMES}><Signature showText={showText} /></Sequence>
     </AbsoluteFill>

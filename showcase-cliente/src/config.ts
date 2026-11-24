@@ -38,25 +38,25 @@ export type Shot = {
 };
 export const SHOTS: Shot[] = [
   { id: 's01', type: 'A', frames: 60 },
-  { id: 's02', type: 'C', frames: 60, region: { x: 192, y: 110, w: 500, h: 550 }, pushIn: 0.08 },
+  { id: 's02', type: 'C', frames: 60, region: { x: 182, y: 45, w: 580, h: 520 }, pushIn: 0.08 },
   { id: 's03', type: 'F', frames: 60 },
-  { id: 's04', type: 'B', frames: 30, region: { x: 330, y: 0 }, pushIn: 0.05 },
+  { id: 's04', type: 'B', frames: 30, region: { x: 760, y: 0 }, pushIn: 0.05 },
   { id: 's05', type: 'D', frames: 60, from: 18 },
-  { id: 's06', type: 'C', frames: 30, srcId: 's05', from: 96, region: { x: 190, y: 300, w: 500, h: 550 }, pushIn: 0.06 },
+  { id: 's06', type: 'C', frames: 30, srcId: 's05', from: 96, region: { x: 150, y: 140, w: 580, h: 330 }, pushIn: 0.06 },
   { id: 's07', type: 'B', frames: 30, region: { x: 150, y: 0 }, pushIn: 0.05 },
-  { id: 's08', type: 'C', frames: 30, region: { x: 790, y: 330, w: 500, h: 550 }, pushIn: 0.06 },
+  { id: 's08', type: 'C', frames: 30, region: { x: 170, y: 410, w: 500, h: 300 }, pushIn: 0.06 },
   { id: 's09', type: 'A', frames: 30 },
   { id: 's10', type: 'B', frames: 30, region: { x: 150, y: 0 }, pushIn: 0.05 },
   { id: 's11', type: 'F', frames: 30 },
   { id: 's12', type: 'A', frames: 30 },
-  { id: 's13', type: 'C', frames: 30, region: { x: 700, y: 380, w: 500, h: 550 }, pushIn: 0.06 },
-  { id: 's14', type: 'B', frames: 30, region: { x: 190, y: 0 }, pushIn: 0.05 },
+  { id: 's13', type: 'C', frames: 30, region: { x: 660, y: 360, w: 580, h: 520 }, pushIn: 0.06 },
+  { id: 's14', type: 'B', frames: 30, region: { x: 170, y: 0 }, pushIn: 0.05 },
 ];
 export const MONTAGE_FRAMES = SHOTS.reduce((a, s) => a + s.frames, 0); // 540 = 9,0 s
 
 // Mobile: 3 inquadrature (frame di partenza nella cattura mobile, durata)
 export const MOBILE_SHOTS = [
-  { from: 0, frames: 60 }, { from: 110, frames: 30 }, { from: 200, frames: 30 },
+  { from: 0, frames: 60 }, { from: 60, frames: 30 }, { from: 90, frames: 30 },
 ];
 export const MOBILE_FRAMES = 120;
 export const SIGN_FRAMES = 192;           // 3,2 s

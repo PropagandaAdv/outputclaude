@@ -8,3 +8,4 @@ work/*.png
 work/app.js
 work/hero-scrub.mp4
 package-lock.json
+*.log

@@ -1,0 +1,31 @@
+{
+  "sorgente": {
+    "file": "source/site.mp4", "risoluzione": "1920x1040", "fps": 50, "durata_s": 29.42,
+    "audio": "presente ma non usato (nessuna musica/voce utile): esportazione senza traccia audio"
+  },
+  "sito": { "nome": "INPROTEC — Industrial Process Technologies", "settore": "sistemi di controllo e sicurezza per Oil & Gas", "url_letto_dalla_registrazione": "inprotec-homepage.vercel.app" },
+  "problemi_nel_sorgente": [
+    "UI del browser visibile (schede, barra URL, preferiti): y 0–88 px",
+    "Widget del registratore sovrapposto all'hero (x 20–90, y 337–560)",
+    "Watermark 'boom' sovrapposto al contenuto (x ~1680–1885, y ~950–1005)",
+    "Scrollbar di sistema a destra (x 1905–1920)",
+    "Overlay dentro l'hero: NON rimovibili con crop senza tagliare l'hero → ri-cattura (Fase 1B)"
+  ],
+  "hero": {
+    "tipo": "video scrubbato dallo scroll (sezione 1000vh con blocco sticky, asset hero-scrub.mp4 17,6 s)",
+    "nota": "Non esiste un 'ciclo a pagina ferma': le 4 slide avanzano solo scrollando. Il ciclo completo è stato ricatturato scorrendo da 0 a fine sezione hero (8100 px) in 11 s + 0,9 s di tenuta sull'ultima slide, a 60 fps, senza cursore né UI.",
+    "slide": ["01 Upstream — Where the chain begins", "02 Process — Where every process stays under control", "03 Distribution — Where energy reaches people", "Finale — From the wellhead to the pump. One partner for the whole chain."]
+  },
+  "sezioni_in_ordine": ["hero", "solutions (Five disciplines. One accountable team.)", "marquee sistemi (SCADA/RTU, HIPPS, PLC, ICSS, DCS, ESD, F&G, BMS, BCS)", "industries (Follow the chain: Upstream/Processing/Distribution)", "numbers (25+, 9, 5, 2) + standards", "references (clienti e partner EPC)", "company (You answer for uptime...)", "contact (form)", "footer"],
+  "money_shot": ["hero notturno raffineria", "card Automation & Process Control", "tab Follow the chain con cambio immagine", "marquee sistemi", "numeri 25+"],
+  "micro_interazioni": ["card Solutions selezionabile", "tab Upstream/Processing/Distribution (click reali ricatturati in tempo reale)", "marquee orizzontale"],
+  "palette_hex": ["#0A0B0D", "#C0183C", "#DB9C95", "#C6494F", "#E5E7EB", "#9CA3AF"],
+  "tipografia": "Chivo (sans, pesi 400–700) + Chivo Mono per le etichette; usato anche nel video",
+  "crop_applicato": "nessuno sul sorgente: tutti i frame provengono dalla ri-cattura Playwright (Chromium, 1440x900) senza chrome del browser",
+  "overlay_rimossi": "non presenti nella ri-cattura (widget, watermark, cursore, scrollbar assenti per costruzione)",
+  "zoom_massimo": {
+    "hero": "mai zoomato oltre la vista intera",
+    "catture_montaggio": "DPR 2 (2880x1800): 9:16 e close-up con >= 0,8 px sorgente per px di output (rapporto effettivo 0,86–1,16)",
+    "mobile": "DPR 2 (780x1688), schermo mostrato a 440 px"
+  }
+}

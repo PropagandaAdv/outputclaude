@@ -1,0 +1,17 @@
+{
+  "formato": "1080x1920 @60fps, 1572 frame = 26,2 s, senza audio",
+  "atto1": { "scena": "HERO SENZA TAGLI", "frames": "0–719 (12,0 s)", "movimento": "mockup 1000 px: rotateX 6°→0 in 1,5 s, scala 0,96→1,00, fluttuazione ±6 px; hero sempre intero", "testo": "Dal pozzo alla pompa, in un sito", "uscita": "zoom-through sul beat 24 (12,0 s)" },
+  "atto2": {
+    "montaggio_9s": [
+      ["s01","A sezione nel mockup (Solutions)","1,0 s"],["s02","C close-up card Automation","1,0 s"],["s03","F speed ramp verso il marquee","1,0 s"],
+      ["s04","B crop 9:16 marquee","0,5 s"],["s05","D click reali sui tab (Processing)","1,0 s"],["s06","C close-up immagine Distribution","0,5 s"],
+      ["s07","B crop 9:16 numeri 25+","0,5 s"],["s08","C close-up standard","0,5 s"],["s09","A references","0,5 s"],
+      ["s10","B crop 9:16 elenco clienti","0,5 s"],["s11","F speed ramp verso company","0,5 s"],["s12","A company","0,5 s"],
+      ["s13","C close-up form contatto","0,5 s"],["s14","B crop 9:16 contatto","0,5 s"]
+    ],
+    "didascalie": ["Design su misura (1,4 s)", "Ogni dettaglio, curato (1,4 s)", "Anche su mobile (1,4 s)"],
+    "mobile": "2,0 s, 3 inquadrature (60+30+30 frame) su mockup smartphone senza marchi",
+    "firma_cta": "3,2 s: mockup si rimpicciolisce, CTA + firma + handle; gli ultimi 0,5 s riportano il mockup nella posa del frame 0 (loop)"
+  },
+  "griglia_ritmica": "120 BPM: tutti i tagli dell'atto 2 su multipli di 0,25–0,5 s (beat = 30 frame)"
+}
