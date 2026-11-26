@@ -60,7 +60,7 @@ def bullets(doc, items, style='List Bullet'):
 
 def box(doc, title, lines):
     t = doc.add_table(rows=1, cols=1); t.alignment = WD_TABLE_ALIGNMENT.CENTER
-    c = t.rows[0].cells[0]; shade(c, HEX_BOX); set_borders(t, 'E07A1F')
+    c = t.rows[0].cells[0]; shade(c, HEX_BOX); set_borders(t, 'E07A1F'); fix_widths(t, [17])
     p = c.paragraphs[0]; r = p.add_run(title); r.bold = True; r.font.color.rgb = ARANCIO; r.font.size = Pt(11)
     for l in lines:
         q = c.add_paragraph(style='List Bullet'); add_runs(q, l, 10); q.paragraph_format.space_after = Pt(1)
@@ -82,10 +82,21 @@ def table(doc, header, rows, widths=None, size=9, zebra=True):
             add_runs(p, str(v), size)
             if zebra and ri % 2 == 1: shade(cells[i], HEX_ALT)
     if widths:
-        for row in t.rows:
-            for i, w in enumerate(widths): row.cells[i].width = Cm(w)
+        fix_widths(t, widths)
     doc.add_paragraph().paragraph_format.space_after = Pt(2)
     return t
+
+def fix_widths(t, widths):
+    tot = sum(widths)
+    tblPr = t._tbl.tblPr
+    for e in tblPr.findall(qn('w:tblW')): tblPr.remove(e)
+    w = OxmlElement('w:tblW'); w.set(qn('w:w'), str(int(tot * 567))); w.set(qn('w:type'), 'dxa'); tblPr.append(w)
+    lay = OxmlElement('w:tblLayout'); lay.set(qn('w:type'), 'fixed'); tblPr.append(lay)
+    grid = t._tbl.tblGrid
+    for i, gc in enumerate(grid.findall(qn('w:gridCol'))):
+        if i < len(widths): gc.set(qn('w:w'), str(int(widths[i] * 567)))
+    for row in t.rows:
+        for i, wd in enumerate(widths): row.cells[i].width = Cm(wd)
 
 def page_break(doc):
     doc.add_paragraph().add_run().add_break(WD_BREAK.PAGE)
@@ -109,3 +120,10 @@ def footer_pages(doc, text):
             it = OxmlElement('w:instrText'); it.set(qn('xml:space'), 'preserve'); it.text = 'PAGE'; r2._r.append(it)
         else:
             f = OxmlElement('w:fldChar'); f.set(qn('w:fldCharType'), kind); r2._r.append(f)
+
+def add_static_toc(doc, entries):
+    for lvl, title, page in entries:
+        p = doc.add_paragraph(); p.paragraph_format.space_after = Pt(2 if lvl == 2 else 4)
+        p.paragraph_format.left_indent = Cm(0 if lvl == 1 else 0.8)
+        p.paragraph_format.tab_stops.add_tab_stop(Cm(17), alignment=2, leader=1)
+        r = p.add_run(f"{title}\t{page}"); r.bold = (lvl == 1); r.font.size = Pt(11 if lvl == 1 else 9.5)

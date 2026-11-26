@@ -48,3 +48,6 @@ Discrepanza: il feed RSS elenca 15 video, la pagina ne dichiara 35 [VERIFICATO e
 4. Aggiornare header del sito con link social e correggere i contatori a 0.
 5. Definire un nome handle/pagina coerente e un hashtag di brand.
 6. Creare contenuti per segmenti oggi non presidiati (condomini/Conto Termico, fotovoltaico EPC).
+
+## Rettifica (sessione principale, 26/11/2026)
+I contatori a "0" in home non sono un malfunzionamento: sono contatori animati. I valori reali nel codice (`data-value`) sono: 80 (fatturato, M), 100 (portafoglio lavori, M), 170 (contratti attivi), 1000 (lavoratori occupati), 25 (anni di storia), 3,3 (patrimonio netto, M). Restano da verificare le incoerenze con il testo del sito (500 addetti; oltre 20 anni). Vedi `02_audit/audit_sito.md`.

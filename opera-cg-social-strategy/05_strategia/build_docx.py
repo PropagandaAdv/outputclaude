@@ -23,7 +23,12 @@ para(doc, '26 novembre 2026', 10, GRIGIO, WD_ALIGN_PARAGRAPH.CENTER)
 para(doc, 'Documento riservato. Le analisi sono basate su fonti pubbliche consultate il 26/11/2026.', 8, GRIGIO, WD_ALIGN_PARAGRAPH.CENTER)
 page_break(doc)
 
-doc.add_heading('Indice', 1); add_toc(doc); page_break(doc)
+doc.add_heading('Indice', 1)
+import os
+TOC = json.load(open('toc.json')) if os.path.exists('toc.json') else []
+if TOC: add_static_toc(doc, TOC)
+else: add_toc(doc)
+page_break(doc)
 
 # ---------------- 1 EXEC SUMMARY ----------------
 doc.add_heading('1. Executive summary', 1)
@@ -220,4 +225,5 @@ doc.add_heading('12. Appendice: fonti, metodologia, limiti', 1)
 MS.appendice(doc)
 
 doc.save('../output/Opera_CG_Analisi_e_Strategia_Social.docx')
+json.dump([(1 if p.style.name=='Heading 1' else 2, p.text) for p in doc.paragraphs if p.style.name in ('Heading 1','Heading 2') and p.text!='Indice'], open('headings.json','w'), ensure_ascii=False)
 print('docx salvato')
